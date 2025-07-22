@@ -1,0 +1,18 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "In Vite Project Web App",
+      "request": "launch",
+      "type": "dart",
+      "args": [
+        "-d",
+        "edge",
+        "--web-port",
+        "3300",
+        // "--wasm",
+        "canvaskit"
+      ]
+    }
+  ]
+}
