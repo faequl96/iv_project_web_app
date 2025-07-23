@@ -196,47 +196,47 @@ packages:
     dependency: transitive
     description:
       path: "."
-      ref: "0.0.5"
-      resolved-ref: a1021a20397a6900f9c2d22511a15063918a75b7
-      url: "https://github.com/faequl96/iv_project_api.git"
+      ref: "0.0.6"
+      resolved-ref: "83d6bbb4a6bc4465deb7a61af697c52b87f41edf"
+      url: "git@github.com:faequl96/iv_project_api.git"
     source: git
-    version: "0.0.5"
+    version: "0.0.6"
   iv_project_api_core:
     dependency: transitive
     description:
       path: "."
       ref: "0.0.2"
       resolved-ref: d960b7b3074db385a4e4b1b8958b061226b06f62
-      url: "https://github.com/faequl96/iv_project_api_core.git"
+      url: "git@github.com:faequl96/iv_project_api_core.git"
     source: git
     version: "0.0.2"
   iv_project_core:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.0.2"
-      resolved-ref: e94107fb159159ad8ddc280e9f011717017dca16
-      url: "https://github.com/faequl96/iv_project_core.git"
+      ref: "0.0.3"
+      resolved-ref: b3d3d2904081c6b6cc2744bbc1912d206059fee6
+      url: "git@github.com:faequl96/iv_project_core.git"
     source: git
-    version: "0.0.2"
+    version: "0.0.3"
   iv_project_data:
     dependency: transitive
     description:
       path: "."
-      ref: "0.0.2"
-      resolved-ref: a698cc45da724d5fdae465c5aaf4913331ae0b4a
-      url: "https://github.com/faequl96/iv_project_data.git"
+      ref: "0.0.3"
+      resolved-ref: cf8c4ca95cbfdd6438251c71ee5c118568a5515b
+      url: "git@github.com:faequl96/iv_project_data.git"
     source: git
-    version: "0.0.2"
+    version: "0.0.3"
   iv_project_invitation_theme:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.0.2"
-      resolved-ref: "3adbe9931983a8e4bf2a6d6dea8ac6b35826a3b3"
-      url: "https://github.com/faequl96/iv_project_invitation_theme.git"
+      ref: "0.0.3"
+      resolved-ref: "6b3c56b69bbbb3c1bf9a9c886fb78035e5c68065"
+      url: "git@github.com:faequl96/iv_project_invitation_theme.git"
     source: git
-    version: "0.0.2"
+    version: "0.0.3"
   iv_project_model:
     dependency: transitive
     description:
@@ -250,11 +250,11 @@ packages:
     dependency: transitive
     description:
       path: "."
-      ref: "0.0.6"
-      resolved-ref: e4980f2e04f5ce89d6548e774c0e449335e62a6e
+      ref: "0.0.7"
+      resolved-ref: "1e763dc477495e4faddff6ad2ca24187934b8c5e"
       url: "https://github.com/faequl96/iv_project_repository.git"
     source: git
-    version: "0.0.6"
+    version: "0.0.7"
   just_audio:
     dependency: transitive
     description:
