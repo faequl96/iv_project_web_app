@@ -7,6 +7,6 @@ import 'package:iv_project_web_app/routes/router.dart';
 void main() {
   NavigationService.init(router);
 
-  print('tes4');
+  print('tes5');
   runApp(const App());
 }
