@@ -12,8 +12,8 @@ class HomePage extends StatelessWidget {
       width: size.width,
       child: Center(
         child: ColoredBox(
-          color: Colors.green,
-          child: Image.asset('assets/dummys/try_theme_cover_image.jpg', height: 300, width: 200, fit: BoxFit.cover),
+          color: Colors.orange,
+          child: Image.asset('assets/tes_image_jpeg.jpg', height: 300, width: 200, fit: BoxFit.cover),
         ),
       ),
     );
