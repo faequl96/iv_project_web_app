@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
       width: size.width,
       child: Center(
         child: ColoredBox(
-          color: Colors.blue,
+          color: Colors.red,
           child: Image.asset('assets/groom.png', height: 300, width: 200, fit: BoxFit.cover),
         ),
       ),
