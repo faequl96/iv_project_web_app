@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iv_project_invitation_theme/iv_project_invitation_theme.dart';
+// import 'package:iv_project_invitation_theme/iv_project_invitation_theme.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
       width: size.width,
       child: Center(
         child: ColoredBox(
-          color: Colors.amber,
+          color: Colors.green,
           child: Image.asset('assets/dummys/try_theme_cover_image.jpg', height: 300, width: 200, fit: BoxFit.cover),
         ),
       ),
