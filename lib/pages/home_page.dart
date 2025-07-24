@@ -13,7 +13,7 @@ class HomePage extends StatelessWidget {
       child: Center(
         child: ColoredBox(
           color: Colors.green,
-          child: Image.asset('assets/dummys/try_theme_cover_image.jpg', height: 300, width: 200, fit: BoxFit.cover),
+          child: Image.asset('assets/groom.png', height: 300, width: 200, fit: BoxFit.cover),
         ),
       ),
     );
