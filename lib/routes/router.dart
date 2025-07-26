@@ -6,7 +6,7 @@ import 'package:iv_project_web_app/pages/page.dart';
 
 final router = GoRouter(
   navigatorKey: GlobalContextService.navigatorKey,
-  initialLocation: RoutePath.initialPage,
+  initialLocation: '/',
   routes: [_pageBuilder('/', page: const HomePage())],
 );
 
