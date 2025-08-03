@@ -181,8 +181,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.0.7+4"
-      resolved-ref: "01e9b9b23e76f0f62c07f8156513848c940b66f7"
+      ref: "0.0.8"
+      resolved-ref: c4cc52732a297e167eb06b3f088a07d09ffb0baa
       url: "https://github.com/faequl96/iv_project_invitation_theme.git"
     source: git
     version: "0.0.5+3"
