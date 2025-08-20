@@ -22,6 +22,13 @@ class _App extends StatefulWidget {
 class _AppState extends State<_App> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(debugShowCheckedModeBanner: false, routerConfig: NavigationService.router);
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      routerConfig: NavigationService.router,
+      theme: ThemeData(
+        inputDecorationTheme: InputDecorationTheme(floatingLabelStyle: TextStyle(color: Colors.grey.shade300)),
+        textSelectionTheme: TextSelectionThemeData(cursorColor: Colors.grey.shade100, selectionHandleColor: Colors.grey.shade100),
+      ),
+    );
   }
 }
