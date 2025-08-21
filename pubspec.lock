@@ -65,14 +65,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.6"
-  csslib:
-    dependency: transitive
-    description:
-      name: csslib
-      sha256: "09bad715f418841f976c77db72d5398dc1253c21fb9c0c7f0b0b985860b2d58e"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.2"
   dart_earcut:
     dependency: transitive
     description:
@@ -160,22 +152,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_widget_from_html_core:
-    dependency: transitive
-    description:
-      name: flutter_widget_from_html_core
-      sha256: "1120ee6ed3509ceff2d55aa6c6cbc7b6b1291434422de2411b5a59364dd6ff03"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.17.0"
-  fwfh_webview:
-    dependency: transitive
-    description:
-      name: fwfh_webview
-      sha256: "06595c7ca945c8d8522864a764e21abbcf50096852f8d256e45c0fa101b6fbc6"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.15.5"
   go_router:
     dependency: "direct main"
     description:
@@ -184,14 +160,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "16.1.0"
-  html:
-    dependency: transitive
-    description:
-      name: html
-      sha256: "6d1264f2dffa1b1101c25a91dff0dc2daee4c18e87cd8538729773c073dbf602"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.15.6"
   http:
     dependency: transitive
     description:
@@ -229,8 +197,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.1.4"
-      resolved-ref: "13bfb550a1a243d1c7d29e6bf8ae60e27ac6da25"
+      ref: "0.1.4+1"
+      resolved-ref: "356513144c29b1990b1d06e4577ea5b5d0f7b7a4"
       url: "https://github.com/faequl96/iv_project_invitation_theme.git"
     source: git
     version: "0.0.5+3"
@@ -463,11 +431,11 @@ packages:
     dependency: transitive
     description:
       path: "."
-      ref: "0.0.6"
-      resolved-ref: c778b2cf56bc5eeb9c719ddf0042600ffc2aff73
+      ref: "0.0.7"
+      resolved-ref: "7937035b30466934ec965f39f9b84552f8e52723"
       url: "https://github.com/faequl96/quick_dev_sdk.git"
     source: git
-    version: "0.0.6"
+    version: "0.0.7"
   rxdart:
     dependency: transitive
     description:
@@ -593,38 +561,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
-  webview_flutter:
-    dependency: transitive
-    description:
-      name: webview_flutter
-      sha256: c3e4fe614b1c814950ad07186007eff2f2e5dd2935eba7b9a9a1af8e5885f1ba
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.13.0"
-  webview_flutter_android:
-    dependency: transitive
-    description:
-      name: webview_flutter_android
-      sha256: "414174cacd339046a1a6dbf93cac62422194c676fed11119ccf228b81640e887"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.9.1"
-  webview_flutter_platform_interface:
-    dependency: transitive
-    description:
-      name: webview_flutter_platform_interface
-      sha256: "63d26ee3aca7256a83ccb576a50272edd7cfc80573a4305caa98985feb493ee0"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.14.0"
-  webview_flutter_wkwebview:
-    dependency: transitive
-    description:
-      name: webview_flutter_wkwebview
-      sha256: fb46db8216131a3e55bcf44040ca808423539bc6732e7ed34fb6d8044e3d512f
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.23.0"
   wkt_parser:
     dependency: transitive
     description:
@@ -643,4 +579,4 @@ packages:
     version: "1.1.0"
 sdks:
   dart: ">=3.9.0 <4.0.0"
-  flutter: ">=3.32.0"
+  flutter: ">=3.27.0"
