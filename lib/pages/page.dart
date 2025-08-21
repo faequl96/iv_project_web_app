@@ -12,6 +12,7 @@ class Page extends StatelessWidget {
     return SafeArea(
       top: false,
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Stack(
           children: [
             Overlay.wrap(child: content),
