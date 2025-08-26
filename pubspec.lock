@@ -156,10 +156,10 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: "8b1f37dfaf6e958c6b872322db06f946509433bec3de753c3491a42ae9ec2b48"
+      sha256: ced3fdc143c1437234ac3b8e985f3286cf138968bb83ca9a6f94d22f2951c6b9
       url: "https://pub.dev"
     source: hosted
-    version: "16.1.0"
+    version: "16.2.0"
   http:
     dependency: transitive
     description:
@@ -197,8 +197,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.1.5"
-      resolved-ref: "13b9eb101946dc408e354352b29c528cd7fba21c"
+      ref: "0.1.5+1"
+      resolved-ref: "13902049e6f89f5b93042b713d4cf5a3410c309c"
       url: "https://github.com/faequl96/iv_project_invitation_theme.git"
     source: git
     version: "0.0.5+3"
@@ -579,4 +579,4 @@ packages:
     version: "1.1.0"
 sdks:
   dart: ">=3.9.0 <4.0.0"
-  flutter: ">=3.27.0"
+  flutter: ">=3.29.0"
