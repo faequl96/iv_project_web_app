@@ -197,8 +197,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.1.5+1"
-      resolved-ref: "13902049e6f89f5b93042b713d4cf5a3410c309c"
+      ref: "0.1.5+2"
+      resolved-ref: "11fe9f1c3a8cda090dae85aa9ae642b5074034c3"
       url: "https://github.com/faequl96/iv_project_invitation_theme.git"
     source: git
     version: "0.0.5+3"
@@ -431,8 +431,8 @@ packages:
     dependency: transitive
     description:
       path: "."
-      ref: "0.0.7"
-      resolved-ref: "7937035b30466934ec965f39f9b84552f8e52723"
+      ref: "0.0.7+1"
+      resolved-ref: "6271e0d83a81e0947cfafca10ce3b6364659d180"
       url: "https://github.com/faequl96/quick_dev_sdk.git"
     source: git
     version: "0.0.7"
