@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:iv_project_core/iv_project_core.dart';
 import 'package:iv_project_web_app/core/di/app_bloc_providers.dart';
 
@@ -29,6 +30,13 @@ class _AppState extends State<_App> {
         inputDecorationTheme: InputDecorationTheme(floatingLabelStyle: TextStyle(color: Colors.grey.shade300)),
         textSelectionTheme: TextSelectionThemeData(cursorColor: Colors.grey.shade100, selectionHandleColor: Colors.grey.shade100),
       ),
+      locale: const Locale('id', 'ID'),
+      supportedLocales: const [Locale('id', 'ID'), Locale('en', 'US')],
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
     );
   }
 }

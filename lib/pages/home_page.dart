@@ -7,6 +7,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // final size = MediaQuery.of(context).size;
-    return InvitationThemeLauncher(invitation: Invitation.create(themeId: 1, themeName: 'Try Theme'));
+
+    return const InvitationThemeLauncher(sectionType: InvitationSectionType.view);
   }
 }
