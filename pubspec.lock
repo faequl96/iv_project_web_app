@@ -18,13 +18,13 @@ packages:
     source: hosted
     version: "0.2.2"
   bloc:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: bloc
-      sha256: "52c10575f4445c61dd9e0cafcc6356fdd827c4c64dd7945ef3c4105f6b6ac189"
+      sha256: a2cebb899f91d36eeeaa55c7b20b5915db5a9df1b8fd4a3c9c825e22e474537d
       url: "https://pub.dev"
     source: hosted
-    version: "9.0.0"
+    version: "9.1.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -81,6 +81,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  dio:
+    dependency: transitive
+    description:
+      name: dio
+      sha256: d90ee57923d1828ac14e492ca49440f65477f4bb1263575900be731a3dac66a9
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.9.0"
+  dio_web_adapter:
+    dependency: transitive
+    description:
+      name: dio_web_adapter
+      sha256: "7586e476d70caecaf1686d21eee7247ea43ef5c345eab9e0cc3583ff13378d78"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.1"
   equatable:
     dependency: transitive
     description:
@@ -161,12 +177,12 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: eb059dfe59f08546e9787f895bd01652076f996bcbf485a8609ef990419ad227
+      sha256: d8f590a69729f719177ea68eb1e598295e8dbc41bbc247fed78b2c8a25660d7c
       url: "https://pub.dev"
     source: hosted
-    version: "16.2.1"
+    version: "16.3.0"
   http:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: http
       sha256: bb2ce4590bc2667c96f318d68cac1b5a7987ec819351d32b1c987239a815e007
@@ -193,29 +209,29 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.0.5"
-      resolved-ref: "1545383036432a8cbb9f0055ad879a03556b6701"
+      ref: "0.0.7"
+      resolved-ref: e4babd4833ff546490453f8b7e94cced9985a88f
       url: "https://github.com/faequl96/iv_project_core.git"
     source: git
-    version: "0.0.5"
+    version: "0.0.7"
   iv_project_invitation_theme:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.1.7"
-      resolved-ref: "86943e5be0ee7d08b99676297fbb3baa0f53e1e8"
+      ref: "0.1.8"
+      resolved-ref: "0e7093bb7d31fe417592ddc404de7ec11e3d2201"
       url: "https://github.com/faequl96/iv_project_invitation_theme.git"
     source: git
-    version: "0.0.5+3"
+    version: "0.1.8"
   iv_project_model:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.0.7+1"
-      resolved-ref: efb60055cf1a34f6b4acd8c4202776ba9a8b2837
+      ref: "0.0.9"
+      resolved-ref: "3e69a0d860118bec66b94bc297d8a3601989261d"
       url: "https://github.com/faequl96/iv_project_model.git"
     source: git
-    version: "0.0.7+1"
+    version: "0.0.9"
   just_audio:
     dependency: transitive
     description:
@@ -336,6 +352,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0"
+  mime:
+    dependency: transitive
+    description:
+      name: mime
+      sha256: "41a20518f0cb1256669420fdba0cd90d21561e560ac240f26ef8322e45bb7ed6"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   nested:
     dependency: transitive
     description:
@@ -436,11 +460,11 @@ packages:
     dependency: transitive
     description:
       path: "."
-      ref: "0.0.7+1"
-      resolved-ref: "6271e0d83a81e0947cfafca10ce3b6364659d180"
+      ref: "0.0.8"
+      resolved-ref: "2ad816c5d5ef3d4462792abd68fc2dd45cd2c501"
       url: "https://github.com/faequl96/quick_dev_sdk.git"
     source: git
-    version: "0.0.7"
+    version: "0.0.8"
   rxdart:
     dependency: transitive
     description:
@@ -647,5 +671,5 @@ packages:
     source: hosted
     version: "1.1.0"
 sdks:
-  dart: ">=3.9.0 <4.0.0"
+  dart: ">=3.9.2 <4.0.0"
   flutter: ">=3.29.0"

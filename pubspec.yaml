@@ -1,10 +1,10 @@
 name: iv_project_web_app
 description: "In Vite Project Web App"
 publish_to: 'none'
-version: 0.1.3+9
+version: 0.1.4
 
 environment:
-  sdk: ^3.9.0
+  sdk: ^3.9.2
 
 dependencies:
   flutter:
@@ -15,7 +15,7 @@ dependencies:
   iv_project_model:
     git:
       url: https://github.com/faequl96/iv_project_model.git
-      ref: 0.0.7+1
+      ref: 0.0.9
 
   # iv_project_core:
   #   path: ../iv_project_core
@@ -23,7 +23,7 @@ dependencies:
   iv_project_core:
     git:
       url: https://github.com/faequl96/iv_project_core.git
-      ref: 0.0.5
+      ref: 0.0.7
 
   # iv_project_invitation_theme:
   #   path: ../iv_project_invitation_theme
@@ -31,11 +31,13 @@ dependencies:
   iv_project_invitation_theme:
     git:
       url: https://github.com/faequl96/iv_project_invitation_theme.git
-      ref: 0.1.7
+      ref: 0.1.8
 
-  go_router: ^16.2.1
+  go_router: ^16.3.0
 
+  bloc: ^9.1.0
   flutter_bloc: ^9.1.1
+  http: ^1.5.0
 
 dev_dependencies:
   flutter_test:

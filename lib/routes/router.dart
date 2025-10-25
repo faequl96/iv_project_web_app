@@ -6,18 +6,27 @@ import 'package:iv_project_web_app/pages/page.dart';
 
 final router = GoRouter(
   navigatorKey: GlobalContextService.navigatorKey,
-  initialLocation: '/',
-  routes: [_pageBuilder('/', page: const HomePage())],
+  initialLocation: '/:id',
+  routes: [
+    _pageBuilder(
+      '/:id',
+      page: (state) {
+        final id = state.pathParameters['id'];
+        if (id == null) return const Center(child: Text('Link tidak menyertakan ID'));
+        return HomePage(invitationId: id);
+      },
+    ),
+  ],
 );
 
-GoRoute _pageBuilder(String routePath, {required Widget page}) {
+GoRoute _pageBuilder(String routePath, {required Widget Function(GoRouterState state) page}) {
   return GoRoute(
     path: routePath,
     pageBuilder: (_, state) {
       return CustomTransitionPage(
         key: state.pageKey,
         transitionsBuilder: (_, _, _, child) => child,
-        child: Page(content: page),
+        child: Page(content: page(state)),
       );
     },
   );

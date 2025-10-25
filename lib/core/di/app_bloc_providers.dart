@@ -4,5 +4,7 @@ import 'package:iv_project_invitation_theme/iv_project_invitation_theme.dart';
 class AppBlocProvider {
   AppBlocProvider._();
 
-  static final invitationThemeProviders = <BlocProvider>[BlocProvider<CoreCubit>(create: (_) => CoreCubit())];
+  static final invitationThemeProviders = <BlocProvider>[
+    BlocProvider<InvitationThemeCoreCubit>(create: (_) => InvitationThemeCoreCubit()),
+  ];
 }
