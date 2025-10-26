@@ -6,12 +6,11 @@ import 'package:iv_project_web_app/pages/page.dart';
 
 final router = GoRouter(
   navigatorKey: GlobalContextService.navigatorKey,
-  initialLocation: '/:id',
   routes: [
     _pageBuilder(
-      '/:id',
+      '/',
       page: (state) {
-        final id = state.pathParameters['id'];
+        final id = state.uri.queryParameters['id'] ?? Uri.base.queryParameters['id'];
         if (id == null) return const Center(child: Text('Link tidak menyertakan ID'));
         return HomePage(invitationId: id);
       },
