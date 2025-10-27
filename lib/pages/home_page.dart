@@ -28,9 +28,7 @@ class _HomePageState extends State<HomePage> {
         _invitation = InvitationResponse.fromJson(data['data']);
         setState(() {});
       }
-    } catch (e) {
-      print(e);
-    }
+    } catch (_) {}
   }
 
   @override
