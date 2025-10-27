@@ -9,7 +9,10 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(providers: [...AppBlocProvider.invitationThemeProviders], child: const _App());
+    return MultiBlocProvider(
+      providers: [...AppBlocProvider.invitationThemeProviders, ...AppBlocProvider.globalProviders],
+      child: const _App(),
+    );
   }
 }
 

@@ -22,13 +22,15 @@ class _HomePageState extends State<HomePage> {
   Future<void> _getInvitationById(String id) async {
     final url = Uri.parse('https://ac8ec8576ccf.ngrok-free.app/api/v1/invitation/id/$id');
     try {
-      final response = await http.get(url);
+      final response = await http.get(url, headers: {'ngrok-skip-browser-warning': 'true'});
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         _invitation = InvitationResponse.fromJson(data['data']);
         setState(() {});
       }
-    } catch (_) {}
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
