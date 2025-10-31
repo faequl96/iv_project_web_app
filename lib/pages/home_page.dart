@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
   InvitationResponse? _invitation;
 
   Future<void> _getInvitationById(String id) async {
-    final url = Uri.parse('https://ac8ec8576ccf.ngrok-free.app/api/v1/invitation/id/$id');
+    final url = Uri.parse('https://6bf854fbdf4a.ngrok-free.app/api/v1/invitation/id/$id');
     try {
       final response = await http.get(url, headers: {'ngrok-skip-browser-warning': 'true'});
       if (response.statusCode == 200) {
