@@ -26,20 +26,25 @@ class _App extends StatefulWidget {
 class _AppState extends State<_App> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      routerConfig: NavigationService.router,
-      theme: ThemeData(
-        inputDecorationTheme: InputDecorationTheme(floatingLabelStyle: TextStyle(color: Colors.grey.shade300)),
-        textSelectionTheme: TextSelectionThemeData(cursorColor: Colors.grey.shade100, selectionHandleColor: Colors.grey.shade100),
+    return BlocBuilder<LocaleCubit, Locale>(
+      builder: (_, locale) => MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        routerConfig: NavigationService.router,
+        theme: ThemeData(
+          inputDecorationTheme: InputDecorationTheme(floatingLabelStyle: TextStyle(color: Colors.grey.shade300)),
+          textSelectionTheme: TextSelectionThemeData(
+            cursorColor: Colors.grey.shade100,
+            selectionHandleColor: Colors.grey.shade100,
+          ),
+        ),
+        locale: locale,
+        supportedLocales: const [Locale('id', 'ID'), Locale('en', 'US')],
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
       ),
-      locale: const Locale('id', 'ID'),
-      supportedLocales: const [Locale('id', 'ID'), Locale('en', 'US')],
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
     );
   }
 }
