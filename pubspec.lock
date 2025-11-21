@@ -281,31 +281,37 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.0.7+1"
-      resolved-ref: "168c8d3fa74e358b439722799262f6fca5f3c049"
+      ref: "0.0.8"
+      resolved-ref: a70d69dd8702d7a579155432019c86ad6f7d4335
       url: "https://github.com/faequl96/iv_project_core.git"
     source: git
-    version: "0.0.7"
+    version: "0.0.8"
   iv_project_invitation_theme:
     dependency: "direct main"
     description:
-      path: "../iv_project_invitation_theme"
-      relative: true
-    source: path
-    version: "0.1.8+2"
+      path: "."
+      ref: "0.1.9+1"
+      resolved-ref: "26f469d89b6db361f7116f5b696683d250d9ae49"
+      url: "https://github.com/faequl96/iv_project_invitation_theme.git"
+    source: git
+    version: "0.1.9"
   iv_project_model:
     dependency: "direct main"
     description:
-      path: "../iv_project_model"
-      relative: true
-    source: path
-    version: "0.0.9"
+      path: "."
+      ref: "0.1.0"
+      resolved-ref: "56321e6c7d2be8f04f4bedc6e0a1f700e14804b8"
+      url: "https://github.com/faequl96/iv_project_model.git"
+    source: git
+    version: "0.1.0"
   iv_project_widget_core:
     dependency: "direct main"
     description:
-      path: "../iv_project_widget_core"
-      relative: true
-    source: path
+      path: "."
+      ref: "0.0.2+1"
+      resolved-ref: eb46460390c287c80b78af4bfdd824179039702a
+      url: "https://github.com/faequl96/iv_project_widget_core.git"
+    source: git
     version: "0.0.2"
   just_audio:
     dependency: transitive
@@ -548,11 +554,11 @@ packages:
     source: hosted
     version: "6.1.5+1"
   quick_dev_sdk:
-    dependency: "direct main"
+    dependency: transitive
     description:
       path: "."
-      ref: "0.0.8"
-      resolved-ref: "2ad816c5d5ef3d4462792abd68fc2dd45cd2c501"
+      ref: "0.0.8+1"
+      resolved-ref: "076e78d733b88a0478915553846c9b1a119f2ccf"
       url: "https://github.com/faequl96/quick_dev_sdk.git"
     source: git
     version: "0.0.8"
