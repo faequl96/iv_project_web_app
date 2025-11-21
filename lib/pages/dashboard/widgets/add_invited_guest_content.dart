@@ -51,7 +51,7 @@ class _AddInvitedGuestContentState extends State<AddInvitedGuestContent> {
 
     List<CreateInvitedGuestRequest> invitedGuestRequests = [];
 
-    for (int i = 1; i < rows.length; i++) {
+    for (int i = 0; i < rows.length; i++) {
       final row = rows[i];
       if (row.isEmpty) continue;
 
@@ -132,20 +132,30 @@ class _AddInvitedGuestContentState extends State<AddInvitedGuestContent> {
             textAlign: .center,
           ),
           const SizedBox(height: 20),
-          GeneralEffectsButton(
-            onTap: _upsertInvitedGuests,
-            width: .maxFinite,
-            padding: const .symmetric(vertical: 14),
-            color: AppColor.primaryColor,
-            splashColor: Colors.white,
-            borderRadius: .circular(30),
-            useInitialElevation: true,
-            child: const Center(
-              child: Text(
-                'Import dari Excel',
-                style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: .bold),
-              ),
-            ),
+          BlocSelector<InvitedGuestCubit, InvitedGuestState, bool>(
+            selector: (state) => state.isLoadingUpsert,
+            builder: (context, isLoading) {
+              return GeneralEffectsButton(
+                onTap: _upsertInvitedGuests,
+                isDisabled: isLoading,
+                width: .maxFinite,
+                padding: const .symmetric(vertical: 14),
+                color: AppColor.primaryColor,
+                splashColor: Colors.white,
+                borderRadius: .circular(30),
+                useInitialElevation: true,
+                child: Row(
+                  mainAxisAlignment: .center,
+                  children: [
+                    if (isLoading) ...[SharedPersonalize.loadingWidget(size: 20, color: Colors.white), const SizedBox(width: 10)],
+                    const Text(
+                      'Import dari Excel',
+                      style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: .bold),
+                    ),
+                  ],
+                ),
+              );
+            },
           ),
         ],
       ),

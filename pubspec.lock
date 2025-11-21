@@ -283,21 +283,21 @@ packages:
       path: "../iv_project_core"
       relative: true
     source: path
-    version: "0.0.7"
+    version: "0.0.8"
   iv_project_invitation_theme:
     dependency: "direct main"
     description:
       path: "../iv_project_invitation_theme"
       relative: true
     source: path
-    version: "0.1.8+3"
+    version: "0.1.9"
   iv_project_model:
     dependency: "direct main"
     description:
       path: "../iv_project_model"
       relative: true
     source: path
-    version: "0.0.9"
+    version: "0.1.0"
   iv_project_widget_core:
     dependency: "direct main"
     description:
