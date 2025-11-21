@@ -128,7 +128,9 @@ class _InvitedGuestItem extends StatelessWidget {
                         padding: const .symmetric(vertical: 3, horizontal: 4),
                         child: GeneralEffectsButton(
                           onTap: () async {
-                            final phoneNumber = invitedGuest.phone;
+                            final phone = invitedGuest.phone;
+                            if (phone == null) return;
+                            final phoneNumber = phone[0] == '0' ? phone.replaceFirst('0', '62') : phone;
                             final message = controller.text
                                 .replaceAll('{nama_tamu}', invitedGuest.nickname)
                                 .replaceAll('{link_undangan}', 'http://localhost:3300?id=$invitationId&to=${invitedGuest.id}')
