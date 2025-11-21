@@ -1,0 +1,280 @@
+import 'dart:math';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iv_project_core/iv_project_core.dart';
+import 'package:iv_project_invitation_theme/iv_project_invitation_theme.dart';
+import 'package:iv_project_model/iv_project_model.dart';
+import 'package:iv_project_widget_core/iv_project_widget_core.dart';
+import 'package:quick_dev_sdk/quick_dev_sdk.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+class InvitedGuestsPresentation extends StatefulWidget {
+  const InvitedGuestsPresentation({
+    super.key,
+    required this.controller,
+    required this.invitationId,
+    required this.brideName,
+    required this.groomName,
+  });
+
+  final TextEditingController controller;
+  final String invitationId;
+  final String brideName;
+  final String groomName;
+
+  @override
+  State<InvitedGuestsPresentation> createState() => _InvitedGuestsPresentationState();
+}
+
+class _InvitedGuestsPresentationState extends State<InvitedGuestsPresentation> {
+  @override
+  Widget build(BuildContext context) {
+    final invitedGuestCubit = context.read<InvitedGuestCubit>();
+
+    return BlocSelector<InvitedGuestCubit, InvitedGuestState, bool>(
+      selector: (state) => state.isLoadingGetsByInvitationId || state.isLoadingUpsert,
+      builder: (context, isLoading) {
+        final invitedGuests = invitedGuestCubit.state.invitedGuests;
+
+        return ListView(
+          padding: const .only(top: 14, bottom: 8),
+          children: [
+            if (isLoading) ...[
+              for (int i = 0; i < 4; i++) const _RSVPItemSkeleton(),
+            ] else if (invitedGuests.isNotEmpty) ...[
+              for (int i = 0; i < invitedGuests.length; i++)
+                _InvitedGuestItem(
+                  controller: widget.controller,
+                  invitationId: widget.invitationId,
+                  brideName: widget.brideName,
+                  groomName: widget.groomName,
+                  invitedGuest: invitedGuests[i],
+                ),
+            ] else ...[
+              SizedBox(
+                height: MediaQuery.of(context).size.height - 100,
+                child: const Center(
+                  child: Text('Tamu undangan belum ditambahkan', style: TextStyle(fontSize: 15, fontWeight: .bold)),
+                ),
+              ),
+            ],
+          ],
+        );
+      },
+    );
+  }
+}
+
+class _InvitedGuestItem extends StatelessWidget {
+  const _InvitedGuestItem({
+    required this.invitedGuest,
+    required this.invitationId,
+    required this.brideName,
+    required this.groomName,
+    required this.controller,
+  });
+
+  final TextEditingController controller;
+  final String invitationId;
+  final String brideName;
+  final String groomName;
+  final InvitedGuestResponse invitedGuest;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      shape: const Border(top: BorderSide(width: .5, color: Colors.black12)),
+      margin: const .symmetric(vertical: 4),
+      color: Colors.white,
+      elevation: 1,
+      child: Column(
+        crossAxisAlignment: .start,
+        children: [
+          const SizedBox(height: 6),
+          Padding(
+            padding: const .only(right: 0),
+            child: SizedBox(
+              width: .maxFinite,
+              child: Stack(
+                alignment: .centerRight,
+                children: [
+                  SizedBox(
+                    width: .maxFinite,
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [AppColor.primaryColor, ColorConverter.lighten(AppColor.primaryColor, 75)],
+                          stops: const [.4, .8],
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const .only(left: 14, top: 4, bottom: 4),
+                        child: Text(
+                          '${invitedGuest.nickname} - ${invitedGuest.nameInstance.split('_').last}',
+                          style: const TextStyle(fontWeight: .bold, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const .only(right: 8),
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: ColorConverter.lighten(AppColor.primaryColor, 75),
+                        borderRadius: .circular(20),
+                      ),
+                      child: Padding(
+                        padding: const .symmetric(vertical: 3, horizontal: 4),
+                        child: GeneralEffectsButton(
+                          onTap: () async {
+                            final phoneNumber = invitedGuest.phone;
+                            final message = controller.text
+                                .replaceAll('{nama_tamu}', invitedGuest.nickname)
+                                .replaceAll('{link_undangan}', 'http://localhost:3300?id=$invitationId&to=${invitedGuest.id}')
+                                .replaceAll('{mempelai_wanita}', brideName)
+                                .replaceAll('{mempelai_pria}', groomName);
+                            final url = 'https://wa.me/$phoneNumber?text=${Uri.encodeComponent(message)}';
+
+                            if (await canLaunchUrl(.parse(url))) {
+                              await launchUrl(.parse(url), mode: .externalApplication);
+                            } else {
+                              GeneralDialog.showValidateStateError('Tidak dapat membuka WhatsApp', durationInSeconds: 5);
+                            }
+                          },
+                          padding: const .symmetric(horizontal: 20, vertical: 5),
+                          color: AppColor.primaryColor,
+                          splashColor: Colors.white,
+                          borderRadius: .circular(30),
+                          child: const Text(
+                            'Kirim',
+                            style: TextStyle(color: Colors.white, fontWeight: .bold),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 6),
+          if (invitedGuest.phone != null)
+            Padding(
+              padding: const .symmetric(horizontal: 14),
+              child: Row(children: [const Text('WhatsApp :'), const Spacer(), Text(invitedGuest.phone!)]),
+            ),
+          if (invitedGuest.souvenir != null)
+            Padding(
+              padding: const .symmetric(horizontal: 14),
+              child: Row(children: [const Text('Souvenir :'), const Spacer(), Text('Tipe - ${invitedGuest.souvenir!}')]),
+            ),
+          Padding(
+            padding: const .symmetric(horizontal: 14),
+            child: Row(
+              children: [
+                const Text('Kehadiran :'),
+                const Spacer(),
+                if (invitedGuest.attendance != null)
+                  Text(invitedGuest.attendance! == true ? 'Hadir' : 'Tidak Hadir')
+                else
+                  Text(invitedGuest.possiblePresence ?? '-'),
+              ],
+            ),
+          ),
+          const SizedBox(height: 12),
+        ],
+      ),
+    );
+  }
+}
+
+class _RSVPItemSkeleton extends StatelessWidget {
+  const _RSVPItemSkeleton();
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      shape: const Border(top: BorderSide(width: .5, color: Colors.black12)),
+      margin: const .symmetric(vertical: 4),
+      color: Colors.white,
+      elevation: 1,
+      child: Column(
+        crossAxisAlignment: .start,
+        children: [
+          const SizedBox(height: 6),
+          Padding(
+            padding: const .only(right: 0),
+            child: SizedBox(
+              width: .maxFinite,
+              child: Stack(
+                alignment: .centerRight,
+                children: [
+                  SizedBox(
+                    width: .maxFinite,
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [AppColor.primaryColor, ColorConverter.lighten(AppColor.primaryColor, 75)],
+                          stops: const [.4, .8],
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const .only(left: 14, top: 4, bottom: 4),
+                        child: Row(
+                          children: [
+                            SkeletonBox(width: Random().nextInt(50) + 70, height: 15),
+                            const Text('', style: TextStyle(fontWeight: .bold)),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const .only(right: 8),
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: ColorConverter.lighten(AppColor.primaryColor, 75),
+                        borderRadius: .circular(20),
+                      ),
+                      child: const Padding(
+                        padding: .symmetric(vertical: 3, horizontal: 4),
+                        child: SkeletonBox(width: 72, height: 30, borderRadius: 20),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 6),
+          Padding(
+            padding: const .symmetric(horizontal: 14),
+            child: Row(
+              children: [
+                const Text('WhatsApp :'),
+                const Spacer(),
+                SkeletonBox(width: Random().nextInt(20) + 80, height: 14),
+              ],
+            ),
+          ),
+          const Padding(
+            padding: .symmetric(horizontal: 14),
+            child: Row(children: [Text('Souvenir :'), Spacer(), SkeletonBox(width: 50, height: 14)]),
+          ),
+          Padding(
+            padding: const .symmetric(horizontal: 14),
+            child: Row(
+              children: [
+                const Text('Kehadiran :'),
+                const Spacer(),
+                SkeletonBox(width: Random().nextInt(50) + 50, height: 14),
+              ],
+            ),
+          ),
+          const SizedBox(height: 12),
+        ],
+      ),
+    );
+  }
+}

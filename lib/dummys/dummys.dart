@@ -21,6 +21,7 @@ class Dummys {
     ),
     bride: const BridegroomResponse(
       id: 1,
+      imageUrl: '',
       nickname: 'Rahma',
       fullName: 'Rahma Nur Istiqomah',
       backTitle: 'M.Biomed',
@@ -31,6 +32,7 @@ class Dummys {
     ),
     groom: const BridegroomResponse(
       id: 2,
+      imageUrl: '',
       nickname: 'Faiq',
       fullName: 'Faiq Ulul Fahmi',
       backTitle: 'S.Pd',

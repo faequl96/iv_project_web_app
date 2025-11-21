@@ -29,6 +29,14 @@ class _HomePageState extends State<HomePage> {
       status: InvitationStatusType.active,
       invitationThemeId: 1,
       invitationThemeName: 'Elegant Black And White Glass',
+      brandProfile: const BrandProfileResponse(
+        id: 1,
+        name: 'In Vite',
+        email: 'faequl96@gmail.com',
+        phone: '085640933136',
+        instagram: 'faequl96',
+        address: 'Perum. Puri Bintaro Hijau, Blok C2 No.6, Kel. Pondok Aren, Kec. Pondok Aren, Kota Tangerang Selatan',
+      ),
       invitationData: Dummys.invitationData,
     );
     try {
@@ -71,7 +79,9 @@ class _HomePageState extends State<HomePage> {
     return InvitationThemeLauncher(
       previewType: ThemePreviewType.fromResponse,
       invitationThemeId: _invitation!.invitationThemeId,
+      invitationId: _invitation!.id,
       invitationData: _invitation!.invitationData,
+      brandProfile: _invitation!.brandProfile,
     );
   }
 }

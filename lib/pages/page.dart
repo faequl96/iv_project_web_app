@@ -7,23 +7,6 @@ class Page extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final paddingTop = MediaQuery.of(context).padding.top;
-
-    return SafeArea(
-      top: false,
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: Stack(
-          children: [
-            Overlay.wrap(child: content),
-            SizedBox(
-              height: paddingTop,
-              width: double.maxFinite,
-              child: const ColoredBox(color: Colors.black26),
-            ),
-          ],
-        ),
-      ),
-    );
+    return Scaffold(resizeToAvoidBottomInset: false, body: Overlay.wrap(child: content));
   }
 }
