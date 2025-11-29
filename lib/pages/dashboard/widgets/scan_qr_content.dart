@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iv_project_core/iv_project_core.dart';
+import 'package:iv_project_model/iv_project_model.dart';
+import 'package:iv_project_web_data/iv_project_web_data.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:quick_dev_sdk/quick_dev_sdk.dart';
 
@@ -11,18 +14,84 @@ class ScanQrContent extends StatefulWidget {
 }
 
 class _ScanQrContentState extends State<ScanQrContent> with SingleTickerProviderStateMixin {
-  late final MobileScannerController controller;
+  late final MobileScannerController _controller;
 
   late AnimationController _animationController;
   late Animation<double> _animation;
 
-  bool handled = false;
+  bool _handled = false;
+  bool _isContainsError = false;
+
+  late final LocaleCubit _localeCubit;
+  late final InvitedGuestCubit _invitedGuestCubit;
+
+  void _onDetect(BarcodeCapture value) async {
+    if (_handled) return;
+    setState(() => _isContainsError = false);
+    final invitedGuestId = value.barcodes.first.rawValue;
+    if (invitedGuestId != null) {
+      _handled = true;
+
+      final success = await _invitedGuestCubit.updateById(invitedGuestId, const UpdateInvitedGuestRequest(attendance: true));
+      if (!success) {
+        setState(() => _isContainsError = true);
+        return;
+      }
+
+      final invitedGuest = _invitedGuestCubit.state.invitedGuest;
+      if (invitedGuest == null) return;
+      final souvenir = invitedGuest.souvenir;
+      if (souvenir == null) return;
+
+      NavigationService.pop();
+
+      if (!mounted) return;
+      ShowModal.bottomSheet(
+        context,
+        barrierColor: Colors.grey.shade700.withValues(alpha: .5),
+        header: BottomSheetHeader(
+          useHandleBar: true,
+          handleColor: Colors.grey.shade500,
+          action: HeaderAction(
+            actionIcon: Icons.close_rounded,
+            iconColor: Colors.grey.shade600,
+            onTap: () => NavigationService.pop(),
+          ),
+        ),
+        decoration: BottomSheetDecoration(
+          color: ColorConverter.lighten(AppColor.primaryColor, 94),
+          borderRadius: const .only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+        ),
+        contentBuilder: (_) => Column(
+          mainAxisSize: .min,
+          children: [
+            const SizedBox(height: 30),
+            Text('Detail Tamu Undangan', style: AppFonts.inter(fontWeight: .w600, fontSize: 16)),
+            const SizedBox(height: 20),
+            Row(children: [const Text('Nama :'), const Spacer(), Text(invitedGuest.nickname)]),
+            Row(
+              children: [
+                const Text('Instansi/Dari :'),
+                const Spacer(),
+                Text(invitedGuest.nameInstance.split('_').last.replaceAll('-', ' ')),
+              ],
+            ),
+            Row(children: [const Text('Souvenir :'), const Spacer(), Text('Tipe - $souvenir')]),
+            const SizedBox(height: 60),
+          ],
+        ),
+      );
+    }
+  }
 
   @override
   void initState() {
     super.initState();
 
-    controller = MobileScannerController(
+    _localeCubit = context.read<LocaleCubit>();
+    _invitedGuestCubit = context.read<InvitedGuestCubit>();
+
+    _controller = MobileScannerController(
       facing: CameraFacing.back,
       detectionSpeed: DetectionSpeed.normal,
       formats: [BarcodeFormat.qrCode],
@@ -35,7 +104,7 @@ class _ScanQrContentState extends State<ScanQrContent> with SingleTickerProvider
 
   @override
   void dispose() {
-    controller.dispose();
+    _controller.dispose();
     _animationController.dispose();
 
     super.dispose();
@@ -54,73 +123,84 @@ class _ScanQrContentState extends State<ScanQrContent> with SingleTickerProvider
         height: size.width * 1.5,
         child: Stack(
           children: [
-            MobileScanner(
-              controller: controller,
-              onDetect: (capture) {
-                if (handled) return;
-                final code = capture.barcodes.first.rawValue;
-                if (code != null) {
-                  handled = true;
-                  ShowModal.bottomSheet(
-                    context,
-                    barrierColor: Colors.grey.shade700.withValues(alpha: .5),
-                    header: BottomSheetHeader(
-                      useHandleBar: true,
-                      handleColor: Colors.grey.shade500,
-                      action: HeaderAction(
-                        actionIcon: Icons.close_rounded,
-                        iconColor: Colors.grey.shade600,
-                        onTap: () => NavigationService.pop(),
-                      ),
-                    ),
-                    decoration: BottomSheetDecoration(
-                      color: ColorConverter.lighten(AppColor.primaryColor, 94),
-                      borderRadius: const .only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-                    ),
-                    contentBuilder: (_) => Text(code),
-                  );
-                }
-              },
-            ),
-            Positioned.fill(
-              child: IgnorePointer(child: ColoredBox(color: Colors.black.withValues(alpha: .55))),
-            ),
-            Center(
-              child: ClipPath(
-                clipper: _ScannerHole(scanSize),
-                child: ColoredBox(color: Colors.black.withValues(alpha: .55)),
-              ),
-            ),
-            Center(
-              child: SizedBox(
-                width: scanSize,
-                height: scanSize,
-                child: CustomPaint(painter: _ScannerBorderPainter()),
-              ),
-            ),
-            Center(
-              child: SizedBox(
-                width: scanSize,
-                height: scanSize,
-                child: AnimatedBuilder(
-                  animation: _animation,
-                  builder: (_, _) {
-                    return Align(
-                      alignment: Alignment(0, _animation.value * 2 - 1),
-                      child: Container(
-                        width: scanSize,
-                        height: 2,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [Colors.red.withValues(alpha: 0), Colors.red, Colors.red.withValues(alpha: 0)],
-                          ),
+            if (_isContainsError) ...[
+              Column(
+                mainAxisAlignment: .center,
+                children: [
+                  Text(
+                    _localeCubit.state.languageCode == 'id' ? 'Oops. Gagal mengscan QR.' : 'Oops. Failed to scan QR',
+                    style: AppFonts.nunito(fontSize: 16, fontWeight: .bold, color: Colors.orange),
+                  ),
+                  const SizedBox(height: 10),
+                  GeneralEffectsButton(
+                    onTap: () async {
+                      _handled = false;
+                      _isContainsError = false;
+                      setState(() {});
+                    },
+                    height: 44,
+                    width: 132,
+                    borderRadius: .circular(30),
+                    color: AppColor.primaryColor,
+                    splashColor: Colors.white,
+                    useInitialElevation: true,
+                    child: Row(
+                      mainAxisAlignment: .center,
+                      children: [
+                        const Icon(Icons.replay_rounded, color: Colors.white),
+                        const SizedBox(width: 6),
+                        Text(
+                          _localeCubit.state.languageCode == 'id' ? 'Coba Lagi' : 'Try Again',
+                          style: AppFonts.nunito(fontSize: 15, fontWeight: .bold, color: Colors.white),
                         ),
-                      ),
-                    );
-                  },
+                        const SizedBox(width: 4),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ] else ...[
+              MobileScanner(controller: _controller, onDetect: _onDetect),
+              Positioned.fill(
+                child: IgnorePointer(child: ColoredBox(color: Colors.black.withValues(alpha: .55))),
+              ),
+              Center(
+                child: ClipPath(
+                  clipper: _ScannerHole(scanSize),
+                  child: ColoredBox(color: Colors.black.withValues(alpha: .55)),
                 ),
               ),
-            ),
+              Center(
+                child: SizedBox(
+                  width: scanSize,
+                  height: scanSize,
+                  child: CustomPaint(painter: _ScannerBorderPainter()),
+                ),
+              ),
+              Center(
+                child: SizedBox(
+                  width: scanSize,
+                  height: scanSize,
+                  child: AnimatedBuilder(
+                    animation: _animation,
+                    builder: (_, _) {
+                      return Align(
+                        alignment: Alignment(0, _animation.value * 2 - 1),
+                        child: Container(
+                          width: scanSize,
+                          height: 2,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [Colors.red.withValues(alpha: 0), Colors.red, Colors.red.withValues(alpha: 0)],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ],
           ],
         ),
       ),
