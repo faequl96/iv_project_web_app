@@ -4,7 +4,7 @@ publish_to: 'none'
 version: 0.1.5
 
 environment:
-  sdk: ^3.10.0
+  sdk: ^3.10.1
 
 dependencies:
   flutter:
@@ -14,6 +14,9 @@ dependencies:
   
   iv_project_model:
     path: ../iv_project_model
+
+  iv_project_web_data:
+    path: ../iv_project_web_data
 
   iv_project_core:
     path: ../iv_project_core
@@ -28,7 +31,6 @@ dependencies:
     path: ../quick_dev_sdk
 
   go_router: ^17.0.0
-
   bloc: ^9.1.0
   flutter_bloc: ^9.1.1
   http: ^1.5.0
@@ -47,4 +49,5 @@ flutter:
   uses-material-design: true
   
   assets:
+    - assets/
     - assets/templates/formulir_tamu_undangan.xlsx

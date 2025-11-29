@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iv_project_core/iv_project_core.dart';
 import 'package:iv_project_web_app/pages/dashboard/widgets/edit_message_content.dart';
 import 'package:quick_dev_sdk/quick_dev_sdk.dart';
@@ -11,6 +12,8 @@ class EditMessagePortal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localeCubit = context.read<LocaleCubit>();
+
     return GeneralEffectsButton(
       onTap: () {
         ShowModal.bottomSheet(
@@ -37,9 +40,9 @@ class EditMessagePortal extends StatelessWidget {
       splashColor: Colors.white,
       borderRadius: .circular(30),
       useInitialElevation: true,
-      child: const Text(
-        'Edit Pesan',
-        style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: .bold),
+      child: Text(
+        localeCubit.state.languageCode == 'id' ? 'Edit Pesan' : 'Edit Message',
+        style: AppFonts.nunito(color: Colors.white, fontSize: 15, fontWeight: .bold),
       ),
     );
   }

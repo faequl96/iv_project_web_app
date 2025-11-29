@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart' hide Page;
 import 'package:go_router/go_router.dart';
 import 'package:iv_project_core/iv_project_core.dart';
+import 'package:iv_project_web_app/app.dart';
 import 'package:iv_project_web_app/pages/dashboard/dashboard_page.dart';
 import 'package:iv_project_web_app/pages/home_page.dart';
 import 'package:iv_project_web_app/pages/page.dart';
@@ -20,7 +21,7 @@ GoRoute _pageBuilder(String routePath, {required Widget Function(GoRouterState s
       return CustomTransitionPage(
         key: state.pageKey,
         transitionsBuilder: (_, _, _, child) => child,
-        child: Page(content: page(state)),
+        child: InitApp(page: Page(content: page(state))),
       );
     },
   );

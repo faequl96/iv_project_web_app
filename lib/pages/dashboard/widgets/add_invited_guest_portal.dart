@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iv_project_core/iv_project_core.dart';
 import 'package:iv_project_web_app/pages/dashboard/widgets/add_invited_guest_content.dart';
 import 'package:quick_dev_sdk/quick_dev_sdk.dart';
@@ -8,6 +9,8 @@ class AddInvitedGuestPortal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localeCubit = context.read<LocaleCubit>();
+
     return GeneralEffectsButton(
       onTap: () {
         ShowModal.bottomSheet(
@@ -34,9 +37,9 @@ class AddInvitedGuestPortal extends StatelessWidget {
       splashColor: Colors.white,
       borderRadius: .circular(30),
       useInitialElevation: true,
-      child: const Text(
-        'Tambah Tamu Undangan',
-        style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: .bold),
+      child: Text(
+        localeCubit.state.languageCode == 'id' ? 'Tambah Tamu Undangan' : 'Add Invited Guests',
+        style: AppFonts.nunito(color: Colors.white, fontSize: 15, fontWeight: .bold),
       ),
     );
   }

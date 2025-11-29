@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iv_project_core/iv_project_core.dart';
 import 'package:quick_dev_sdk/quick_dev_sdk.dart';
 
@@ -26,6 +27,8 @@ class _EditMessageContentState extends State<EditMessageContent> {
 
   @override
   Widget build(BuildContext context) {
+    final localeCubit = context.read<LocaleCubit>();
+
     return Column(
       mainAxisSize: .min,
       children: [
@@ -36,7 +39,7 @@ class _EditMessageContentState extends State<EditMessageContent> {
             maxLines: 7,
             style: AppFonts.inter(color: Colors.black, fontSize: 14),
             decoration: FieldDecoration(
-              labelText: 'Template Pesan',
+              labelText: localeCubit.state.languageCode == 'id' ? 'Template Pesan' : 'Message Template',
               labelStyle: const TextStyle(color: Colors.black87),
               filled: true,
               fillColor: Colors.white,
@@ -56,7 +59,10 @@ class _EditMessageContentState extends State<EditMessageContent> {
           ),
         ),
         const SizedBox(height: 16),
-        const Text('Pilih Beberapa Template Dibawah Ini', style: TextStyle(fontWeight: .bold, fontSize: 15)),
+        Text(
+          localeCubit.state.languageCode == 'id' ? 'Pilih Beberapa Template Dibawah Ini' : 'Select Some Templates Below',
+          style: AppFonts.nunito(fontWeight: .bold, fontSize: 15),
+        ),
         const SizedBox(height: 8),
         SizedBox(
           height: 360,
@@ -78,7 +84,7 @@ class _EditMessageContentState extends State<EditMessageContent> {
                   child: Stack(
                     alignment: .topRight,
                     children: [
-                      Text(message),
+                      Text(message, style: AppFonts.nunito()),
                       GeneralEffectsButton(
                         onTap: () {
                           _controller.text = message;
@@ -89,9 +95,9 @@ class _EditMessageContentState extends State<EditMessageContent> {
                         splashColor: Colors.white,
                         borderRadius: .circular(30),
                         useInitialElevation: true,
-                        child: const Text(
-                          'Gunakan Template Ini',
-                          style: TextStyle(color: Colors.white, fontWeight: .bold),
+                        child: Text(
+                          localeCubit.state.languageCode == 'id' ? 'Gunakan Template Ini' : 'Use This Template',
+                          style: AppFonts.nunito(color: Colors.white, fontWeight: .bold),
                         ),
                       ),
                     ],
@@ -114,10 +120,10 @@ class _EditMessageContentState extends State<EditMessageContent> {
             splashColor: Colors.white,
             borderRadius: .circular(30),
             useInitialElevation: true,
-            child: const Center(
+            child: Center(
               child: Text(
                 'OK',
-                style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: .bold),
+                style: AppFonts.nunito(color: Colors.white, fontSize: 15, fontWeight: .bold),
               ),
             ),
           ),

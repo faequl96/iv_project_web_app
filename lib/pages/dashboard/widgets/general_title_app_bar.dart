@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:iv_project_core/iv_project_core.dart';
 
 class GeneralTitleAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -27,14 +26,18 @@ class GeneralTitleAppBar extends StatelessWidget implements PreferredSizeWidget 
 
     return SizedBox(
       height: kToolbarHeight,
-      child: AppBar(
-        leading: leftActionValue,
-        titleSpacing: 0,
-        title: title,
-        actions: rightActionValue,
+      child: Card(
+        color: AppColor.primaryColor,
+        margin: const .all(0),
+        shape: RoundedRectangleBorder(borderRadius: .circular(0)),
         elevation: 1,
-        backgroundColor: AppColor.primaryColor,
-        systemOverlayStyle: const SystemUiOverlayStyle(statusBarIconBrightness: Brightness.light),
+        child: Row(
+          children: [
+            leftActionValue ?? const SizedBox.shrink(),
+            Expanded(child: title),
+            ...(rightActionValue ?? <Widget>[]),
+          ],
+        ),
       ),
     );
   }

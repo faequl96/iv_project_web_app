@@ -4,18 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:iv_project_core/iv_project_core.dart';
-import 'package:iv_project_invitation_theme/iv_project_invitation_theme.dart';
 
 import 'package:iv_project_model/iv_project_model.dart';
-// import 'package:iv_project_web_app/dummys/dummys.dart';
 import 'package:iv_project_web_app/pages/dashboard/widgets/add_invited_guest_portal.dart';
 import 'package:iv_project_web_app/pages/dashboard/widgets/edit_message_portal.dart';
 import 'package:iv_project_web_app/pages/dashboard/widgets/general_title_app_bar.dart';
 import 'package:iv_project_web_app/pages/dashboard/widgets/invited_guests_presentation.dart';
 import 'package:iv_project_web_app/pages/dashboard/widgets/scan_qr_portal.dart';
+import 'package:iv_project_web_data/iv_project_web_data.dart';
 import 'package:iv_project_widget_core/iv_project_widget_core.dart';
 import 'package:quick_dev_sdk/quick_dev_sdk.dart';
-// import 'package:quick_dev_sdk/quick_dev_sdk.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -33,7 +31,8 @@ class _DashboardPageState extends State<DashboardPage> {
     'Kepada Yth. \n{nama_tamu} \n\nDengan penuh kasih dan harapan, kami mengundang Anda untuk menjadi saksi awal kisah baru kami. Pada hari ketika dua hati dipersatukan dalam ikatan suci. \n\nAkan menjadi kebahagiaan tersendiri bagi kami apabila Anda, yang telah menjadi bagian dari cerita dan perjalanan kami, dapat hadir dan menyaksikan momen sakral ini. \n\nDetail acara dapat Anda lihat melalui undangan digital berikut: \n{link_undangan} \n\nKehadiran {nama_tamu} akan melengkapi kebahagiaan kami dan menjadi doa restu yang sangat berarti. \n\nDengan penuh rasa syukur, \n{mempelai_wanita} & {mempelai_pria}',
   ];
 
-  bool _isLoading = false;
+  bool _isLoading = true;
+  bool _isContainsError = false;
 
   String? _invitationId;
   InvitationResponse? _invitation;
@@ -42,11 +41,11 @@ class _DashboardPageState extends State<DashboardPage> {
   late final InvitedGuestCubit _invitedGuestCubit;
 
   Future<void> _getInvitationById(String id) async {
-    _isLoading = true;
     _invitedGuestCubit.state.copyWith(isLoadingGetsByInvitationId: true).emitState();
 
-    final url = Uri.parse('https://9dae0f172e7c.ngrok-free.app/api/v1/invitation/id/$id');
+    final url = Uri.parse('${ApiConfig.url}/invitation/id/$id');
     try {
+      _isContainsError = false;
       final response = await http.get(url, headers: {'ngrok-skip-browser-warning': 'true'});
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
@@ -59,12 +58,8 @@ class _DashboardPageState extends State<DashboardPage> {
           );
         }
       }
-
-      _isLoading = false;
-      setState(() {});
     } catch (_) {
-      _isLoading = false;
-      setState(() {});
+      _isContainsError = true;
     }
   }
 
@@ -77,11 +72,13 @@ class _DashboardPageState extends State<DashboardPage> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       _invitationId = Uri.base.queryParameters['id'];
-      if (_invitationId != null) {
-        await _getInvitationById(_invitationId!);
-        await Future.delayed(const Duration(seconds: 3));
-        await _invitedGuestCubit.getsByInvitationId(_invitationId!);
-      }
+      if (_invitationId != null) await _getInvitationById(_invitationId!);
+      _isLoading = false;
+      setState(() {});
+
+      await Future.delayed(const Duration(seconds: 3));
+      if (_invitationId != null) await _invitedGuestCubit.getsByInvitationId(_invitationId!);
+
       _messageController.text = _messages[2];
     });
   }
@@ -108,15 +105,96 @@ class _DashboardPageState extends State<DashboardPage> {
       );
     }
 
-    if (_invitation == null) return const SizedBox.shrink();
-
     final size = MediaQuery.of(context).size;
+
+    if (_isContainsError) {
+      return SizedBox(
+        height: size.height,
+        child: Column(
+          mainAxisAlignment: .center,
+          children: [
+            Text(
+              _localeCubit.state.languageCode == 'id' ? 'Oops. Gagal memuat undangan.' : 'Oops. Failed to fetch invitation',
+              style: AppFonts.nunito(fontSize: 16, fontWeight: .bold, color: Colors.orange),
+            ),
+            const SizedBox(height: 10),
+            GeneralEffectsButton(
+              onTap: () => _getInvitationById(_invitationId!),
+              height: 44,
+              width: 132,
+              borderRadius: .circular(30),
+              color: AppColor.primaryColor,
+              splashColor: Colors.white,
+              useInitialElevation: true,
+              child: Row(
+                mainAxisAlignment: .center,
+                children: [
+                  const Icon(Icons.replay_rounded, color: Colors.white),
+                  const SizedBox(width: 6),
+                  Text(
+                    _localeCubit.state.languageCode == 'id' ? 'Coba Lagi' : 'Try Again',
+                    style: AppFonts.nunito(fontSize: 15, fontWeight: .bold, color: Colors.white),
+                  ),
+                  const SizedBox(width: 4),
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    if (_invitationId == null || _invitation == null) {
+      return SizedBox(
+        height: size.height,
+        child: Column(
+          mainAxisAlignment: .center,
+          children: [
+            const Spacer(),
+            Text(
+              _localeCubit.state.languageCode == 'id' ? 'Undangan tidak ditemukan' : 'Invitation not found.',
+              style: AppFonts.nunito(fontSize: 18, fontWeight: .bold),
+            ),
+            const Spacer(),
+            Text(
+              _localeCubit.state.languageCode == 'id' ? 'Ingin membuat undanganmu sendiri?' : 'Want to make your own invitation?',
+              style: AppFonts.nunito(fontSize: 16, fontWeight: .w500),
+            ),
+            const SizedBox(height: 14),
+            Row(
+              mainAxisAlignment: .center,
+              children: [
+                Text(
+                  _localeCubit.state.languageCode == 'id' ? 'Unduh Aplikasi' : 'Download',
+                  style: AppFonts.nunito(fontSize: 16, fontWeight: .bold),
+                ),
+                const SizedBox(width: 6),
+                Image.asset(
+                  'assets/logos/in_vite_logo.png',
+                  height: 20,
+                  package: 'iv_project_invitation_theme',
+                  fit: BoxFit.fitHeight,
+                ),
+                const SizedBox(width: 6),
+                if (_localeCubit.state.languageCode == 'en') Text('App', style: AppFonts.nunito(fontSize: 16, fontWeight: .bold)),
+              ],
+            ),
+            GeneralEffectsButton(
+              onTap: () {},
+              height: 60,
+              child: Image.asset('assets/get_it_on_google_play.png', height: 50, fit: BoxFit.fitHeight),
+            ),
+            const SizedBox(height: 44),
+          ],
+        ),
+      );
+    }
 
     final invitationData = _invitation!.invitationData;
 
     return Theme(
       data: ThemeData(
-        inputDecorationTheme: const InputDecorationTheme(floatingLabelStyle: TextStyle(color: AppColor.primaryColor)),
+        inputDecorationTheme: InputDecorationTheme(floatingLabelStyle: AppFonts.nunito(color: AppColor.primaryColor)),
         textSelectionTheme: const TextSelectionThemeData(
           cursorColor: AppColor.primaryColor,
           selectionHandleColor: AppColor.primaryColor,
@@ -148,11 +226,31 @@ class _DashboardPageState extends State<DashboardPage> {
           GeneralTitleAppBar(
             title: LayoutBuilder(
               builder: (_, constraints) => RunningText(
-                text: 'Dashboard Tamu Undangan Pernikahan - ${invitationData.bride.nickname} & ${invitationData.groom.nickname}',
+                text:
+                    '\t\t${_localeCubit.state.languageCode == 'id' ? 'Dashboard Tamu Undangan Pernikahan' : 'Wedding Invited Guest Dashboard'} - ${invitationData.bride.nickname} & ${invitationData.groom.nickname}',
                 constraints: constraints,
               ),
             ),
-            leftAction: const Text('tes'),
+            leftAction: DecoratedBox(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: const .only(topRight: .circular(20), bottomRight: .circular(20)),
+                border: Border(
+                  top: BorderSide(color: ColorConverter.lighten(AppColor.primaryColor, 40), width: 2),
+                  right: BorderSide(color: ColorConverter.lighten(AppColor.primaryColor, 40), width: 2),
+                  bottom: BorderSide(color: ColorConverter.lighten(AppColor.primaryColor, 40), width: 2),
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 14, right: 10, top: 7, bottom: 7),
+                child: Image.asset(
+                  'assets/logos/in_vite_logo.png',
+                  height: 24,
+                  package: 'iv_project_invitation_theme',
+                  fit: BoxFit.fitHeight,
+                ),
+              ),
+            ),
             rightAction: const ScanQrPortal(),
           ),
           Positioned(
