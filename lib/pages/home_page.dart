@@ -70,8 +70,7 @@ class _HomePageState extends State<HomePage> {
         _isContainsErrorGetInvitedGuest = !(await _invitedGuestCubit.getById(_invitedGuestId!));
       }
 
-      _isLoading = false;
-      setState(() {});
+      setState(() => _isLoading = false);
     });
   }
 
@@ -105,10 +104,12 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 10),
             GeneralEffectsButton(
               onTap: () async {
+                setState(() => _isLoading = true);
                 if (_isContainsErrorGetInvitation) await _getInvitationById(_invitationId!);
                 if (_isContainsErrorGetInvitedGuest) {
                   _isContainsErrorGetInvitedGuest = !(await _invitedGuestCubit.getById(_invitedGuestId!));
                 }
+                setState(() => _isLoading = false);
               },
               height: 44,
               width: 132,

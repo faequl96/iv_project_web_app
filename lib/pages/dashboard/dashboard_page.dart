@@ -41,6 +41,7 @@ class _DashboardPageState extends State<DashboardPage> {
   late final InvitedGuestCubit _invitedGuestCubit;
 
   Future<void> _getInvitationById(String id) async {
+    setState(() => _isLoading = true);
     _invitedGuestCubit.state.copyWith(isLoadingGetsByInvitationId: true).emitState();
 
     final url = Uri.parse('${ApiConfig.url}/invitation/id/$id');
@@ -58,8 +59,10 @@ class _DashboardPageState extends State<DashboardPage> {
           );
         }
       }
+      setState(() => _isLoading = false);
     } catch (_) {
       _isContainsError = true;
+      setState(() => _isLoading = false);
     }
   }
 
@@ -73,8 +76,6 @@ class _DashboardPageState extends State<DashboardPage> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       _invitationId = Uri.base.queryParameters['id'];
       if (_invitationId != null) await _getInvitationById(_invitationId!);
-      _isLoading = false;
-      setState(() {});
 
       await Future.delayed(const Duration(seconds: 3));
       if (_invitationId != null) await _invitedGuestCubit.getsByInvitationId(_invitationId!);
