@@ -281,42 +281,44 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.0.8"
-      resolved-ref: a70d69dd8702d7a579155432019c86ad6f7d4335
+      ref: "0.0.9"
+      resolved-ref: "62e19a0174328ccce3a8af7ca5707a5a35e4694b"
       url: "https://github.com/faequl96/iv_project_core.git"
     source: git
-    version: "0.0.8"
+    version: "0.0.9"
   iv_project_invitation_theme:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.1.9+1"
-      resolved-ref: "26f469d89b6db361f7116f5b696683d250d9ae49"
+      ref: "0.2.0"
+      resolved-ref: "776e739acac1240c600140a4286add2d01cf454b"
       url: "https://github.com/faequl96/iv_project_invitation_theme.git"
     source: git
-    version: "0.1.9"
+    version: "0.2.0"
   iv_project_model:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.1.0"
-      resolved-ref: "56321e6c7d2be8f04f4bedc6e0a1f700e14804b8"
+      ref: "0.1.1"
+      resolved-ref: "0113eb7a13a54a7b9d4f3080b9464988a97e59ee"
       url: "https://github.com/faequl96/iv_project_model.git"
     source: git
-    version: "0.1.0"
+    version: "0.1.1"
   iv_project_web_data:
     dependency: "direct main"
     description:
-      path: "../iv_project_web_data"
-      relative: true
-    source: path
+      path: "."
+      ref: "0.0.1"
+      resolved-ref: "1bf0ae1cd65a379667271de0e0ea1d5119824e39"
+      url: "https://github.com/faequl96/iv_project_web_data.git"
+    source: git
     version: "0.0.1"
   iv_project_widget_core:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.0.2+1"
-      resolved-ref: eb46460390c287c80b78af4bfdd824179039702a
+      ref: "0.0.2+2"
+      resolved-ref: b1224b8907a18c7b17f2631e94b5b76e707a5649
       url: "https://github.com/faequl96/iv_project_widget_core.git"
     source: git
     version: "0.0.2"
@@ -560,12 +562,28 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.5+1"
+  qr:
+    dependency: transitive
+    description:
+      name: qr
+      sha256: "5a1d2586170e172b8a8c8470bbbffd5eb0cd38a66c0d77155ea138d3af3a4445"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.2"
+  qr_flutter:
+    dependency: transitive
+    description:
+      name: qr_flutter
+      sha256: "5095f0fc6e3f71d08adef8feccc8cea4f12eec18a2e31c2e8d82cb6019f4b097"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.1.0"
   quick_dev_sdk:
     dependency: transitive
     description:
       path: "."
-      ref: "0.0.8+1"
-      resolved-ref: "076e78d733b88a0478915553846c9b1a119f2ccf"
+      ref: "0.0.8+2"
+      resolved-ref: "8cd647a4c18be7f1270ef66ea618efdf9e1cc349"
       url: "https://github.com/faequl96/quick_dev_sdk.git"
     source: git
     version: "0.0.8"
