@@ -3,8 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iv_project_core/iv_project_core.dart';
-import 'package:iv_project_invitation_theme/iv_project_invitation_theme.dart';
 import 'package:iv_project_model/iv_project_model.dart';
+import 'package:iv_project_web_data/iv_project_web_data.dart';
 import 'package:iv_project_widget_core/iv_project_widget_core.dart';
 import 'package:quick_dev_sdk/quick_dev_sdk.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -31,6 +31,7 @@ class _InvitedGuestsPresentationState extends State<InvitedGuestsPresentation> {
   @override
   Widget build(BuildContext context) {
     final invitedGuestCubit = context.read<InvitedGuestCubit>();
+    final localeCubit = context.read<LocaleCubit>();
 
     return BlocSelector<InvitedGuestCubit, InvitedGuestState, bool>(
       selector: (state) => state.isLoadingGetsByInvitationId || state.isLoadingUpsert,
@@ -54,8 +55,13 @@ class _InvitedGuestsPresentationState extends State<InvitedGuestsPresentation> {
             ] else ...[
               SizedBox(
                 height: MediaQuery.of(context).size.height - 100,
-                child: const Center(
-                  child: Text('Tamu undangan belum ditambahkan', style: TextStyle(fontSize: 15, fontWeight: .bold)),
+                child: Center(
+                  child: Text(
+                    localeCubit.state.languageCode == 'id'
+                        ? 'Tamu undangan belum ditambahkan'
+                        : 'Invited guests have not been added',
+                    style: AppFonts.nunito(fontSize: 15, fontWeight: .bold),
+                  ),
                 ),
               ),
             ],
@@ -111,8 +117,8 @@ class _InvitedGuestItem extends StatelessWidget {
                       child: Padding(
                         padding: const .only(left: 14, top: 4, bottom: 4),
                         child: Text(
-                          '${invitedGuest.nickname} - ${invitedGuest.nameInstance.split('_').last}',
-                          style: const TextStyle(fontWeight: .bold, color: Colors.white),
+                          '${invitedGuest.nickname} - ${invitedGuest.nameInstance.split('_').last.replaceAll('-', ' ')}',
+                          style: AppFonts.nunito(fontWeight: .bold, color: Colors.white),
                         ),
                       ),
                     ),
@@ -133,7 +139,7 @@ class _InvitedGuestItem extends StatelessWidget {
                             final phoneNumber = phone[0] == '0' ? phone.replaceFirst('0', '62') : phone;
                             final message = controller.text
                                 .replaceAll('{nama_tamu}', invitedGuest.nickname)
-                                .replaceAll('{link_undangan}', 'http://localhost:3300?id=$invitationId&to=${invitedGuest.id}')
+                                .replaceAll('{link_undangan}', '${Uri.base.origin}?id=$invitationId&to=${invitedGuest.id}')
                                 .replaceAll('{mempelai_wanita}', brideName)
                                 .replaceAll('{mempelai_pria}', groomName);
                             final url = 'https://wa.me/$phoneNumber?text=${Uri.encodeComponent(message)}';
@@ -148,9 +154,9 @@ class _InvitedGuestItem extends StatelessWidget {
                           color: AppColor.primaryColor,
                           splashColor: Colors.white,
                           borderRadius: .circular(30),
-                          child: const Text(
+                          child: Text(
                             'Kirim',
-                            style: TextStyle(color: Colors.white, fontWeight: .bold),
+                            style: AppFonts.nunito(color: Colors.white, fontWeight: .bold),
                           ),
                         ),
                       ),
@@ -164,23 +170,35 @@ class _InvitedGuestItem extends StatelessWidget {
           if (invitedGuest.phone != null)
             Padding(
               padding: const .symmetric(horizontal: 14),
-              child: Row(children: [const Text('WhatsApp :'), const Spacer(), Text(invitedGuest.phone!)]),
+              child: Row(
+                children: [
+                  Text('WhatsApp :', style: AppFonts.nunito()),
+                  const Spacer(),
+                  Text(invitedGuest.phone!, style: AppFonts.nunito()),
+                ],
+              ),
             ),
           if (invitedGuest.souvenir != null)
             Padding(
               padding: const .symmetric(horizontal: 14),
-              child: Row(children: [const Text('Souvenir :'), const Spacer(), Text('Tipe - ${invitedGuest.souvenir!}')]),
+              child: Row(
+                children: [
+                  Text('Souvenir :', style: AppFonts.nunito()),
+                  const Spacer(),
+                  Text('Tipe - ${invitedGuest.souvenir!}', style: AppFonts.nunito()),
+                ],
+              ),
             ),
           Padding(
             padding: const .symmetric(horizontal: 14),
             child: Row(
               children: [
-                const Text('Kehadiran :'),
+                Text('Kehadiran :', style: AppFonts.nunito()),
                 const Spacer(),
                 if (invitedGuest.attendance != null)
-                  Text(invitedGuest.attendance! == true ? 'Hadir' : 'Tidak Hadir')
+                  Text(invitedGuest.attendance! == true ? 'Hadir' : 'Tidak Hadir', style: AppFonts.nunito())
                 else
-                  Text(invitedGuest.possiblePresence ?? '-'),
+                  Text(invitedGuest.possiblePresence ?? '-', style: AppFonts.nunito()),
               ],
             ),
           ),
@@ -226,7 +244,7 @@ class _RSVPItemSkeleton extends StatelessWidget {
                         child: Row(
                           children: [
                             SkeletonBox(width: Random().nextInt(50) + 70, height: 15),
-                            const Text('', style: TextStyle(fontWeight: .bold)),
+                            Text('', style: AppFonts.nunito(fontWeight: .bold)),
                           ],
                         ),
                       ),
@@ -254,21 +272,27 @@ class _RSVPItemSkeleton extends StatelessWidget {
             padding: const .symmetric(horizontal: 14),
             child: Row(
               children: [
-                const Text('WhatsApp :'),
+                Text('WhatsApp :', style: AppFonts.nunito()),
                 const Spacer(),
                 SkeletonBox(width: Random().nextInt(20) + 80, height: 14),
               ],
             ),
           ),
-          const Padding(
-            padding: .symmetric(horizontal: 14),
-            child: Row(children: [Text('Souvenir :'), Spacer(), SkeletonBox(width: 50, height: 14)]),
+          Padding(
+            padding: const .symmetric(horizontal: 14),
+            child: Row(
+              children: [
+                Text('Souvenir :', style: AppFonts.nunito()),
+                const Spacer(),
+                const SkeletonBox(width: 50, height: 14),
+              ],
+            ),
           ),
           Padding(
             padding: const .symmetric(horizontal: 14),
             child: Row(
               children: [
-                const Text('Kehadiran :'),
+                Text('Kehadiran :', style: AppFonts.nunito()),
                 const Spacer(),
                 SkeletonBox(width: Random().nextInt(50) + 50, height: 14),
               ],

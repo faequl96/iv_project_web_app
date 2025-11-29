@@ -7,7 +7,8 @@ import 'package:iv_project_core/iv_project_core.dart';
 
 import 'package:iv_project_invitation_theme/iv_project_invitation_theme.dart';
 import 'package:iv_project_model/iv_project_model.dart';
-import 'package:iv_project_web_app/dummys/dummys.dart';
+import 'package:iv_project_web_data/iv_project_web_data.dart';
+import 'package:quick_dev_sdk/quick_dev_sdk.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,65 +18,168 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  bool _isLoading = true;
+  bool _isContainsErrorGetInvitation = false;
+  bool _isContainsErrorGetInvitedGuest = false;
+
   String? _invitationId;
+  String? _invitedGuestId;
+
   InvitationResponse? _invitation;
 
+  late final LocaleCubit _localeCubit;
+  late final InvitedGuestCubit _invitedGuestCubit;
+
   Future<void> _getInvitationById(String id) async {
-    final url = Uri.parse('https://6bf854fbdf4a.ngrok-free.app/api/v1/invitation/id/$id');
-    _invitation = InvitationResponse(
-      id: '123',
-      remainingEditCount: 1,
-      transactionId: '',
-      status: InvitationStatusType.active,
-      invitationThemeId: 1,
-      invitationThemeName: 'Elegant Black And White Glass',
-      brandProfile: const BrandProfileResponse(
-        id: 1,
-        name: 'In Vite',
-        email: 'faequl96@gmail.com',
-        phone: '085640933136',
-        instagram: 'faequl96',
-        address: 'Perum. Puri Bintaro Hijau, Blok C2 No.6, Kel. Pondok Aren, Kec. Pondok Aren, Kota Tangerang Selatan',
-      ),
-      invitationData: Dummys.invitationData,
-    );
+    _isContainsErrorGetInvitation = false;
+
+    final url = Uri.parse('${ApiConfig.url}/invitation/id/$id');
     try {
       final response = await http.get(url, headers: {'ngrok-skip-browser-warning': 'true'});
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         _invitation = InvitationResponse.fromJson(data['data']);
-        setState(() {});
+
+        if (_invitation != null) {
+          _localeCubit.set(
+            _invitation!.invitationData.general.lang == LangType.en ? const Locale('en', 'US') : const Locale('id', 'ID'),
+            reloadLangAssets: false,
+          );
+        }
       }
-    } catch (_) {}
+    } catch (_) {
+      _isContainsErrorGetInvitation = true;
+    }
   }
 
   @override
   void initState() {
     super.initState();
 
-    _invitationId = Uri.base.queryParameters['id'];
-    if (_invitationId != null) _getInvitationById(_invitationId!);
+    _localeCubit = context.read<LocaleCubit>();
+    _invitedGuestCubit = context.read<InvitedGuestCubit>();
 
-    if (_invitation != null) {
-      context.read<LocaleCubit>().set(
-        _invitation!.invitationData.general.lang == LangType.en ? const Locale('en', 'US') : const Locale('id', 'ID'),
-        reloadLangAssets: false,
-      );
-    }
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final queryParameters = Uri.base.queryParameters;
+
+      _invitationId = queryParameters['id'];
+      if (_invitationId != null) await _getInvitationById(_invitationId!);
+
+      _invitedGuestId = queryParameters['to'];
+      if (_invitedGuestId != null) {
+        _isContainsErrorGetInvitedGuest = !(await _invitedGuestCubit.getById(_invitedGuestId!));
+      }
+
+      _isLoading = false;
+      setState(() {});
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_invitationId == null) return const Center(child: Text('Link tidak menyertakan ID'));
-    if (_invitation == null) {
-      return const Center(
-        child: SizedBox(
-          height: 24,
-          width: 24,
-          child: CircularProgressIndicator(strokeWidth: 24 / 5.2, color: AppColor.primaryColor),
+    if (_isLoading) {
+      return ColoredBox(
+        color: ColorConverter.lighten(AppColor.primaryColor, 94),
+        child: const Center(
+          child: SizedBox(
+            height: 24,
+            width: 24,
+            child: CircularProgressIndicator(strokeWidth: 24 / 5.2, color: AppColor.primaryColor),
+          ),
         ),
       );
     }
+
+    final size = MediaQuery.of(context).size;
+
+    if (_isContainsErrorGetInvitation || _isContainsErrorGetInvitedGuest) {
+      return SizedBox(
+        height: size.height,
+        child: Column(
+          mainAxisAlignment: .center,
+          children: [
+            Text(
+              _localeCubit.state.languageCode == 'id' ? 'Oops. Gagal memuat undangan.' : 'Oops. Failed to fetch invitation',
+              style: AppFonts.nunito(fontSize: 16, fontWeight: .bold, color: Colors.orange),
+            ),
+            const SizedBox(height: 10),
+            GeneralEffectsButton(
+              onTap: () async {
+                if (_isContainsErrorGetInvitation) await _getInvitationById(_invitationId!);
+                if (_isContainsErrorGetInvitedGuest) {
+                  _isContainsErrorGetInvitedGuest = !(await _invitedGuestCubit.getById(_invitedGuestId!));
+                }
+              },
+              height: 44,
+              width: 132,
+              borderRadius: .circular(30),
+              color: AppColor.primaryColor,
+              splashColor: Colors.white,
+              useInitialElevation: true,
+              child: Row(
+                mainAxisAlignment: .center,
+                children: [
+                  const Icon(Icons.replay_rounded, color: Colors.white),
+                  const SizedBox(width: 6),
+                  Text(
+                    _localeCubit.state.languageCode == 'id' ? 'Coba Lagi' : 'Try Again',
+                    style: AppFonts.nunito(fontSize: 15, fontWeight: .bold, color: Colors.white),
+                  ),
+                  const SizedBox(width: 4),
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    if (_invitationId == null || _invitation == null) {
+      return SizedBox(
+        height: size.height,
+        child: Column(
+          mainAxisAlignment: .center,
+          children: [
+            const Spacer(),
+            Text(
+              _localeCubit.state.languageCode == 'id' ? 'Undangan tidak ditemukan' : 'Invitation not found.',
+              style: AppFonts.nunito(fontSize: 18, fontWeight: .bold),
+            ),
+            const Spacer(),
+            Text(
+              _localeCubit.state.languageCode == 'id' ? 'Ingin membuat undanganmu sendiri?' : 'Want to make your own invitation?',
+              style: AppFonts.nunito(fontSize: 16, fontWeight: .w500),
+            ),
+            const SizedBox(height: 14),
+            Row(
+              mainAxisAlignment: .center,
+              children: [
+                Text(
+                  _localeCubit.state.languageCode == 'id' ? 'Unduh Aplikasi' : 'Download',
+                  style: AppFonts.nunito(fontSize: 16, fontWeight: .bold),
+                ),
+                const SizedBox(width: 6),
+                Image.asset(
+                  'assets/logos/in_vite_logo.png',
+                  height: 20,
+                  package: 'iv_project_invitation_theme',
+                  fit: BoxFit.fitHeight,
+                ),
+                const SizedBox(width: 6),
+                if (_localeCubit.state.languageCode == 'en') Text('App', style: AppFonts.nunito(fontSize: 16, fontWeight: .bold)),
+              ],
+            ),
+            GeneralEffectsButton(
+              onTap: () {},
+              height: 60,
+              child: Image.asset('assets/get_it_on_google_play.png', height: 50, fit: BoxFit.fitHeight),
+            ),
+            const SizedBox(height: 44),
+          ],
+        ),
+      );
+    }
+
     return InvitationThemeLauncher(
       previewType: ThemePreviewType.fromResponse,
       invitationThemeId: _invitation!.invitationThemeId,

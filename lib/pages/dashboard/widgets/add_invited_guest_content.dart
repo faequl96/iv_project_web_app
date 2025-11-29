@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iv_project_core/iv_project_core.dart';
-import 'package:iv_project_invitation_theme/iv_project_invitation_theme.dart';
 import 'package:iv_project_model/iv_project_model.dart';
+import 'package:iv_project_web_data/iv_project_web_data.dart';
 import 'package:iv_project_widget_core/iv_project_widget_core.dart';
 import 'package:quick_dev_sdk/quick_dev_sdk.dart';
 
@@ -21,6 +21,7 @@ class _AddInvitedGuestContentState extends State<AddInvitedGuestContent> {
   String? _invitationId;
 
   late final InvitedGuestCubit _invitedGuestCubit;
+  late final LocaleCubit _localeCubit;
 
   Future<void> _downloadExcelAsset() async {
     final data = await rootBundle.load('assets/templates/formulir_tamu_undangan.xlsx');
@@ -40,7 +41,10 @@ class _AddInvitedGuestContentState extends State<AddInvitedGuestContent> {
     final file = await _pickExcelFile();
     final fileBytes = file?.bytes;
     if (fileBytes == null) {
-      GeneralDialog.showValidateStateError('Tidak ada file yang dipilih', durationInSeconds: 5);
+      GeneralDialog.showValidateStateError(
+        _localeCubit.state.languageCode == 'id' ? 'Tidak ada file yang dipilih' : 'No files selected',
+        durationInSeconds: 5,
+      );
       return;
     }
 
@@ -90,6 +94,7 @@ class _AddInvitedGuestContentState extends State<AddInvitedGuestContent> {
     _invitationId = Uri.base.queryParameters['id'];
 
     _invitedGuestCubit = context.read<InvitedGuestCubit>();
+    _localeCubit = context.read<LocaleCubit>();
   }
 
   @override
@@ -99,9 +104,11 @@ class _AddInvitedGuestContentState extends State<AddInvitedGuestContent> {
       child: Column(
         mainAxisSize: .min,
         children: [
-          const Text(
-            'Silahkan unduh formulir tamu undangan dibawah ini. Kemudian lakukan pengisian daftar tamu undangan pada formulir yang telah diunduh',
-            style: TextStyle(fontSize: 15),
+          Text(
+            _localeCubit.state.languageCode == 'id'
+                ? 'Silahkan unduh formulir tamu undangan dibawah ini. Kemudian lakukan pengisian daftar tamu undangan pada formulir yang telah diunduh'
+                : 'Please download the guest invitation form below. Then, fill out the guest list on the downloaded form.',
+            style: AppFonts.nunito(fontSize: 15),
             textAlign: .center,
           ),
           const SizedBox(height: 12),
@@ -113,22 +120,24 @@ class _AddInvitedGuestContentState extends State<AddInvitedGuestContent> {
             borderRadius: .circular(30),
             border: .all(color: AppColor.primaryColor, width: 2),
             useInitialElevation: true,
-            child: const Row(
+            child: Row(
               mainAxisSize: .min,
               children: [
                 Text(
-                  'Unduh Formulir',
-                  style: TextStyle(color: AppColor.primaryColor, fontSize: 15, fontWeight: .bold),
+                  _localeCubit.state.languageCode == 'id' ? 'Unduh Formulir' : 'Download Form',
+                  style: AppFonts.nunito(color: AppColor.primaryColor, fontSize: 15, fontWeight: .bold),
                 ),
-                SizedBox(width: 6),
-                Icon(Icons.download, color: AppColor.primaryColor),
+                const SizedBox(width: 6),
+                const Icon(Icons.download, color: AppColor.primaryColor),
               ],
             ),
           ),
           const SizedBox(height: 20),
-          const Text(
-            'Jika telah mengisi, kemudian silahkan import formulir tersebut dengan tombol di bawah ini',
-            style: TextStyle(fontSize: 15),
+          Text(
+            _localeCubit.state.languageCode == 'id'
+                ? 'Jika telah mengisi, kemudian silahkan import formulir tersebut dengan tombol di bawah ini'
+                : 'If you have filled it in, then please import the form using the button below.',
+            style: AppFonts.nunito(fontSize: 15),
             textAlign: .center,
           ),
           const SizedBox(height: 20),
@@ -148,9 +157,9 @@ class _AddInvitedGuestContentState extends State<AddInvitedGuestContent> {
                   mainAxisAlignment: .center,
                   children: [
                     if (isLoading) ...[SharedPersonalize.loadingWidget(size: 20, color: Colors.white), const SizedBox(width: 10)],
-                    const Text(
-                      'Import dari Excel',
-                      style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: .bold),
+                    Text(
+                      _localeCubit.state.languageCode == 'id' ? 'Import dari Excel' : 'Import from Excel',
+                      style: AppFonts.nunito(color: Colors.white, fontSize: 15, fontWeight: .bold),
                     ),
                   ],
                 ),
