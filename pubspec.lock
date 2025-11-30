@@ -280,37 +280,47 @@ packages:
   iv_project_core:
     dependency: "direct main"
     description:
-      path: "../iv_project_core"
-      relative: true
-    source: path
+      path: "."
+      ref: "0.0.9"
+      resolved-ref: "62e19a0174328ccce3a8af7ca5707a5a35e4694b"
+      url: "https://github.com/faequl96/iv_project_core.git"
+    source: git
     version: "0.0.9"
   iv_project_invitation_theme:
     dependency: "direct main"
     description:
-      path: "../iv_project_invitation_theme"
-      relative: true
-    source: path
-    version: "0.1.9"
+      path: "."
+      ref: "0.2.0+4"
+      resolved-ref: "31fbdf6bf8fce997660f2de96d46c22b988f4d3b"
+      url: "https://github.com/faequl96/iv_project_invitation_theme.git"
+    source: git
+    version: "0.2.0"
   iv_project_model:
     dependency: "direct main"
     description:
-      path: "../iv_project_model"
-      relative: true
-    source: path
+      path: "."
+      ref: "0.1.1"
+      resolved-ref: "0113eb7a13a54a7b9d4f3080b9464988a97e59ee"
+      url: "https://github.com/faequl96/iv_project_model.git"
+    source: git
     version: "0.1.1"
   iv_project_web_data:
     dependency: "direct main"
     description:
-      path: "../iv_project_web_data"
-      relative: true
-    source: path
+      path: "."
+      ref: "0.0.1+2"
+      resolved-ref: a26a74f5d689254d3795310c4582837302fb2a27
+      url: "https://github.com/faequl96/iv_project_web_data.git"
+    source: git
     version: "0.0.1"
   iv_project_widget_core:
     dependency: "direct main"
     description:
-      path: "../iv_project_widget_core"
-      relative: true
-    source: path
+      path: "."
+      ref: "0.0.2+3"
+      resolved-ref: "50d48e863dbc38088f56e5389085969aa8383d81"
+      url: "https://github.com/faequl96/iv_project_widget_core.git"
+    source: git
     version: "0.0.2"
   just_audio:
     dependency: transitive
@@ -571,9 +581,11 @@ packages:
   quick_dev_sdk:
     dependency: "direct main"
     description:
-      path: "../quick_dev_sdk"
-      relative: true
-    source: path
+      path: "."
+      ref: "0.0.8+2"
+      resolved-ref: "8cd647a4c18be7f1270ef66ea618efdf9e1cc349"
+      url: "https://github.com/faequl96/quick_dev_sdk.git"
+    source: git
     version: "0.0.8"
   rxdart:
     dependency: transitive
