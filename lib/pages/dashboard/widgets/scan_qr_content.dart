@@ -32,7 +32,7 @@ class _ScanQrContentState extends State<ScanQrContent> with SingleTickerProvider
     if (invitedGuestId != null) {
       _handled = true;
 
-      final success = await _invitedGuestCubit.updateById(invitedGuestId, const UpdateInvitedGuestRequest(attendance: true));
+      final success = await _invitedGuestCubit.updateById('t$invitedGuestId', const UpdateInvitedGuestRequest(attendance: true));
       if (!success) {
         setState(() => _isContainsError = true);
         return;
@@ -62,23 +62,37 @@ class _ScanQrContentState extends State<ScanQrContent> with SingleTickerProvider
           color: ColorConverter.lighten(AppColor.primaryColor, 94),
           borderRadius: const .only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
         ),
-        contentBuilder: (_) => Column(
-          mainAxisSize: .min,
-          children: [
-            const SizedBox(height: 30),
-            Text('Detail Tamu Undangan', style: AppFonts.inter(fontWeight: .w600, fontSize: 16)),
-            const SizedBox(height: 20),
-            Row(children: [const Text('Nama :'), const Spacer(), Text(invitedGuest.nickname)]),
-            Row(
-              children: [
-                const Text('Instansi/Dari :'),
-                const Spacer(),
-                Text(invitedGuest.nameInstance.split('_').last.replaceAll('-', ' ')),
-              ],
-            ),
-            Row(children: [const Text('Souvenir :'), const Spacer(), Text('Tipe - $souvenir')]),
-            const SizedBox(height: 60),
-          ],
+        contentBuilder: (_) => Padding(
+          padding: const .all(16),
+          child: Column(
+            mainAxisSize: .min,
+            children: [
+              Text('Detail Tamu Undangan', style: AppFonts.inter(fontWeight: .w600, fontSize: 16)),
+              const SizedBox(height: 20),
+              Row(
+                children: [
+                  Text('Nama :', style: AppFonts.inter(fontSize: 15)),
+                  const Spacer(),
+                  Text(invitedGuest.nickname, style: AppFonts.inter(fontSize: 15)),
+                ],
+              ),
+              Row(
+                children: [
+                  Text('Instansi/Dari :', style: AppFonts.inter(fontSize: 15)),
+                  const Spacer(),
+                  Text(invitedGuest.nameInstance.split('_').last.replaceAll('-', ' '), style: AppFonts.inter(fontSize: 15)),
+                ],
+              ),
+              Row(
+                children: [
+                  Text('Souvenir :', style: AppFonts.inter(fontSize: 15)),
+                  const Spacer(),
+                  Text('Tipe - $souvenir', style: AppFonts.inter(fontSize: 15)),
+                ],
+              ),
+              const SizedBox(height: 60),
+            ],
+          ),
         ),
       );
     }
