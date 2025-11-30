@@ -138,40 +138,43 @@ class _ScanQrContentState extends State<ScanQrContent> with SingleTickerProvider
         child: Stack(
           children: [
             if (_isContainsError) ...[
-              Column(
-                mainAxisAlignment: .center,
-                children: [
-                  Text(
-                    _localeCubit.state.languageCode == 'id' ? 'Oops. Gagal mengscan QR.' : 'Oops. Failed to scan QR',
-                    style: AppFonts.nunito(fontSize: 16, fontWeight: .bold, color: Colors.orange),
-                  ),
-                  const SizedBox(height: 10),
-                  GeneralEffectsButton(
-                    onTap: () async {
-                      _handled = false;
-                      _isContainsError = false;
-                      setState(() {});
-                    },
-                    height: 44,
-                    width: 132,
-                    borderRadius: .circular(30),
-                    color: AppColor.primaryColor,
-                    splashColor: Colors.white,
-                    useInitialElevation: true,
-                    child: Row(
-                      mainAxisAlignment: .center,
-                      children: [
-                        const Icon(Icons.replay_rounded, color: Colors.white),
-                        const SizedBox(width: 6),
-                        Text(
-                          _localeCubit.state.languageCode == 'id' ? 'Coba Lagi' : 'Try Again',
-                          style: AppFonts.nunito(fontSize: 15, fontWeight: .bold, color: Colors.white),
-                        ),
-                        const SizedBox(width: 4),
-                      ],
+              SizedBox(
+                width: size.width - 28,
+                child: Column(
+                  mainAxisAlignment: .center,
+                  children: [
+                    Text(
+                      _localeCubit.state.languageCode == 'id' ? 'Oops. Gagal mengscan QR.' : 'Oops. Failed to scan QR',
+                      style: AppFonts.nunito(fontSize: 16, fontWeight: .bold, color: Colors.orange),
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 10),
+                    GeneralEffectsButton(
+                      onTap: () async {
+                        _handled = false;
+                        _isContainsError = false;
+                        setState(() {});
+                      },
+                      height: 44,
+                      width: 132,
+                      borderRadius: .circular(30),
+                      color: AppColor.primaryColor,
+                      splashColor: Colors.white,
+                      useInitialElevation: true,
+                      child: Row(
+                        mainAxisAlignment: .center,
+                        children: [
+                          const Icon(Icons.replay_rounded, color: Colors.white),
+                          const SizedBox(width: 6),
+                          Text(
+                            _localeCubit.state.languageCode == 'id' ? 'Coba Lagi' : 'Try Again',
+                            style: AppFonts.nunito(fontSize: 15, fontWeight: .bold, color: Colors.white),
+                          ),
+                          const SizedBox(width: 4),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ] else ...[
               MobileScanner(controller: _controller, onDetect: _onDetect),
