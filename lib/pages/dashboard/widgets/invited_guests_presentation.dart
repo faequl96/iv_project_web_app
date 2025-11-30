@@ -34,9 +34,9 @@ class _InvitedGuestsPresentationState extends State<InvitedGuestsPresentation> {
     final localeCubit = context.read<LocaleCubit>();
 
     return BlocSelector<InvitedGuestCubit, InvitedGuestState, bool>(
-      selector: (state) => state.isLoadingGetsByInvitationId || state.isLoadingUpsert,
+      selector: (state) => state.isLoadingGetsByInvitationId || state.isLoadingUpsert || state.isLoadingUpdateById,
       builder: (context, isLoading) {
-        final invitedGuests = invitedGuestCubit.state.invitedGuests;
+        final invitedGuests = invitedGuestCubit.state.invitedGuests ?? [];
 
         return ListView(
           padding: const .only(top: 14, bottom: 8),
