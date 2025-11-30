@@ -28,21 +28,76 @@ class InvitedGuestsPresentation extends StatefulWidget {
 }
 
 class _InvitedGuestsPresentationState extends State<InvitedGuestsPresentation> {
+  String? _invitationId;
+
+  late final LocaleCubit _localeCubit;
+  late final InvitedGuestCubit _invitedGuestCubit;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _localeCubit = context.read<LocaleCubit>();
+    _invitedGuestCubit = context.read<InvitedGuestCubit>();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      _invitationId = Uri.base.queryParameters['id'];
+      if (_invitationId != null) await _invitedGuestCubit.getsByInvitationId(_invitationId!);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final invitedGuestCubit = context.read<InvitedGuestCubit>();
-    final localeCubit = context.read<LocaleCubit>();
-
     return BlocSelector<InvitedGuestCubit, InvitedGuestState, bool>(
       selector: (state) => state.isLoadingGetsByInvitationId || state.isLoadingUpsert || state.isLoadingUpdateById,
       builder: (context, isLoading) {
-        final invitedGuests = invitedGuestCubit.state.invitedGuests ?? [];
+        final isContainsError = _invitedGuestCubit.state.isContainsError;
+        final invitedGuests = _invitedGuestCubit.state.invitedGuests ?? [];
 
         return ListView(
           padding: const .only(top: 14, bottom: 8),
           children: [
             if (isLoading) ...[
               for (int i = 0; i < 4; i++) const _RSVPItemSkeleton(),
+            ] else if (isContainsError) ...[
+              SizedBox(
+                height: MediaQuery.of(context).size.height - 100,
+                child: Column(
+                  mainAxisAlignment: .center,
+                  children: [
+                    Text(
+                      _localeCubit.state.languageCode == 'id'
+                          ? 'Oops. Gagal memuat undangan.'
+                          : 'Oops. Failed to fetch invitation',
+                      style: AppFonts.nunito(fontSize: 16, fontWeight: .bold, color: Colors.orange),
+                    ),
+                    const SizedBox(height: 10),
+                    GeneralEffectsButton(
+                      onTap: () async {
+                        if (_invitationId != null) await _invitedGuestCubit.getsByInvitationId(_invitationId!);
+                      },
+                      height: 44,
+                      width: 132,
+                      borderRadius: .circular(30),
+                      color: AppColor.primaryColor,
+                      splashColor: Colors.white,
+                      useInitialElevation: true,
+                      child: Row(
+                        mainAxisAlignment: .center,
+                        children: [
+                          const Icon(Icons.replay_rounded, color: Colors.white),
+                          const SizedBox(width: 6),
+                          Text(
+                            _localeCubit.state.languageCode == 'id' ? 'Coba Lagi' : 'Try Again',
+                            style: AppFonts.nunito(fontSize: 15, fontWeight: .bold, color: Colors.white),
+                          ),
+                          const SizedBox(width: 4),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ] else if (invitedGuests.isNotEmpty) ...[
               for (int i = 0; i < invitedGuests.length; i++)
                 _InvitedGuestItem(
@@ -57,7 +112,7 @@ class _InvitedGuestsPresentationState extends State<InvitedGuestsPresentation> {
                 height: MediaQuery.of(context).size.height - 100,
                 child: Center(
                   child: Text(
-                    localeCubit.state.languageCode == 'id'
+                    _localeCubit.state.languageCode == 'id'
                         ? 'Tamu undangan belum ditambahkan'
                         : 'Invited guests have not been added',
                     style: AppFonts.nunito(fontSize: 15, fontWeight: .bold),
