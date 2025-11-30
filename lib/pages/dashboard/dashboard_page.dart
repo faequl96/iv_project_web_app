@@ -142,12 +142,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   style: AppFonts.nunito(fontSize: 16, fontWeight: .bold),
                 ),
                 const SizedBox(width: 6),
-                Image.asset(
-                  'assets/logos/in_vite_logo.png',
-                  height: 20,
-                  package: 'iv_project_invitation_theme',
-                  fit: BoxFit.fitHeight,
-                ),
+                Image.asset('assets/logos/in_vite_logo.png', height: 20, package: 'iv_project_invitation_theme', fit: .fitHeight),
                 const SizedBox(width: 6),
                 if (_localeCubit.state.languageCode == 'en') Text('App', style: AppFonts.nunito(fontSize: 16, fontWeight: .bold)),
               ],
@@ -155,7 +150,7 @@ class _DashboardPageState extends State<DashboardPage> {
             GeneralEffectsButton(
               onTap: () {},
               height: 60,
-              child: Image.asset('assets/get_it_on_google_play.png', height: 50, fit: BoxFit.fitHeight),
+              child: Image.asset('assets/get_it_on_google_play.png', height: 50, fit: .fitHeight),
             ),
             const SizedBox(height: 44),
           ],
@@ -201,6 +196,7 @@ class _DashboardPageState extends State<DashboardPage> {
               builder: (_, constraints) => RunningText(
                 text:
                     '\t\t${_localeCubit.state.languageCode == 'id' ? 'Dashboard Tamu Undangan Pernikahan' : 'Wedding Invited Guest Dashboard'} - ${invitationData.bride.nickname} & ${invitationData.groom.nickname}',
+                textStyle: AppFonts.nunito(fontSize: 16, fontWeight: .w700, color: Colors.white),
                 constraints: constraints,
               ),
             ),
@@ -215,12 +211,12 @@ class _DashboardPageState extends State<DashboardPage> {
                 ),
               ),
               child: Padding(
-                padding: const EdgeInsets.only(left: 14, right: 10, top: 7, bottom: 7),
+                padding: const .only(left: 14, right: 10, top: 7, bottom: 7),
                 child: Image.asset(
                   'assets/logos/in_vite_logo.png',
                   height: 24,
                   package: 'iv_project_invitation_theme',
-                  fit: BoxFit.fitHeight,
+                  fit: .fitHeight,
                 ),
               ),
             ),
@@ -245,14 +241,15 @@ class _DashboardPageState extends State<DashboardPage> {
                   ),
                   decoration: BottomSheetDecoration(
                     color: ColorConverter.lighten(AppColor.primaryColor, 94),
-                    borderRadius: const .only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+                    borderRadius: const .only(topLeft: .circular(20), topRight: .circular(20)),
                   ),
                   contentBuilder: (_) => Padding(
-                    padding: const .all(16),
+                    padding: const .symmetric(horizontal: 16),
                     child: Column(
                       mainAxisSize: .min,
                       children: [
-                        Text('Detail Tamu Undangan', style: AppFonts.nunito(fontWeight: .w600, fontSize: 16)),
+                        const SizedBox(height: 8),
+                        Text('Detail Tamu Undangan', style: AppFonts.nunito(fontWeight: .w700, fontSize: 16)),
                         const SizedBox(height: 20),
                         Row(
                           children: [
