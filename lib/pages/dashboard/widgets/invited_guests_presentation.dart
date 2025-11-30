@@ -62,40 +62,13 @@ class _InvitedGuestsPresentationState extends State<InvitedGuestsPresentation> {
             ] else if (isContainsError) ...[
               SizedBox(
                 height: MediaQuery.of(context).size.height - 100,
-                child: Column(
-                  mainAxisAlignment: .center,
-                  children: [
-                    Text(
-                      _localeCubit.state.languageCode == 'id'
-                          ? 'Oops. Gagal memuat undangan.'
-                          : 'Oops. Failed to fetch invitation',
-                      style: AppFonts.nunito(fontSize: 16, fontWeight: .bold, color: Colors.orange),
-                    ),
-                    const SizedBox(height: 10),
-                    GeneralEffectsButton(
-                      onTap: () async {
-                        if (_invitationId != null) await _invitedGuestCubit.getsByInvitationId(_invitationId!);
-                      },
-                      height: 44,
-                      width: 132,
-                      borderRadius: .circular(30),
-                      color: AppColor.primaryColor,
-                      splashColor: Colors.white,
-                      useInitialElevation: true,
-                      child: Row(
-                        mainAxisAlignment: .center,
-                        children: [
-                          const Icon(Icons.replay_rounded, color: Colors.white),
-                          const SizedBox(width: 6),
-                          Text(
-                            _localeCubit.state.languageCode == 'id' ? 'Coba Lagi' : 'Try Again',
-                            style: AppFonts.nunito(fontSize: 15, fontWeight: .bold, color: Colors.white),
-                          ),
-                          const SizedBox(width: 4),
-                        ],
-                      ),
-                    ),
-                  ],
+                child: RetryWidget(
+                  errorMessage: _localeCubit.state.languageCode == 'id'
+                      ? 'Oops. Gagal memuat undangan.'
+                      : 'Oops. Failed to fetch invitation',
+                  onRetry: () async {
+                    if (_invitationId != null) await _invitedGuestCubit.getsByInvitationId(_invitationId!);
+                  },
                 ),
               ),
             ] else if (invitedGuests.isNotEmpty) ...[

@@ -30,12 +30,12 @@ dependencies:
   iv_project_widget_core:
     git:
       url: https://github.com/faequl96/iv_project_widget_core.git
-      ref: 0.0.2+2
+      ref: 0.0.2+3
   
   iv_project_invitation_theme:
     git:
       url: https://github.com/faequl96/iv_project_invitation_theme.git
-      ref: 0.2.0+1
+      ref: 0.2.0+2
   
   quick_dev_sdk:
     git:

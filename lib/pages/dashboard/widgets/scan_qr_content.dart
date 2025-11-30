@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iv_project_core/iv_project_core.dart';
 import 'package:iv_project_model/iv_project_model.dart';
 import 'package:iv_project_web_data/iv_project_web_data.dart';
+import 'package:iv_project_widget_core/iv_project_widget_core.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
-import 'package:quick_dev_sdk/quick_dev_sdk.dart';
 
 class ScanQrContent extends StatefulWidget {
   const ScanQrContent({super.key});
@@ -38,63 +38,7 @@ class _ScanQrContentState extends State<ScanQrContent> with SingleTickerProvider
         return;
       }
 
-      final invitedGuest = _invitedGuestCubit.state.invitedGuest;
-      if (invitedGuest == null) return;
-      final souvenir = invitedGuest.souvenir;
-      if (souvenir == null) return;
-
       NavigationService.pop();
-
-      if (!mounted) return;
-      ShowModal.bottomSheet(
-        context,
-        barrierColor: Colors.grey.shade700.withValues(alpha: .5),
-        header: BottomSheetHeader(
-          useHandleBar: true,
-          handleColor: Colors.grey.shade500,
-          action: HeaderAction(
-            actionIcon: Icons.close_rounded,
-            iconColor: Colors.grey.shade600,
-            onTap: () => NavigationService.pop(),
-          ),
-        ),
-        decoration: BottomSheetDecoration(
-          color: ColorConverter.lighten(AppColor.primaryColor, 94),
-          borderRadius: const .only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-        ),
-        contentBuilder: (_) => Padding(
-          padding: const .all(16),
-          child: Column(
-            mainAxisSize: .min,
-            children: [
-              Text('Detail Tamu Undangan', style: AppFonts.inter(fontWeight: .w600, fontSize: 16)),
-              const SizedBox(height: 20),
-              Row(
-                children: [
-                  Text('Nama :', style: AppFonts.inter(fontSize: 15)),
-                  const Spacer(),
-                  Text(invitedGuest.nickname, style: AppFonts.inter(fontSize: 15)),
-                ],
-              ),
-              Row(
-                children: [
-                  Text('Instansi/Dari :', style: AppFonts.inter(fontSize: 15)),
-                  const Spacer(),
-                  Text(invitedGuest.nameInstance.split('_').last.replaceAll('-', ' '), style: AppFonts.inter(fontSize: 15)),
-                ],
-              ),
-              Row(
-                children: [
-                  Text('Souvenir :', style: AppFonts.inter(fontSize: 15)),
-                  const Spacer(),
-                  Text('Tipe - $souvenir', style: AppFonts.inter(fontSize: 15)),
-                ],
-              ),
-              const SizedBox(height: 60),
-            ],
-          ),
-        ),
-      );
     }
   }
 
@@ -140,40 +84,13 @@ class _ScanQrContentState extends State<ScanQrContent> with SingleTickerProvider
             if (_isContainsError) ...[
               SizedBox(
                 width: size.width - 28,
-                child: Column(
-                  mainAxisAlignment: .center,
-                  children: [
-                    Text(
-                      _localeCubit.state.languageCode == 'id' ? 'Oops. Gagal mengscan QR.' : 'Oops. Failed to scan QR',
-                      style: AppFonts.nunito(fontSize: 16, fontWeight: .bold, color: Colors.orange),
-                    ),
-                    const SizedBox(height: 10),
-                    GeneralEffectsButton(
-                      onTap: () async {
-                        _handled = false;
-                        _isContainsError = false;
-                        setState(() {});
-                      },
-                      height: 44,
-                      width: 132,
-                      borderRadius: .circular(30),
-                      color: AppColor.primaryColor,
-                      splashColor: Colors.white,
-                      useInitialElevation: true,
-                      child: Row(
-                        mainAxisAlignment: .center,
-                        children: [
-                          const Icon(Icons.replay_rounded, color: Colors.white),
-                          const SizedBox(width: 6),
-                          Text(
-                            _localeCubit.state.languageCode == 'id' ? 'Coba Lagi' : 'Try Again',
-                            style: AppFonts.nunito(fontSize: 15, fontWeight: .bold, color: Colors.white),
-                          ),
-                          const SizedBox(width: 4),
-                        ],
-                      ),
-                    ),
-                  ],
+                child: RetryWidget(
+                  errorMessage: _localeCubit.state.languageCode == 'id' ? 'Oops. Gagal mengscan QR.' : 'Oops. Failed to scan QR',
+                  onRetry: () async {
+                    _handled = false;
+                    _isContainsError = false;
+                    setState(() {});
+                  },
                 ),
               ),
             ] else ...[

@@ -108,36 +108,11 @@ class _DashboardPageState extends State<DashboardPage> {
     if (_isContainsError) {
       return SizedBox(
         height: size.height,
-        child: Column(
-          mainAxisAlignment: .center,
-          children: [
-            Text(
-              _localeCubit.state.languageCode == 'id' ? 'Oops. Gagal memuat undangan.' : 'Oops. Failed to fetch invitation',
-              style: AppFonts.nunito(fontSize: 16, fontWeight: .bold, color: Colors.orange),
-            ),
-            const SizedBox(height: 10),
-            GeneralEffectsButton(
-              onTap: () => _getInvitationById(_invitationId!),
-              height: 44,
-              width: 132,
-              borderRadius: .circular(30),
-              color: AppColor.primaryColor,
-              splashColor: Colors.white,
-              useInitialElevation: true,
-              child: Row(
-                mainAxisAlignment: .center,
-                children: [
-                  const Icon(Icons.replay_rounded, color: Colors.white),
-                  const SizedBox(width: 6),
-                  Text(
-                    _localeCubit.state.languageCode == 'id' ? 'Coba Lagi' : 'Try Again',
-                    style: AppFonts.nunito(fontSize: 15, fontWeight: .bold, color: Colors.white),
-                  ),
-                  const SizedBox(width: 4),
-                ],
-              ),
-            ),
-          ],
+        child: RetryWidget(
+          errorMessage: _localeCubit.state.languageCode == 'id'
+              ? 'Oops. Gagal memuat undangan.'
+              : 'Oops. Failed to fetch invitation',
+          onRetry: () => _getInvitationById(_invitationId!),
         ),
       );
     }
@@ -249,7 +224,66 @@ class _DashboardPageState extends State<DashboardPage> {
                 ),
               ),
             ),
-            rightAction: const ScanQrPortal(),
+            rightAction: ScanQrPortal(
+              onDetectCompleted: () {
+                final invitedGuest = _invitedGuestCubit.state.invitedGuest;
+                if (invitedGuest == null) return;
+                final souvenir = invitedGuest.souvenir;
+
+                ShowModal.bottomSheet(
+                  context,
+                  barrierColor: Colors.grey.shade700.withValues(alpha: .5),
+                  header: BottomSheetHeader(
+                    useHandleBar: true,
+                    handleColor: Colors.grey.shade500,
+                    action: HeaderAction(
+                      actionIcon: Icons.close_rounded,
+                      iconColor: Colors.grey.shade600,
+                      onTap: () => NavigationService.pop(),
+                    ),
+                  ),
+                  decoration: BottomSheetDecoration(
+                    color: ColorConverter.lighten(AppColor.primaryColor, 94),
+                    borderRadius: const .only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+                  ),
+                  contentBuilder: (_) => Padding(
+                    padding: const .all(16),
+                    child: Column(
+                      mainAxisSize: .min,
+                      children: [
+                        Text('Detail Tamu Undangan', style: AppFonts.inter(fontWeight: .w600, fontSize: 16)),
+                        const SizedBox(height: 20),
+                        Row(
+                          children: [
+                            Text('Nama :', style: AppFonts.inter(fontSize: 15)),
+                            const Spacer(),
+                            Text(invitedGuest.nickname, style: AppFonts.inter(fontSize: 15)),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text('Instansi/Dari :', style: AppFonts.inter(fontSize: 15)),
+                            const Spacer(),
+                            Text(
+                              invitedGuest.nameInstance.split('_').last.replaceAll('-', ' '),
+                              style: AppFonts.inter(fontSize: 15),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text('Souvenir :', style: AppFonts.inter(fontSize: 15)),
+                            const Spacer(),
+                            Text(souvenir == null ? '-' : 'Tipe - $souvenir', style: AppFonts.inter(fontSize: 15)),
+                          ],
+                        ),
+                        const SizedBox(height: 60),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
           ),
           Positioned(
             bottom: 20,

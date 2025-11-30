@@ -4,13 +4,15 @@ import 'package:iv_project_web_app/pages/dashboard/widgets/scan_qr_content.dart'
 import 'package:quick_dev_sdk/quick_dev_sdk.dart';
 
 class ScanQrPortal extends StatelessWidget {
-  const ScanQrPortal({super.key});
+  const ScanQrPortal({super.key, required this.onDetectCompleted});
+
+  final void Function() onDetectCompleted;
 
   @override
   Widget build(BuildContext context) {
     return GeneralEffectsButton(
-      onTap: () {
-        ShowModal.bottomSheet(
+      onTap: () async {
+        await ShowModal.bottomSheet(
           context,
           barrierColor: Colors.grey.shade700.withValues(alpha: .5),
           header: BottomSheetHeader(
@@ -28,6 +30,8 @@ class ScanQrPortal extends StatelessWidget {
           ),
           contentBuilder: (_) => const Padding(padding: .only(left: 14, right: 14, bottom: 20), child: ScanQrContent()),
         );
+
+        onDetectCompleted();
       },
       padding: const .symmetric(horizontal: 16, vertical: 8),
       color: AppColor.primaryColor,
