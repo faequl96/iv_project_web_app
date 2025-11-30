@@ -226,7 +226,7 @@ class _DashboardPageState extends State<DashboardPage> {
             ),
             rightAction: ScanQrPortal(
               onDetectCompleted: () {
-                final invitedGuest = _invitedGuestCubit.state.invitedGuest;
+                final invitedGuest = _invitedGuestCubit.state.invitedGuestUpdateById;
                 if (invitedGuest == null) return;
                 final souvenir = invitedGuest.souvenir;
 
