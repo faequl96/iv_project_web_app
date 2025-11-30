@@ -35,7 +35,7 @@ dependencies:
   iv_project_invitation_theme:
     git:
       url: https://github.com/faequl96/iv_project_invitation_theme.git
-      ref: 0.2.0+2
+      ref: 0.2.0+3
   
   quick_dev_sdk:
     git:

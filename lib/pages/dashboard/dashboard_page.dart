@@ -233,6 +233,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 ShowModal.bottomSheet(
                   context,
                   barrierColor: Colors.grey.shade700.withValues(alpha: .5),
+                  dismissible: false,
                   header: BottomSheetHeader(
                     useHandleBar: true,
                     handleColor: Colors.grey.shade500,
@@ -251,30 +252,45 @@ class _DashboardPageState extends State<DashboardPage> {
                     child: Column(
                       mainAxisSize: .min,
                       children: [
-                        Text('Detail Tamu Undangan', style: AppFonts.inter(fontWeight: .w600, fontSize: 16)),
+                        Text('Detail Tamu Undangan', style: AppFonts.nunito(fontWeight: .w600, fontSize: 16)),
                         const SizedBox(height: 20),
                         Row(
                           children: [
-                            Text('Nama :', style: AppFonts.inter(fontSize: 15)),
+                            Text('Nama :', style: AppFonts.nunito(fontSize: 15)),
                             const Spacer(),
-                            Text(invitedGuest.nickname, style: AppFonts.inter(fontSize: 15)),
+                            Text(invitedGuest.nickname, style: AppFonts.nunito(fontSize: 15, fontWeight: .w500)),
                           ],
                         ),
+                        const SizedBox(height: 4),
                         Row(
                           children: [
-                            Text('Instansi/Dari :', style: AppFonts.inter(fontSize: 15)),
+                            Text('Instansi/Dari :', style: AppFonts.nunito(fontSize: 15)),
                             const Spacer(),
                             Text(
                               invitedGuest.nameInstance.split('_').last.replaceAll('-', ' '),
-                              style: AppFonts.inter(fontSize: 15),
+                              style: AppFonts.nunito(fontSize: 15, fontWeight: .w500),
                             ),
                           ],
                         ),
+                        const SizedBox(height: 4),
+                        if (invitedGuest.phone != null) ...[
+                          Row(
+                            children: [
+                              Text('WhatsApp :', style: AppFonts.nunito(fontSize: 15)),
+                              const Spacer(),
+                              Text(invitedGuest.phone!, style: AppFonts.nunito(fontSize: 15, fontWeight: .w500)),
+                            ],
+                          ),
+                          const SizedBox(height: 4),
+                        ],
                         Row(
                           children: [
-                            Text('Souvenir :', style: AppFonts.inter(fontSize: 15)),
+                            Text('Souvenir :', style: AppFonts.nunito(fontSize: 15)),
                             const Spacer(),
-                            Text(souvenir == null ? '-' : 'Tipe - $souvenir', style: AppFonts.inter(fontSize: 15)),
+                            Text(
+                              souvenir == null ? '-' : 'Tipe - $souvenir',
+                              style: AppFonts.nunito(fontSize: 15, fontWeight: .w500),
+                            ),
                           ],
                         ),
                         const SizedBox(height: 60),
