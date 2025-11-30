@@ -77,7 +77,6 @@ class _DashboardPageState extends State<DashboardPage> {
       _invitationId = Uri.base.queryParameters['id'];
       if (_invitationId != null) await _getInvitationById(_invitationId!);
 
-      await Future.delayed(const Duration(seconds: 3));
       if (_invitationId != null) await _invitedGuestCubit.getsByInvitationId(_invitationId!);
 
       _messageController.text = _messages[2];

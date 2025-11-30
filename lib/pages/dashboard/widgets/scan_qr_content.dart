@@ -32,7 +32,7 @@ class _ScanQrContentState extends State<ScanQrContent> with SingleTickerProvider
     if (invitedGuestId != null) {
       _handled = true;
 
-      final success = await _invitedGuestCubit.updateById('t$invitedGuestId', const UpdateInvitedGuestRequest(attendance: true));
+      final success = await _invitedGuestCubit.updateById(invitedGuestId, const UpdateInvitedGuestRequest(attendance: true));
       if (!success) {
         setState(() => _isContainsError = true);
         return;

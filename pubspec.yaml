@@ -20,7 +20,7 @@ dependencies:
   iv_project_web_data:
     git:
       url: https://github.com/faequl96/iv_project_web_data.git
-      ref: 0.0.1
+      ref: 0.0.1+2
 
   iv_project_core:
     git:
@@ -35,7 +35,12 @@ dependencies:
   iv_project_invitation_theme:
     git:
       url: https://github.com/faequl96/iv_project_invitation_theme.git
-      ref: 0.2.0
+      ref: 0.2.0+1
+  
+  quick_dev_sdk:
+    git:
+      url: https://github.com/faequl96/quick_dev_sdk.git
+      ref: 0.0.8+2
 
   go_router: ^17.0.0
   bloc: ^9.1.0
