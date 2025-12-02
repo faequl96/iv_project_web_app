@@ -249,11 +249,17 @@ class _DashboardPageState extends State<DashboardPage> {
                       mainAxisSize: .min,
                       children: [
                         const SizedBox(height: 8),
-                        Text('Detail Tamu Undangan', style: AppFonts.nunito(fontWeight: .w700, fontSize: 16)),
+                        Text(
+                          _localeCubit.state.languageCode == 'id' ? 'Detail Tamu Undangan' : 'Invited Guest Detail',
+                          style: AppFonts.nunito(fontWeight: .w700, fontSize: 16),
+                        ),
                         const SizedBox(height: 20),
                         Row(
                           children: [
-                            Text('Nama :', style: AppFonts.nunito(fontSize: 15)),
+                            Text(
+                              _localeCubit.state.languageCode == 'id' ? 'Nama :' : 'Name :',
+                              style: AppFonts.nunito(fontSize: 15),
+                            ),
                             const Spacer(),
                             Text(invitedGuest.nickname, style: AppFonts.nunito(fontSize: 15, fontWeight: .w500)),
                           ],
@@ -261,7 +267,10 @@ class _DashboardPageState extends State<DashboardPage> {
                         const SizedBox(height: 4),
                         Row(
                           children: [
-                            Text('Instansi/Dari :', style: AppFonts.nunito(fontSize: 15)),
+                            Text(
+                              _localeCubit.state.languageCode == 'id' ? 'Instansi/Dari :' : 'Instance/From :',
+                              style: AppFonts.nunito(fontSize: 15),
+                            ),
                             const Spacer(),
                             Text(
                               invitedGuest.nameInstance.split('_').last.replaceAll('-', ' '),
@@ -285,7 +294,11 @@ class _DashboardPageState extends State<DashboardPage> {
                             Text('Souvenir :', style: AppFonts.nunito(fontSize: 15)),
                             const Spacer(),
                             Text(
-                              souvenir == null ? '-' : 'Tipe - $souvenir',
+                              souvenir == null
+                                  ? '-'
+                                  : _localeCubit.state.languageCode == 'id'
+                                  ? 'Tipe - $souvenir'
+                                  : 'Type - $souvenir',
                               style: AppFonts.nunito(fontSize: 15, fontWeight: .w500),
                             ),
                           ],

@@ -21,7 +21,7 @@ GoRoute _pageBuilder(String routePath, {required Widget Function(GoRouterState s
       return CustomTransitionPage(
         key: state.pageKey,
         transitionsBuilder: (_, _, _, child) => child,
-        child: InitApp(page: Page(content: page(state))),
+        child: InitAppState(page: Page(content: page(state))),
       );
     },
   );

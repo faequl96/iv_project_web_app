@@ -48,18 +48,18 @@ class _App extends StatelessWidget {
   }
 }
 
-class InitApp extends StatefulWidget {
-  const InitApp({super.key, required this.page});
+class InitAppState extends StatefulWidget {
+  const InitAppState({super.key, required this.page});
 
   final Widget page;
 
   static bool _isInitializing = true;
 
   @override
-  State<InitApp> createState() => _InitAppState();
+  State<InitAppState> createState() => _InitAppStateState();
 }
 
-class _InitAppState extends State<InitApp> with WidgetsBindingObserver {
+class _InitAppStateState extends State<InitAppState> with WidgetsBindingObserver {
   bool _isInitial = true;
 
   void _setSize() {
@@ -71,7 +71,7 @@ class _InitAppState extends State<InitApp> with WidgetsBindingObserver {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      if (InitApp._isInitializing) {}
+      if (InitAppState._isInitializing) {}
     });
   }
 
@@ -82,8 +82,8 @@ class _InitAppState extends State<InitApp> with WidgetsBindingObserver {
     _setSize();
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      if (InitApp._isInitializing) {
-        InitApp._isInitializing = false;
+      if (InitAppState._isInitializing) {
+        InitAppState._isInitializing = false;
       }
 
       setState(() => _isInitial = false);

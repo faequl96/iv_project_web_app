@@ -117,6 +117,8 @@ class _InvitedGuestItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localeCubit = context.read<LocaleCubit>();
+
     return Card(
       shape: const Border(top: BorderSide(width: .5, color: Colors.black12)),
       margin: const .symmetric(vertical: 4),
@@ -175,7 +177,10 @@ class _InvitedGuestItem extends StatelessWidget {
                             if (await canLaunchUrl(.parse(url))) {
                               await launchUrl(.parse(url), mode: .externalApplication);
                             } else {
-                              GeneralDialog.showValidateStateError('Tidak dapat membuka WhatsApp', durationInSeconds: 5);
+                              GeneralDialog.showValidateStateError(
+                                localeCubit.state.languageCode == 'id' ? 'Tidak dapat membuka WhatsApp' : 'Can\'t open WhatsApp',
+                                durationInSeconds: 5,
+                              );
                             }
                           },
                           padding: const .symmetric(horizontal: 20, vertical: 5),
@@ -183,7 +188,7 @@ class _InvitedGuestItem extends StatelessWidget {
                           splashColor: Colors.white,
                           borderRadius: .circular(30),
                           child: Text(
-                            'Kirim',
+                            localeCubit.state.languageCode == 'id' ? 'Kirim' : 'Send',
                             style: AppFonts.nunito(color: Colors.white, fontWeight: .bold),
                           ),
                         ),
@@ -213,7 +218,12 @@ class _InvitedGuestItem extends StatelessWidget {
                 children: [
                   Text('Souvenir :', style: AppFonts.nunito()),
                   const Spacer(),
-                  Text('Tipe - ${invitedGuest.souvenir!}', style: AppFonts.nunito()),
+                  Text(
+                    localeCubit.state.languageCode == 'id'
+                        ? 'Tipe - ${invitedGuest.souvenir!}'
+                        : 'Type - ${invitedGuest.souvenir!}',
+                    style: AppFonts.nunito(),
+                  ),
                 ],
               ),
             ),
@@ -221,10 +231,19 @@ class _InvitedGuestItem extends StatelessWidget {
             padding: const .symmetric(horizontal: 14),
             child: Row(
               children: [
-                Text('Kehadiran :', style: AppFonts.nunito()),
+                Text(localeCubit.state.languageCode == 'id' ? 'Kehadiran :' : 'Attendance :', style: AppFonts.nunito()),
                 const Spacer(),
                 if (invitedGuest.attendance != null)
-                  Text(invitedGuest.attendance! == true ? 'Hadir' : 'Tidak Hadir', style: AppFonts.nunito())
+                  Text(
+                    invitedGuest.attendance! == true
+                        ? localeCubit.state.languageCode == 'id'
+                              ? 'Hadir'
+                              : 'Present'
+                        : localeCubit.state.languageCode == 'id'
+                        ? 'Tidak Hadir'
+                        : 'Not Present',
+                    style: AppFonts.nunito(),
+                  )
                 else
                   Text(invitedGuest.possiblePresence ?? '-', style: AppFonts.nunito()),
               ],
@@ -242,6 +261,8 @@ class _RSVPItemSkeleton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localeCubit = context.read<LocaleCubit>();
+
     return Card(
       shape: const Border(top: BorderSide(width: .5, color: Colors.black12)),
       margin: const .symmetric(vertical: 4),
@@ -320,7 +341,7 @@ class _RSVPItemSkeleton extends StatelessWidget {
             padding: const .symmetric(horizontal: 14),
             child: Row(
               children: [
-                Text('Kehadiran :', style: AppFonts.nunito()),
+                Text(localeCubit.state.languageCode == 'id' ? 'Kehadiran :' : 'Attendance :', style: AppFonts.nunito()),
                 const Spacer(),
                 SkeletonBox(width: Random().nextInt(50) + 50, height: 14),
               ],

@@ -6,7 +6,5 @@ class Page extends StatelessWidget {
   final Widget content;
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(resizeToAvoidBottomInset: false, body: Overlay.wrap(child: content));
-  }
+  Widget build(_) => Scaffold(resizeToAvoidBottomInset: false, body: Overlay.wrap(child: content));
 }
