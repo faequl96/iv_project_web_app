@@ -39,7 +39,7 @@ class AddInvitedGuestPortal extends StatelessWidget {
       useInitialElevation: true,
       child: Text(
         localeCubit.state.languageCode == 'id' ? 'Tambah Tamu Undangan' : 'Add Invited Guests',
-        style: AppFonts.nunito(color: Colors.white, fontSize: 15, fontWeight: .bold),
+        style: AppFonts.nunito(color: Colors.white, fontSize: 15, fontWeight: .w700),
       ),
     );
   }

@@ -61,7 +61,7 @@ class _EditMessageContentState extends State<EditMessageContent> {
         const SizedBox(height: 16),
         Text(
           localeCubit.state.languageCode == 'id' ? 'Pilih Beberapa Template Dibawah Ini' : 'Select Some Templates Below',
-          style: AppFonts.nunito(fontWeight: .bold, fontSize: 15),
+          style: AppFonts.nunito(fontWeight: .w800, fontSize: 15),
         ),
         const SizedBox(height: 8),
         SizedBox(
@@ -97,7 +97,7 @@ class _EditMessageContentState extends State<EditMessageContent> {
                         useInitialElevation: true,
                         child: Text(
                           localeCubit.state.languageCode == 'id' ? 'Gunakan Template Ini' : 'Use This Template',
-                          style: AppFonts.nunito(color: Colors.white, fontWeight: .bold),
+                          style: AppFonts.nunito(color: Colors.white, fontWeight: .w700),
                         ),
                       ),
                     ],
@@ -123,7 +123,7 @@ class _EditMessageContentState extends State<EditMessageContent> {
             child: Center(
               child: Text(
                 'OK',
-                style: AppFonts.nunito(color: Colors.white, fontSize: 15, fontWeight: .bold),
+                style: AppFonts.nunito(color: Colors.white, fontSize: 15, fontWeight: .w700),
               ),
             ),
           ),

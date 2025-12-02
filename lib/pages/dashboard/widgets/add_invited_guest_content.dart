@@ -125,7 +125,7 @@ class _AddInvitedGuestContentState extends State<AddInvitedGuestContent> {
               children: [
                 Text(
                   _localeCubit.state.languageCode == 'id' ? 'Unduh Formulir' : 'Download Form',
-                  style: AppFonts.nunito(color: AppColor.primaryColor, fontSize: 15, fontWeight: .bold),
+                  style: AppFonts.nunito(color: AppColor.primaryColor, fontSize: 15, fontWeight: .w800),
                 ),
                 const SizedBox(width: 6),
                 const Icon(Icons.download, color: AppColor.primaryColor),
@@ -159,7 +159,7 @@ class _AddInvitedGuestContentState extends State<AddInvitedGuestContent> {
                     if (isLoading) ...[SharedPersonalize.loadingWidget(size: 20, color: Colors.white), const SizedBox(width: 10)],
                     Text(
                       _localeCubit.state.languageCode == 'id' ? 'Import dari Excel' : 'Import from Excel',
-                      style: AppFonts.nunito(color: Colors.white, fontSize: 15, fontWeight: .bold),
+                      style: AppFonts.nunito(color: Colors.white, fontSize: 15, fontWeight: .w800),
                     ),
                   ],
                 ),

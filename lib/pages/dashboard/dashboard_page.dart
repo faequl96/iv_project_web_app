@@ -126,7 +126,7 @@ class _DashboardPageState extends State<DashboardPage> {
             const Spacer(),
             Text(
               _localeCubit.state.languageCode == 'id' ? 'Undangan tidak ditemukan' : 'Invitation not found.',
-              style: AppFonts.nunito(fontSize: 18, fontWeight: .bold),
+              style: AppFonts.nunito(fontSize: 18, fontWeight: .w800),
             ),
             const Spacer(),
             Text(
@@ -139,12 +139,12 @@ class _DashboardPageState extends State<DashboardPage> {
               children: [
                 Text(
                   _localeCubit.state.languageCode == 'id' ? 'Unduh Aplikasi' : 'Download',
-                  style: AppFonts.nunito(fontSize: 16, fontWeight: .bold),
+                  style: AppFonts.nunito(fontSize: 16, fontWeight: .w800),
                 ),
                 const SizedBox(width: 6),
                 Image.asset('assets/logos/in_vite_logo.png', height: 20, package: 'iv_project_invitation_theme', fit: .fitHeight),
                 const SizedBox(width: 6),
-                if (_localeCubit.state.languageCode == 'en') Text('App', style: AppFonts.nunito(fontSize: 16, fontWeight: .bold)),
+                if (_localeCubit.state.languageCode == 'en') Text('App', style: AppFonts.nunito(fontSize: 16, fontWeight: .w800)),
               ],
             ),
             GeneralEffectsButton(
@@ -251,7 +251,7 @@ class _DashboardPageState extends State<DashboardPage> {
                         const SizedBox(height: 8),
                         Text(
                           _localeCubit.state.languageCode == 'id' ? 'Detail Tamu Undangan' : 'Invited Guest Detail',
-                          style: AppFonts.nunito(fontWeight: .w700, fontSize: 16),
+                          style: AppFonts.nunito(fontWeight: .w800, fontSize: 16),
                         ),
                         const SizedBox(height: 20),
                         Row(

@@ -120,7 +120,7 @@ class _HomePageState extends State<HomePage> {
             const Spacer(),
             Text(
               _localeCubit.state.languageCode == 'id' ? 'Undangan tidak ditemukan' : 'Invitation not found.',
-              style: AppFonts.nunito(fontSize: 18, fontWeight: .bold),
+              style: AppFonts.nunito(fontSize: 18, fontWeight: .w800),
             ),
             const Spacer(),
             Text(
@@ -133,7 +133,7 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Text(
                   _localeCubit.state.languageCode == 'id' ? 'Unduh Aplikasi' : 'Download',
-                  style: AppFonts.nunito(fontSize: 16, fontWeight: .bold),
+                  style: AppFonts.nunito(fontSize: 16, fontWeight: .w800),
                 ),
                 const SizedBox(width: 6),
                 Image.asset(
@@ -143,7 +143,7 @@ class _HomePageState extends State<HomePage> {
                   fit: BoxFit.fitHeight,
                 ),
                 const SizedBox(width: 6),
-                if (_localeCubit.state.languageCode == 'en') Text('App', style: AppFonts.nunito(fontSize: 16, fontWeight: .bold)),
+                if (_localeCubit.state.languageCode == 'en') Text('App', style: AppFonts.nunito(fontSize: 16, fontWeight: .w800)),
               ],
             ),
             GeneralEffectsButton(

@@ -42,7 +42,7 @@ class EditMessagePortal extends StatelessWidget {
       useInitialElevation: true,
       child: Text(
         localeCubit.state.languageCode == 'id' ? 'Edit Pesan' : 'Edit Message',
-        style: AppFonts.nunito(color: Colors.white, fontSize: 15, fontWeight: .bold),
+        style: AppFonts.nunito(color: Colors.white, fontSize: 15, fontWeight: .w700),
       ),
     );
   }

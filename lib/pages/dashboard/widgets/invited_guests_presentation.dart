@@ -88,7 +88,7 @@ class _InvitedGuestsPresentationState extends State<InvitedGuestsPresentation> {
                     _localeCubit.state.languageCode == 'id'
                         ? 'Tamu undangan belum ditambahkan'
                         : 'Invited guests have not been added',
-                    style: AppFonts.nunito(fontSize: 15, fontWeight: .bold),
+                    style: AppFonts.nunito(fontSize: 15, fontWeight: .w700),
                   ),
                 ),
               ),
@@ -148,7 +148,7 @@ class _InvitedGuestItem extends StatelessWidget {
                         padding: const .only(left: 14, top: 4, bottom: 4),
                         child: Text(
                           '${invitedGuest.nickname} - ${invitedGuest.nameInstance.split('_').last.replaceAll('-', ' ')}',
-                          style: AppFonts.nunito(fontWeight: .bold, color: Colors.white),
+                          style: AppFonts.nunito(fontWeight: .w700, color: Colors.white),
                         ),
                       ),
                     ),
@@ -189,7 +189,7 @@ class _InvitedGuestItem extends StatelessWidget {
                           borderRadius: .circular(30),
                           child: Text(
                             localeCubit.state.languageCode == 'id' ? 'Kirim' : 'Send',
-                            style: AppFonts.nunito(color: Colors.white, fontWeight: .bold),
+                            style: AppFonts.nunito(color: Colors.white, fontWeight: .w700),
                           ),
                         ),
                       ),
@@ -293,7 +293,7 @@ class _RSVPItemSkeleton extends StatelessWidget {
                         child: Row(
                           children: [
                             SkeletonBox(width: Random().nextInt(50) + 70, height: 15),
-                            Text('', style: AppFonts.nunito(fontWeight: .bold)),
+                            Text('', style: AppFonts.nunito(fontWeight: .w700)),
                           ],
                         ),
                       ),
