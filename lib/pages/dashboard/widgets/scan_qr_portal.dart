@@ -44,7 +44,7 @@ class ScanQrPortal extends StatelessWidget {
       ),
       child: Text(
         'Scan QR',
-        style: AppFonts.nunito(color: Colors.white, fontSize: 15, fontWeight: .bold),
+        style: AppFonts.nunito(color: Colors.white, fontSize: 15, fontWeight: .w700),
       ),
     );
   }
