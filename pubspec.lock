@@ -281,8 +281,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.0.9"
-      resolved-ref: "62e19a0174328ccce3a8af7ca5707a5a35e4694b"
+      ref: "0.0.9+1"
+      resolved-ref: "475f2859c4c7c1317ee9ddc70a53eb4601bd90f4"
       url: "https://github.com/faequl96/iv_project_core.git"
     source: git
     version: "0.0.9"
@@ -290,8 +290,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.2.0+5"
-      resolved-ref: "5cb881e7b7c3a66902611a8bb47a2f330298354c"
+      ref: "0.2.0+6"
+      resolved-ref: "28d00414ea20bb591bc2ae7c78a9d301f70670ab"
       url: "https://github.com/faequl96/iv_project_invitation_theme.git"
     source: git
     version: "0.2.0"
@@ -308,8 +308,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.0.1+2"
-      resolved-ref: a26a74f5d689254d3795310c4582837302fb2a27
+      ref: "0.0.1+3"
+      resolved-ref: "259d1cd2506df84ad44b206a94bc95a9648626f5"
       url: "https://github.com/faequl96/iv_project_web_data.git"
     source: git
     version: "0.0.1"
@@ -317,8 +317,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.0.2+3"
-      resolved-ref: "50d48e863dbc38088f56e5389085969aa8383d81"
+      ref: "0.0.2+4"
+      resolved-ref: ac1d92dc025956a378a7e70051e3adadb682e973
       url: "https://github.com/faequl96/iv_project_widget_core.git"
     source: git
     version: "0.0.2"
