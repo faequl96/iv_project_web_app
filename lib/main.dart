@@ -9,7 +9,7 @@ import 'package:flutter_web_plugins/url_strategy.dart';
 void main() {
   usePathUrlStrategy();
 
-  ApiConfig.set('https://13cd5d241595.ngrok-free.app');
+  ApiUrl.set('https://e3f0b98ac6b8.ngrok-free.app');
 
   NavigationService.init(router);
 

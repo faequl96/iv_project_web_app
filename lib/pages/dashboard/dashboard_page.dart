@@ -44,7 +44,7 @@ class _DashboardPageState extends State<DashboardPage> {
     setState(() => _isLoading = true);
     _invitedGuestCubit.state.copyWith(isLoadingGetsByInvitationId: true).emitState();
 
-    final url = Uri.parse('${ApiConfig.url}/invitation/id/$id');
+    final url = Uri.parse('${ApiUrl.value}/invitation/id/$id');
     try {
       _isContainsError = false;
       final response = await http.get(url, headers: {'ngrok-skip-browser-warning': 'true'});

@@ -30,11 +30,12 @@ class _HomePageState extends State<HomePage> {
 
   late final LocaleCubit _localeCubit;
   late final InvitedGuestCubit _invitedGuestCubit;
+  late final RSVPCubit _rsvpCubit;
 
   Future<void> _getInvitationById(String id) async {
     _isContainsErrorGetInvitation = false;
 
-    final url = Uri.parse('${ApiConfig.url}/invitation/id/$id');
+    final url = Uri.parse('${ApiUrl.value}/invitation/id/$id');
     try {
       final response = await http.get(url, headers: {'ngrok-skip-browser-warning': 'true'});
       if (response.statusCode == 200) {
@@ -59,19 +60,30 @@ class _HomePageState extends State<HomePage> {
 
     _localeCubit = context.read<LocaleCubit>();
     _invitedGuestCubit = context.read<InvitedGuestCubit>();
+    _rsvpCubit = context.read<RSVPCubit>();
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final queryParameters = Uri.base.queryParameters;
 
       _invitationId = queryParameters['id'];
-      if (_invitationId != null) await _getInvitationById(_invitationId!);
+      if (_invitationId == null) {
+        setState(() => _isLoading = false);
+        return;
+      }
+      await _getInvitationById(_invitationId!);
 
       _invitedGuestId = queryParameters['to'];
       if (_invitedGuestId != null) {
         _isContainsErrorGetInvitedGuest = !(await _invitedGuestCubit.getById(_invitedGuestId!));
+      } else {
+        _isContainsErrorGetInvitedGuest = !(await _invitedGuestCubit.check(
+          CheckInvitedGuestRequest(invitationId: _invitationId!),
+        ));
       }
 
       setState(() => _isLoading = false);
+
+      if (!_isContainsErrorGetInvitedGuest) await _rsvpCubit.getsByInvitationId(_invitationId!);
     });
   }
 
@@ -158,7 +170,7 @@ class _HomePageState extends State<HomePage> {
     }
 
     return InvitationThemeLauncher(
-      previewType: ThemePreviewType.fromResponse,
+      viewType: ViewType.live,
       invitationThemeId: _invitation!.invitationThemeId,
       invitationId: _invitation!.id,
       invitationData: _invitation!.invitationData,
