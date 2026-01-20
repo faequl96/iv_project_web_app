@@ -38,9 +38,11 @@ class _HomePageState extends State<HomePage> {
     final url = Uri.parse('${ApiUrl.value}/invitation/id/$id');
     try {
       final response = await http.get(url, headers: {'ngrok-skip-browser-warning': 'true'});
+      print('tes1');
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         _invitation = InvitationResponse.fromJson(data['data']);
+        print('tes2');
 
         if (_invitation != null) {
           _localeCubit.set(
