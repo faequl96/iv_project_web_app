@@ -49,6 +49,8 @@ class _HomePageState extends State<HomePage> {
             _invitation!.invitationData.general.lang == LangType.en ? const Locale('en', 'US') : const Locale('id', 'ID'),
             reloadLangAssets: false,
           );
+          final audioUrl = _invitation!.invitationData.general.musicAudioUrl;
+          if (audioUrl != null) CoreStatic.setupAudioPlayer(audioUrl);
         }
       }
     } catch (_) {
