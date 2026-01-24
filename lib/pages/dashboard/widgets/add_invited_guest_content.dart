@@ -84,6 +84,8 @@ class _AddInvitedGuestContentState extends State<AddInvitedGuestContent> {
       );
     }
 
+    NavigationService.pop();
+
     await _invitedGuestCubit.upsert(BulkInvitedGuestRequest(invitedGuests: invitedGuestRequests));
   }
 
