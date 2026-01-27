@@ -38,55 +38,59 @@ class _AddInvitedGuestContentState extends State<AddInvitedGuestContent> {
   Future<void> _upsertInvitedGuests() async {
     if (_invitationId == null) return;
 
-    final file = await _pickExcelFile();
-    final fileBytes = file?.bytes;
-    if (fileBytes == null) {
-      GeneralDialog.showValidateStateError(
-        _localeCubit.state.languageCode == 'id' ? 'Tidak ada file yang dipilih' : 'No files selected',
-        durationInSeconds: 5,
-      );
-      return;
-    }
-
-    final excel = Excel.decodeBytes(fileBytes);
-
-    final sheet = excel.tables.keys.first;
-    final rows = excel.tables[sheet]!.rows;
-
-    List<CreateInvitedGuestRequest> invitedGuestRequests = [];
-
-    for (int i = 0; i < rows.length; i++) {
-      final row = rows[i];
-      if (row.isEmpty) continue;
-
-      final name = row[0]?.value?.toString();
-      final instance = row[1]?.value?.toString() ?? '';
-      final whatsapp = row[2]?.value?.toString();
-      final souvenir = row[3]?.value?.toString();
-
-      if (name == null ||
-          whatsapp == null ||
-          name.contains('cth') ||
-          instance.contains('cth') ||
-          whatsapp.contains('cth') ||
-          (souvenir ?? '').contains('cth')) {
-        continue;
+    try {
+      final file = await _pickExcelFile();
+      final fileBytes = file?.bytes;
+      if (fileBytes == null) {
+        GeneralDialog.showValidateStateError(
+          _localeCubit.state.languageCode == 'id' ? 'Tidak ada file yang dipilih' : 'No files selected',
+          durationInSeconds: 5,
+        );
+        return;
       }
 
-      invitedGuestRequests.add(
-        CreateInvitedGuestRequest(
-          invitationId: _invitationId!,
-          name: name,
-          nameInstance: '${name.replaceAll(' ', '-')}_${instance.replaceAll(' ', '-')}',
-          phone: whatsapp,
-          souvenir: souvenir,
-        ),
-      );
+      final excel = Excel.decodeBytes(fileBytes);
+
+      final sheet = excel.tables.keys.first;
+      final rows = excel.tables[sheet]!.rows;
+
+      List<CreateInvitedGuestRequest> invitedGuestRequests = [];
+
+      for (int i = 0; i < rows.length; i++) {
+        final row = rows[i];
+        if (row.isEmpty) continue;
+
+        final name = row[0]?.value?.toString();
+        final instance = row[1]?.value?.toString() ?? '';
+        final whatsapp = row[2]?.value?.toString();
+        final souvenir = row[3]?.value?.toString();
+
+        if (name == null ||
+            whatsapp == null ||
+            name.contains('cth') ||
+            instance.contains('cth') ||
+            whatsapp.contains('cth') ||
+            (souvenir ?? '').contains('cth')) {
+          continue;
+        }
+
+        invitedGuestRequests.add(
+          CreateInvitedGuestRequest(
+            invitationId: _invitationId!,
+            name: name,
+            nameInstance: '${name.replaceAll(' ', '-')}_${instance.replaceAll(' ', '-')}',
+            phone: whatsapp,
+            souvenir: souvenir,
+          ),
+        );
+      }
+
+      NavigationService.pop();
+
+      await _invitedGuestCubit.upsert(BulkInvitedGuestRequest(invitedGuests: invitedGuestRequests));
+    } catch (e) {
+      GeneralDialog.showValidateStateError('$e', durationInSeconds: 5);
     }
-
-    NavigationService.pop();
-
-    await _invitedGuestCubit.upsert(BulkInvitedGuestRequest(invitedGuests: invitedGuestRequests));
   }
 
   @override
