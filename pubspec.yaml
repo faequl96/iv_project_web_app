@@ -1,10 +1,10 @@
 name: iv_project_web_app
 description: "In Vite Project Web App"
 publish_to: "none"
-version: 0.1.5
+version: 0.1.6
 
 environment:
-  sdk: ^3.10.7
+  sdk: ^3.10.8
 
 dependencies:
   flutter:
