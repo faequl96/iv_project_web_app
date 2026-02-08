@@ -6,12 +6,14 @@ import 'package:iv_project_web_app/app.dart';
 import 'package:iv_project_web_app/routes/router.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 
-void main() {
+void main() async {
   usePathUrlStrategy();
 
-  ApiUrl.set('https://995590782763.ngrok-free.app');
+  ApiUrl.set('https://3617-175-103-42-210.ngrok-free.app');
 
   NavigationService.init(router);
+
+  await StorageService.init();
 
   runApp(const App());
 }
