@@ -201,8 +201,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.1.0+2"
-      resolved-ref: "152184f7db494db227662e725ccf6be4ea236da1"
+      ref: "0.1.0+3"
+      resolved-ref: "740793ededa7d4e48b49a233d119bc60be60c85c"
       url: "https://github.com/faequl96/iv_project_core.git"
     source: git
     version: "0.1.0"
@@ -210,38 +210,38 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.2.1+2"
-      resolved-ref: c18a7b3e6a299a0bbd3c1e5b8a2f57435b3639ff
+      ref: "0.2.2"
+      resolved-ref: "7aac271e1cb4d814cd0a666c63161186fe9253ee"
       url: "https://github.com/faequl96/iv_project_invitation_theme.git"
     source: git
-    version: "0.2.1"
+    version: "0.2.2"
   iv_project_model:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.1.1+2"
-      resolved-ref: f0a35bcbd2ec4ff4ef35b635fb2652f7c2ac9042
+      ref: "0.1.2"
+      resolved-ref: "253253760f7a066a9ba26fad283d392a235189a3"
       url: "https://github.com/faequl96/iv_project_model.git"
     source: git
-    version: "0.1.1"
+    version: "0.1.2"
   iv_project_web_data:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.2.0+1"
-      resolved-ref: "93e4dbaf5194800465107d41796f353d9317b5c3"
+      ref: "0.2.1"
+      resolved-ref: a53789e579b61a2a6bf3ac233fff5f0efc8335ca
       url: "https://github.com/faequl96/iv_project_web_data.git"
     source: git
-    version: "0.0.2"
+    version: "0.2.1"
   iv_project_widget_core:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.0.2+7"
-      resolved-ref: "64585cc629416e88926ae8ac8e719402f3d18859"
+      ref: "0.0.3"
+      resolved-ref: d073292ab26d704ba6ca4c255b3ab7a63c1f51b6
       url: "https://github.com/faequl96/iv_project_widget_core.git"
     source: git
-    version: "0.0.2"
+    version: "0.0.3"
   just_audio:
     dependency: transitive
     description:
