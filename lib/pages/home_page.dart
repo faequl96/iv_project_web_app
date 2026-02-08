@@ -38,11 +38,9 @@ class _HomePageState extends State<HomePage> {
     final url = Uri.parse('${ApiUrl.value}/invitation/id/$id');
     try {
       final response = await http.get(url, headers: {'ngrok-skip-browser-warning': 'true'});
-      print('tes1');
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         _invitation = InvitationResponse.fromJson(data['data']);
-        print('tes2');
 
         if (_invitation != null) {
           _localeCubit.set(
@@ -80,9 +78,12 @@ class _HomePageState extends State<HomePage> {
       if (_invitedGuestId != null) {
         _isContainsErrorGetInvitedGuest = !(await _invitedGuestCubit.getById(_invitedGuestId!));
       } else {
-        _isContainsErrorGetInvitedGuest = !(await _invitedGuestCubit.check(
-          CheckInvitedGuestRequest(invitationId: _invitationId!),
-        ));
+        final invitedGuestId = StorageService.getString('invited-guest-id');
+        _isContainsErrorGetInvitedGuest = !(await _invitedGuestCubit.check(CheckInvitedGuestRequest(id: invitedGuestId)));
+        if (!_isContainsErrorGetInvitedGuest) {
+          final invitedGuestId = _invitedGuestCubit.state.invitedGuest?.id;
+          if (invitedGuestId != null) StorageService.setString('invited-guest-id', invitedGuestId);
+        }
       }
 
       setState(() => _isLoading = false);
