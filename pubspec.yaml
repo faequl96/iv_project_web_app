@@ -1,7 +1,7 @@
 name: iv_project_web_app
 description: "In Vite Project Web App"
 publish_to: "none"
-version: 0.1.6
+version: 0.1.7
 
 environment:
   sdk: ^3.10.8
