@@ -56,6 +56,7 @@ class Dummys {
       mapsUrl:
           'https://www.google.com/maps/place/Masjid+Raya+Bani+Umar+-+Tangerang+Selatan/@-6.2705383,106.6944082,16.87z/data=!4m6!3m5!1s0x2e69faf062460ed5:0xc46eba6617b311d6!8m2!3d-6.2703756!4d106.6893305!16s%2Fg%2F1pztc44x6?entry=ttu&g_ep=EgoyMDI1MDgwNS4wIKXMDSoASAFQAw%3D%3D',
     ),
+    gallery: const GalleryResponse(id: 1),
     bankAccounts: const [
       BankAccountResponse(id: 1, bankName: 'Bank Central Asia (BCA)', accountName: 'Rahma Nur Istiqomah', number: '485439574'),
       BankAccountResponse(
