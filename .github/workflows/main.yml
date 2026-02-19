@@ -16,12 +16,16 @@ jobs:
         with:
           flutter-version: "3.38.9"
           channel: "stable"
+          cache: true
 
-      - name: Install Dependencies
+      - name: Check Flutter Version
+        run: flutter --version
+
+      - name: Installs Dependencies
         run: flutter pub get
 
       - name: Build Web
-        run: flutter build web --wasm --release
+        run: flutter build web --wasm --release --no-pub
 
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v20
@@ -31,3 +35,6 @@ jobs:
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           vercel-args: "--prod"
           working-directory: ./build/web
+
+# VERCEL BUILD COMMAND = 'flutter/bin/flutter --version && flutter/bin/flutter build web --wasm --release';
+# VERCEL INSTALL COMMAND = 'git clone https://github.com/flutter/flutter.git -b 3.38.9 --depth 1';
