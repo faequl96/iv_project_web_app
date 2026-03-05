@@ -3,10 +3,14 @@ import 'package:go_router/go_router.dart';
 import 'package:iv_project_core/iv_project_core.dart';
 import 'package:iv_project_web_app/pages/home_page.dart';
 import 'package:iv_project_web_app/pages/page.dart';
+import 'package:iv_project_web_app/pages/theme_dev_page.dart';
 
 final router = GoRouter(
   navigatorKey: GlobalContextService.navigatorKey,
-  routes: [_pageBuilder('/', page: (_) => const HomePage())],
+  routes: [
+    _pageBuilder('/', page: (_) => const HomePage()),
+    _pageBuilder('/theme-dev', page: (_) => const ThemeDevPage()),
+  ],
 );
 
 GoRoute _pageBuilder(String routePath, {required Widget Function(GoRouterState state) page}) {

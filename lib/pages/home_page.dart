@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
             reloadLangAssets: false,
           );
           final audioUrl = _invitation!.invitationData.general.musicAudioUrl;
-          if (audioUrl != null) CoreStatic.setupAudioPlayer(audioUrl);
+          if (audioUrl != null) Audio.setupAudioPlayer(audioUrl);
         }
       }
     } catch (_) {
