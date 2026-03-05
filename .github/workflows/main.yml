@@ -27,6 +27,9 @@ jobs:
       - name: Build Web
         run: flutter build web --wasm --release --no-pub
 
+      - name: Copy vercel.json to build folder
+        run: cp vercel.json build/web/
+
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v20
         with:
