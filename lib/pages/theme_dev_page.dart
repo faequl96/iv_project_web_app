@@ -3,19 +3,16 @@ import 'package:iv_project_invitation_theme/iv_project_invitation_theme.dart';
 import 'package:iv_project_model/iv_project_model.dart';
 import 'package:iv_project_web_app/dummys/dummys.dart';
 
-class ThemeDevPage extends StatefulWidget {
+class ThemeDevPage extends StatelessWidget {
   const ThemeDevPage({super.key});
 
   @override
-  State<ThemeDevPage> createState() => _ThemeDevPageState();
-}
-
-class _ThemeDevPageState extends State<ThemeDevPage> {
-  @override
   Widget build(BuildContext context) {
+    final id = int.tryParse(Uri.base.queryParameters['id'] ?? '') ?? 1;
+
     return InvitationThemeLauncher(
       viewType: ViewType.example,
-      invitationThemeId: 2,
+      invitationThemeId: id,
       invitationId: '',
       invitationData: Dummys.invitationData,
       brandProfile: const BrandProfileResponse(name: '', email: ''),
