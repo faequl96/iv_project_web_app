@@ -8,38 +8,52 @@ const loaderWrapper = document.getElementById('loading_indicator');
 
 let currentPercent = 0;
 let progressInterval;
+let pendingResolve;
 
 window.updateSplashProgress = function(initialPercent, targetPercent) {
-  clearInterval(progressInterval);
+  if (pendingResolve) {
+    pendingResolve(); 
+    pendingResolve = null;
+  }
 
-  currentPercent = initialPercent;
+  return new Promise((resolve) => {
+    pendingResolve = resolve;
+    
+    clearInterval(progressInterval);
+    currentPercent = initialPercent;
 
-  progressInterval = setInterval(() => {
-    if (currentPercent < targetPercent) {
-      currentPercent += 1;
-      
-      if (progressBar) progressBar.style.width = currentPercent + '%';
-      if (progressText) progressText.textContent = currentPercent + '%';
+    progressInterval = setInterval(() => {
+      if (currentPercent < targetPercent) {
+        currentPercent += 1;
+        if (progressBar) progressBar.style.width = currentPercent + '%';
+        if (progressText) progressText.textContent = currentPercent + '%';
 
-      if (statusText) {
-        if (currentPercent < 51) statusText.textContent = "Downloading Environment...";
-        else if (currentPercent < 61) statusText.textContent = "Preparing Environment...";
-        else if (currentPercent < 91) statusText.textContent = "Downloading Assets...";
-        else if (currentPercent < 100) statusText.textContent = "Preparing Assets...";
-        else statusText.textContent = "Launching App...";
+        if (statusText) {
+          if (currentPercent < 51) statusText.textContent = "Downloading Environment...";
+          else if (currentPercent < 61) statusText.textContent = "Preparing Environment...";
+          else if (currentPercent < 91) statusText.textContent = "Downloading Assets...";
+          else if (currentPercent < 100) statusText.textContent = "Preparing Assets...";
+          else statusText.textContent = "Launching App...";
+        }
+      } else {
+        clearInterval(progressInterval);
+        const finishResolve = pendingResolve;
+        pendingResolve = null;
+
+        if (currentPercent >= 100 && loaderWrapper) {
+          setTimeout(() => {
+            loaderWrapper.style.opacity = '0';
+            setTimeout(() => {
+              if (loaderWrapper.parentNode) loaderWrapper.remove();
+              if (finishResolve) finishResolve(); 
+            }, 200);
+          }, 400);
+        } else {
+          if (finishResolve) finishResolve();
+        }
       }
-    } else {
-      clearInterval(progressInterval);
-      console.log(currentPercent);
-      if (currentPercent >= 100 && loaderWrapper) {
-        console.log('is100', currentPercent);
-        setTimeout(() => {
-          loaderWrapper.style.opacity = '0';
-          setTimeout(() => loaderWrapper.remove(), 200);
-        }, 400);
-      }
-    }
-  }, 80);
+    }, 80);
+  });
 }
 
 updateSplashProgress(0, 50);

@@ -10,7 +10,7 @@ import 'package:iv_project_web_app/routes/router.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 
 @JS('updateSplashProgress')
-external void jsUpdateSplashProgress(double initial, double target);
+external JSPromise jsUpdateSplashProgress(double initial, double target);
 
 void main() async {
   usePathUrlStrategy();
@@ -23,12 +23,12 @@ void main() async {
 
   Dummys.initInvitationData();
 
-  jsUpdateSplashProgress(60, 90);
+  jsUpdateSplashProgress(60, 95);
 
   await fetchYourDataFromApi();
   // await precacheImage(NetworkImage(url), context);
 
-  jsUpdateSplashProgress(90, 100);
+  await jsUpdateSplashProgress(95, 100).toDart;
 
   runApp(const App());
 }
