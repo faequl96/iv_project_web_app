@@ -8,10 +8,10 @@ const statusText = document.getElementById('status_text');
 const loaderWrapper = document.getElementById('loading_indicator');
 
 let currentPercent = 0;
-let progressInterval;
+let progressTimeout;
 let pendingResolve;
 
-window.updateSplashProgress = function(initialPercent, targetPercent, intervalInMs) {
+window.updateSplashProgress = function(initialPercent, targetPercent, minMs = 50, maxMs = 150) {
   if (pendingResolve) {
     pendingResolve();
     pendingResolve = null;
@@ -20,12 +20,13 @@ window.updateSplashProgress = function(initialPercent, targetPercent, intervalIn
   return new Promise((resolve) => {
     pendingResolve = resolve;
     
-    clearInterval(progressInterval);
+    clearTimeout(progressTimeout);
     currentPercent = initialPercent;
 
-    progressInterval = setInterval(() => {
+    function step() {
       if (currentPercent < targetPercent) {
         currentPercent += 1;
+        
         if (progressBar) progressBar.style.width = currentPercent + '%';
         if (progressTextBlack) progressTextBlack.textContent = currentPercent + '%';
         if (progressTextWhite) progressTextWhite.textContent = currentPercent + '%';
@@ -37,8 +38,10 @@ window.updateSplashProgress = function(initialPercent, targetPercent, intervalIn
           else if (currentPercent < 100) statusText.textContent = "Preparing Assets...";
           else statusText.textContent = "Launching App...";
         }
+
+        const randomInterval = Math.floor(Math.random() * (maxMs - minMs + 1)) + minMs;
+        progressTimeout = setTimeout(step, randomInterval);
       } else {
-        clearInterval(progressInterval);
         const finishResolve = pendingResolve;
         pendingResolve = null;
 
@@ -53,15 +56,18 @@ window.updateSplashProgress = function(initialPercent, targetPercent, intervalIn
           if (finishResolve) finishResolve();
         }
       }
-    }, intervalInMs);
+    }
+
+    // Mulai langkah pertama
+    step();
   });
 }
 
-updateSplashProgress(0, 50, 100);
+updateSplashProgress(0, 50, 20, 280);
 
 _flutter.loader.load({
   onEntrypointLoaded: async function(engineInitializer) {
-    updateSplashProgress(50, 60, 120);
+    updateSplashProgress(50, 60, 100, 150);
     const appRunner = await engineInitializer.initializeEngine();
     await appRunner.runApp();
   }
