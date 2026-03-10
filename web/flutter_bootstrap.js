@@ -2,7 +2,8 @@
 {{flutter_build_config}}
 
 const progressBar = document.getElementById('progress_bar');
-const progressText = document.getElementById('progress_text');
+const progressTextBlack = document.getElementById('progress_text_black');
+const progressTextWhite = document.getElementById('progress_text_white');
 const statusText = document.getElementById('status_text');
 const loaderWrapper = document.getElementById('loading_indicator');
 
@@ -26,7 +27,8 @@ window.updateSplashProgress = function(initialPercent, targetPercent, intervalIn
       if (currentPercent < targetPercent) {
         currentPercent += 1;
         if (progressBar) progressBar.style.width = currentPercent + '%';
-        if (progressText) progressText.textContent = currentPercent + '%';
+        if (progressTextBlack) progressTextBlack.textContent = currentPercent + '%';
+        if (progressTextWhite) progressTextWhite.textContent = currentPercent + '%';
 
         if (statusText) {
           if (currentPercent < 51) statusText.textContent = "Downloading Environment...";
