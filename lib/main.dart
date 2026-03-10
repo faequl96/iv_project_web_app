@@ -9,8 +9,8 @@ import 'package:iv_project_web_app/dummys/dummys.dart';
 import 'package:iv_project_web_app/routes/router.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 
-@JS('removeSplash')
-external void jsRemoveSplash();
+@JS('updateSplashProgress')
+external void jsUpdateSplashProgress(double initial, double target);
 
 void main() async {
   usePathUrlStrategy();
@@ -23,10 +23,12 @@ void main() async {
 
   Dummys.initInvitationData();
 
+  jsUpdateSplashProgress(60, 90);
+
   await fetchYourDataFromApi();
   // await precacheImage(NetworkImage(url), context);
 
-  jsRemoveSplash();
+  jsUpdateSplashProgress(90, 100);
 
   runApp(const App());
 }
