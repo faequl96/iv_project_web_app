@@ -22,15 +22,17 @@ window.updateSplashProgress = function(initialPercent, targetPercent) {
       if (progressText) progressText.textContent = currentPercent + '%';
 
       if (statusText) {
-        if (currentPercent < 50) statusText.textContent = "Downloading Environment...";
-        else if (currentPercent < 60) statusText.textContent = "Preparing Environment...";
-        else if (currentPercent < 90) statusText.textContent = "Downloading Assets...";
+        if (currentPercent < 51) statusText.textContent = "Downloading Environment...";
+        else if (currentPercent < 61) statusText.textContent = "Preparing Environment...";
+        else if (currentPercent < 91) statusText.textContent = "Downloading Assets...";
         else if (currentPercent < 100) statusText.textContent = "Preparing Assets...";
         else statusText.textContent = "Launching App...";
       }
     } else {
       clearInterval(progressInterval);
+      console.log(currentPercent);
       if (currentPercent >= 100 && loaderWrapper) {
+        console.log('is100', currentPercent);
         setTimeout(() => {
           loaderWrapper.style.opacity = '0';
           setTimeout(() => loaderWrapper.remove(), 200);
