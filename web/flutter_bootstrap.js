@@ -10,6 +10,8 @@ window.addEventListener('load', function() {
   if (window._flutter && window._flutter.loader) {
     window._flutter.loader.load({
       onProgress: function(value) {
+        console.log("Loading progress:", value);
+        
         const percent = Math.round(value * 100);
         if (progressBar) progressBar.style.width = percent + '%';
         if (progressText) progressText.textContent = percent + '%';
