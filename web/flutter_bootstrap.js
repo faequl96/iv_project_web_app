@@ -37,6 +37,8 @@ function updateFakeProgress(targetPercent) {
   }, 10);
 }
 
+updateFakeProgress(60);
+
 _flutter.loader.load({
   onEntrypointLoaded: async function(engineInitializer) {
     updateFakeProgress(75);
