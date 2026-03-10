@@ -9,18 +9,21 @@ const loaderWrapper = document.getElementById('loading_indicator');
 let currentPercent = 0;
 let progressInterval;
 let pendingResolve;
+let resolveInitialPercent;
 
 window.updateSplashProgress = function(initialPercent, targetPercent, intervalInMs) {
   console.log('log on: ', initialPercent);
 
   if (pendingResolve) {
     pendingResolve();
-    console.log('resolve on: ', initialPercent);
+    console.log('resolve on: ', resolveInitialPercent);
+    resolveInitialPercent = null;
     pendingResolve = null;
   }
 
   return new Promise((resolve) => {
     pendingResolve = resolve;
+    resolveInitialPercent = initialPercent;
     
     clearInterval(progressInterval);
     currentPercent = initialPercent;
@@ -41,6 +44,8 @@ window.updateSplashProgress = function(initialPercent, targetPercent, intervalIn
       } else {
         clearInterval(progressInterval);
         const finishResolve = pendingResolve;
+        const finishResolveInitialPercent = resolveInitialPercent;
+        resolveInitialPercent = null;
         pendingResolve = null;
 
         if (currentPercent >= 100 && loaderWrapper) {
@@ -50,14 +55,14 @@ window.updateSplashProgress = function(initialPercent, targetPercent, intervalIn
               if (loaderWrapper.parentNode) loaderWrapper.remove();
               if (finishResolve) {
                 finishResolve();
-                console.log('resolve on: ', initialPercent);
+                console.log('resolve on: ', finishResolveInitialPercent);
               }
             }, 200);
           }, 400);
         } else {
           if (finishResolve) {
             finishResolve();
-            console.log('resolve on: ', initialPercent);
+            console.log('resolve on: ', finishResolveInitialPercent);
           }
         }
       }
