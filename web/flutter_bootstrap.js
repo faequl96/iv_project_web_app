@@ -34,7 +34,7 @@ function updateFakeProgress(targetPercent) {
         }, 200);
       }
     }
-  }, 10);
+  }, 100);
 }
 
 updateFakeProgress(60);
