@@ -44,11 +44,8 @@ window.updateSplashProgress = function(initialPercent, targetPercent, intervalIn
           setTimeout(() => {
             if (finishResolve) finishResolve();
             setTimeout(() => {
-              if (loaderWrapper.parentNode) {
-                console.log('masuk');
-                loaderWrapper.remove();
-              }
-            }, 400);
+              if (loaderWrapper.parentNode) loaderWrapper.remove();
+            }, 800);
           }, 400);
         } else {
           if (finishResolve) finishResolve();
