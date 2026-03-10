@@ -22,9 +22,10 @@ function updateFakeProgress(initialPercent, targetPercent) {
       if (progressText) progressText.textContent = currentPercent + '%';
 
       if (statusText) {
-        if (currentPercent < 40) statusText.textContent = "Downloading engine...";
-        else if (currentPercent < 80) statusText.textContent = "Preparing assets...";
-        else if (currentPercent < 100) statusText.textContent = "Finalizing...";
+        if (currentPercent < 50) statusText.textContent = "Downloading Environment...";
+        else if (currentPercent < 60) statusText.textContent = "Preparing Environment...";
+        else if (currentPercent < 90) statusText.textContent = "Downloading Assets...";
+        else if (currentPercent < 100) statusText.textContent = "Preparing Assets...";
         else statusText.textContent = "Launching App...";
       }
     } else {
@@ -36,17 +37,26 @@ function updateFakeProgress(initialPercent, targetPercent) {
         }, 200);
       }
     }
-  }, 100);
+  }, 80);
 }
 
-updateFakeProgress(0, 60);
+window.removeSplash = function() {
+  const loaderWrapper = document.getElementById('loading_indicator');
+  if (loaderWrapper) {
+    if (typeof updateFakeProgress === 'function') updateFakeProgress(90, 100);
+    
+    loaderWrapper.style.opacity = '0';
+    setTimeout(() => loaderWrapper.remove(), 1000);
+  }
+};
+
+updateFakeProgress(0, 50);
 
 _flutter.loader.load({
   onEntrypointLoaded: async function(engineInitializer) {
-    updateFakeProgress(61, 75);
+    updateFakeProgress(50, 60);
     const appRunner = await engineInitializer.initializeEngine();
-    updateFakeProgress(76, 85);
+    updateFakeProgress(60, 90);
     await appRunner.runApp();
-    updateFakeProgress(86, 100);
   }
 });
