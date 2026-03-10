@@ -28,7 +28,7 @@ void main() async {
   await fetchYourDataFromApi();
   // await precacheImage(NetworkImage(url), context);
 
-  await jsUpdateSplashProgress(95, 100, 80).toDart;
+  await jsUpdateSplashProgress(95, 100, 200).toDart;
 
   runApp(const App());
 }
