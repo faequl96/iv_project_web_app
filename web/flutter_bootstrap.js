@@ -9,8 +9,10 @@ const loaderWrapper = document.getElementById('loading_indicator');
 let currentPercent = 0;
 let progressInterval;
 
-function updateFakeProgress(targetPercent) {
+function updateFakeProgress(initialPercent, targetPercent) {
   clearInterval(progressInterval);
+
+  currentPercent = initialPercent;
 
   progressInterval = setInterval(() => {
     if (currentPercent < targetPercent) {
@@ -37,14 +39,14 @@ function updateFakeProgress(targetPercent) {
   }, 100);
 }
 
-updateFakeProgress(60);
+updateFakeProgress(0, 60);
 
 _flutter.loader.load({
   onEntrypointLoaded: async function(engineInitializer) {
-    updateFakeProgress(75);
+    updateFakeProgress(61, 75);
     const appRunner = await engineInitializer.initializeEngine();
-    updateFakeProgress(85);
+    updateFakeProgress(76, 85);
     await appRunner.runApp();
-    updateFakeProgress(100);
+    updateFakeProgress(86, 100);
   }
 });
