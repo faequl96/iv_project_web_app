@@ -10,9 +10,10 @@ let currentPercent = 0;
 let progressInterval;
 let pendingResolve;
 
-window.updateSplashProgress = function(initialPercent, targetPercent) {
+window.updateSplashProgress = function(initialPercent, targetPercent, intervalInMs) {
   if (pendingResolve) {
-    pendingResolve(); 
+    pendingResolve();
+    console.log('log on: ', initialPercent);
     pendingResolve = null;
   }
 
@@ -31,7 +32,7 @@ window.updateSplashProgress = function(initialPercent, targetPercent) {
         if (statusText) {
           if (currentPercent < 51) statusText.textContent = "Downloading Environment...";
           else if (currentPercent < 61) statusText.textContent = "Preparing Environment...";
-          else if (currentPercent < 91) statusText.textContent = "Downloading Assets...";
+          else if (currentPercent < 96) statusText.textContent = "Downloading Assets...";
           else if (currentPercent < 100) statusText.textContent = "Preparing Assets...";
           else statusText.textContent = "Launching App...";
         }
@@ -45,22 +46,28 @@ window.updateSplashProgress = function(initialPercent, targetPercent) {
             loaderWrapper.style.opacity = '0';
             setTimeout(() => {
               if (loaderWrapper.parentNode) loaderWrapper.remove();
-              if (finishResolve) finishResolve(); 
+              if (finishResolve) {
+                finishResolve();
+                console.log('log on: ', initialPercent);
+              }
             }, 200);
           }, 400);
         } else {
-          if (finishResolve) finishResolve();
+          if (finishResolve) {
+            finishResolve();
+            console.log('log on: ', initialPercent);
+          }
         }
       }
-    }, 80);
+    }, intervalInMs);
   });
 }
 
-updateSplashProgress(0, 50);
+updateSplashProgress(0, 50, 100);
 
 _flutter.loader.load({
   onEntrypointLoaded: async function(engineInitializer) {
-    updateSplashProgress(50, 60);
+    updateSplashProgress(50, 60, 120);
     const appRunner = await engineInitializer.initializeEngine();
     await appRunner.runApp();
   }
