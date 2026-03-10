@@ -11,9 +11,11 @@ let progressInterval;
 let pendingResolve;
 
 window.updateSplashProgress = function(initialPercent, targetPercent, intervalInMs) {
+  console.log('log on: ', initialPercent);
+
   if (pendingResolve) {
     pendingResolve();
-    console.log('log on: ', initialPercent);
+    console.log('resolve on: ', initialPercent);
     pendingResolve = null;
   }
 
@@ -48,14 +50,14 @@ window.updateSplashProgress = function(initialPercent, targetPercent, intervalIn
               if (loaderWrapper.parentNode) loaderWrapper.remove();
               if (finishResolve) {
                 finishResolve();
-                console.log('log on: ', initialPercent);
+                console.log('resolve on: ', initialPercent);
               }
             }, 200);
           }, 400);
         } else {
           if (finishResolve) {
             finishResolve();
-            console.log('log on: ', initialPercent);
+            console.log('resolve on: ', initialPercent);
           }
         }
       }
