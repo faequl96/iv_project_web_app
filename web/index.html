@@ -35,7 +35,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background-color: #ffffff;
+        background-color: #fff;
         overflow: hidden;
         box-sizing: border-box;
       }
@@ -43,12 +43,12 @@
       .progress-container {
         position: relative;
         width: 260px; 
-        height: 18px;
-        background-color: #f0f0f0;
+        height: 20px; 
+        background-color: #d3f3ee;
         border-radius: 20px;
         overflow: hidden;
         display: flex;
-        align-items: center;
+        align-items: center; 
         justify-content: center;
       }
 
@@ -60,50 +60,51 @@
         height: 100%;
         background-color: #09AB81;
         transition: width 0.3s ease-out;
-        z-index: 1; 
+        z-index: 2;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
       }
 
       .progress-text-style {
         position: absolute;
         width: 260px;
-        text-align: center;
         margin: 0;
-        font-size: 12px;
+        font-size: 11px;
         font-family: sans-serif;
         font-weight: 800;
+        text-align: center;
+        left: 0;
+        line-height: 20px; 
       }
 
       #progress_text_black {
-        color: #444;
+        color: #444444;
         z-index: 1;
       }
 
-      #progress_bar {
-        overflow: hidden;
-        z-index: 2;
-      }
-
       #progress_text_white {
-        color: #fff;
-        width: 260px;
+        color: #ffffff;
+        z-index: 3;
       }
 
       #status_text {
-        margin-top: 14px;
+        margin-top: 10px;
         font-size: 14px;
         color: #5b5b5b;
         font-family: sans-serif;
-        font-weight: 500;
+        font-weight: 600;
       }
     </style>
   </head>
   <body>
     <div id="loading_indicator" class="container">
       <div class="progress-container">
+        <p id="progress_text_black" class="progress-text-style">0%</p>
+        
         <div id="progress_bar" class="progress-fill">
           <p id="progress_text_white" class="progress-text-style">0%</p>
         </div>
-        <p id="progress_text_black" class="progress-text-style">0%</p>
       </div>
       <p id="status_text">Initializing...</p>
     </div>
