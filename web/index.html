@@ -1,19 +1,6 @@
 <!doctype html>
 <html>
   <head>
-    <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
     <base href="$FLUTTER_BASE_HREF" />
 
     <meta charset="UTF-8" />
@@ -93,41 +80,8 @@
       <p id="progress_text">0%</p>
     </div>
 
-    <script src="flutter_bootstrap.js" async></script>
-
     <script>
-      const progressBar = document.getElementById('progress_bar');
-      const progressText = document.getElementById('progress_text');
-      const statusText = document.getElementById('status_text');
-      const loaderWrapper = document.getElementById('loading_indicator');
-
-      window.addEventListener('load', function() {
-        if (window._flutter && window._flutter.loader) {
-          window._flutter.loader.load({
-            onProgress: function(value) {
-              const percent = Math.round(value * 100);
-              if (progressBar) progressBar.style.width = percent + '%';
-              if (progressText) progressText.textContent = percent + '%';
-
-              if (statusText) {
-                if (percent < 40) statusText.textContent = "Downloading engine...";
-                else if (percent < 80) statusText.textContent = "Preparing assets...";
-                else statusText.textContent = "Finalizing...";
-              }
-            },
-            onEntrypointLoaded: async function(engineInitializer) {
-              const appRunner = await engineInitializer.initializeEngine();
-              
-              if (loaderWrapper) {
-                loaderWrapper.style.opacity = '0';
-                setTimeout(() => loaderWrapper.remove(), 400);
-              }
-              
-              await appRunner.runApp();
-            }
-          });
-        }
-      });
+      {{flutter_bootstrap_js}}
     </script>
   </body>
 </html>
