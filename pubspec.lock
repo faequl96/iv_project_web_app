@@ -218,7 +218,7 @@ packages:
       path: "../iv_project_invitation_theme"
       relative: true
     source: path
-    version: "0.2.4"
+    version: "0.2.5"
   iv_project_model:
     dependency: "direct main"
     description:
