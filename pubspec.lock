@@ -242,8 +242,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.2.5+9"
-      resolved-ref: "331c3fe0e8037944e0099f9ec0aa93dc191e44e3"
+      ref: "0.2.5+10"
+      resolved-ref: "025072244804172178c6bff4e288a30461579606"
       url: "https://github.com/faequl96/iv_project_invitation_theme.git"
     source: git
     version: "0.2.5"
