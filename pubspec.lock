@@ -233,8 +233,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.1.4"
-      resolved-ref: "8e81edc888467b5a1881322ed8b420ebc982bdc7"
+      ref: "0.1.4+1"
+      resolved-ref: "176b7bdc3b3e5a9223341ed04962ee8a0d2631cc"
       url: "https://github.com/faequl96/iv_project_core.git"
     source: git
     version: "0.1.4"
@@ -242,8 +242,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.2.5+13"
-      resolved-ref: b8e904db006cc16160d3c540324aae4b5e76067a
+      ref: "0.2.5+14"
+      resolved-ref: d534a11e1d5148d779794304e95fd84a18bd9f05
       url: "https://github.com/faequl96/iv_project_invitation_theme.git"
     source: git
     version: "0.2.5"
@@ -251,8 +251,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.1.4"
-      resolved-ref: c2060e73cb9e9c7cd7bfc0e528725d0fc88dfbbb
+      ref: "0.1.4+1"
+      resolved-ref: "80d2b257ab6d11913f7c4a761fc8bdaec16100a0"
       url: "https://github.com/faequl96/iv_project_model.git"
     source: git
     version: "0.1.4"
@@ -260,8 +260,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.2.4"
-      resolved-ref: "2db22273157a95ffdb6c6c7bfe62e248af2d5f2a"
+      ref: "0.2.4+1"
+      resolved-ref: c9098ccb23fc78491082fa8e68e788179baed3c6
       url: "https://github.com/faequl96/iv_project_web_data.git"
     source: git
     version: "0.2.4"
@@ -269,8 +269,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.0.6+1"
-      resolved-ref: dd9657803b7303c2d3185ef46ff51cc659e41a53
+      ref: "0.0.6+2"
+      resolved-ref: "0e3777857f3ded6a69dd30a2370cedaec847b55f"
       url: "https://github.com/faequl96/iv_project_widget_core.git"
     source: git
     version: "0.0.6"
@@ -534,8 +534,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.1.2+1"
-      resolved-ref: "078d1d6aaa4a3e0791e3d5c8ca1dc31fdc0bdeb0"
+      ref: "0.1.2+2"
+      resolved-ref: fce5597a8fbfd4adb93a419932a411422693ba1f
       url: "https://github.com/faequl96/quick_dev_sdk.git"
     source: git
     version: "0.1.2"
@@ -801,5 +801,5 @@ packages:
     source: hosted
     version: "3.1.3"
 sdks:
-  dart: ">=3.11.1 <4.0.0"
+  dart: ">=3.11.4 <4.0.0"
   flutter: ">=3.38.4"
