@@ -12,7 +12,9 @@ import 'package:iv_project_widget_core/iv_project_widget_core.dart';
 import 'package:quick_dev_sdk/quick_dev_sdk.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({super.key, this.invitation});
+
+  final InvitationResponse? invitation;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -41,19 +43,22 @@ class _HomePageState extends State<HomePage> {
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         _invitation = InvitationResponse.fromJson(data['data']);
-
-        if (_invitation != null) {
-          _localeCubit.set(
-            _invitation!.invitationData.general.lang == LangType.en ? const Locale('en', 'US') : const Locale('id', 'ID'),
-            reloadLangAssets: false,
-          );
-          final audioUrl = _invitation!.invitationData.general.musicAudioUrl;
-          if (audioUrl != null) Audio.setupAudioPlayer(audioUrl);
-        }
       }
     } catch (_) {
       _isContainsErrorGetInvitation = true;
     }
+  }
+
+  void _setLangAndAudio() {
+    _localeCubit.set(
+      _invitation!.invitationData.general.lang == LangType.en ? const Locale('en', 'US') : const Locale('id', 'ID'),
+      reloadLangAssets: false,
+    );
+
+    if (widget.invitation != null) return;
+
+    final audioUrl = _invitation!.invitationData.general.musicAudioUrl;
+    if (audioUrl != null) Audio.setupAudioPlayer(audioUrl);
   }
 
   @override
@@ -72,7 +77,13 @@ class _HomePageState extends State<HomePage> {
         setState(() => _isLoading = false);
         return;
       }
-      await _getInvitationById(_invitationId!);
+      if (widget.invitation == null) {
+        await _getInvitationById(_invitationId!);
+      } else {
+        _invitation = widget.invitation;
+      }
+
+      if (_invitation != null) _setLangAndAudio();
 
       _invitedGuestId = queryParameters['to'];
       if (_invitedGuestId != null) {
