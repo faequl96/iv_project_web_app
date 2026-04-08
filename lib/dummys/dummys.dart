@@ -65,7 +65,7 @@ class Dummys {
         latitude: '-6.9231456',
         longitude: '107.6237581',
         mapsUrl:
-            'https://www.google.com/maps/place/The+Papandayan+Hotel,+Jalan+Gatot+Subroto,+Malabar,+Kota+Bandung,+Jawa+Barat/@-6.3012864,106.7778048,12z/data=!4m5!3m4!1s0x2e68e7d4924de9db:0x7fedfb7ec623192d!8m2!3d-6.9231456!4d107.6237581?entry=ttu&g_ep=EgoyMDI2MDIwNC4wIKXMDSoASAFQAw%3D%3D',
+            'https://google.com/maps/place/The+Papandayan+Hotel,+Jalan+Gatot+Subroto,+Malabar,+Kota+Bandung,+Jawa+Barat/@-6.3012864,106.7778048,12z/data=!4m5!3m4!1s0x2e68e7d4924de9db:0x7fedfb7ec623192d!8m2!3d-6.9231456!4d107.6237581?entry=ttu&g_ep=EgoyMDI2MDIwNC4wIKXMDSoASAFQAw%3D%3D',
       ),
       gallery: const GalleryResponse(
         id: 1,
