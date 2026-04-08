@@ -5,6 +5,7 @@ import 'dart:js_interop';
 import 'package:flutter/material.dart';
 import 'package:iv_project_core/iv_project_core.dart';
 import 'package:iv_project_web_app/app.dart';
+import 'package:iv_project_web_app/core/app_init.dart';
 import 'package:iv_project_web_app/dummys/dummys.dart';
 import 'package:iv_project_web_app/routes/router.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
@@ -17,22 +18,34 @@ void main() async {
 
   ApiUrl.set('https://5da4-175-103-42-210.ngrok-free.app');
 
-  NavigationService.init(router);
-
   await StorageService.init();
+
+  NavigationService.init(AppRouter.router);
 
   Dummys.initInvitationData();
 
   jsUpdateSplashProgress(60, 95, 50, 350);
 
-  await fetchYourDataFromApi();
-  // await precacheImage(NetworkImage(url), context);
+  final paths = Uri.base.pathSegments;
+  final path = paths.isNotEmpty ? paths[0] : '';
+
+  if (path == 'theme-dev') {
+    AppInit.preCacheDummmyImages(Dummys.invitationData);
+    AppInit.preCacheAssetImages();
+  } else {
+    final invitation = await AppInit.getInvitation();
+
+    if (invitation != null) {
+      AppInit.prefetchAudio(invitation);
+      AppInit.preCacheImages(invitation);
+
+      AppRouter.initialInvitation = invitation;
+    }
+  }
+
+  await Future.delayed(const Duration(seconds: 2));
 
   await jsUpdateSplashProgress(95, 100, 150, 250).toDart;
 
   runApp(const App());
-}
-
-Future<void> fetchYourDataFromApi() async {
-  await Future.delayed(const Duration(seconds: 4));
 }
