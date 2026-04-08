@@ -63,11 +63,11 @@ window.updateSplashProgress = function(initialPercent, targetPercent, minMs = 50
   });
 }
 
-updateSplashProgress(0, 50, 20, 280);
+updateSplashProgress(0, 75, 20, 280);
 
 _flutter.loader.load({
   onEntrypointLoaded: async function(engineInitializer) {
-    updateSplashProgress(50, 60, 100, 150);
+    updateSplashProgress(75, 80, 100, 150);
     const appRunner = await engineInitializer.initializeEngine();
     await appRunner.runApp();
   }

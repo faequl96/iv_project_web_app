@@ -24,7 +24,7 @@ void main() async {
 
   Dummys.initInvitationData();
 
-  jsUpdateSplashProgress(60, 95, 50, 350);
+  jsUpdateSplashProgress(80, 95, 50, 350);
 
   final paths = Uri.base.pathSegments;
   final path = paths.isNotEmpty ? paths[0] : '';
