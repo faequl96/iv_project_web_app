@@ -32,8 +32,8 @@ window.updateSplashProgress = function(initialPercent, targetPercent, minMs = 50
         if (progressTextWhite) progressTextWhite.textContent = currentPercent + '%';
 
         if (statusText) {
-          if (currentPercent < 51) statusText.textContent = "Downloading Environment...";
-          else if (currentPercent < 61) statusText.textContent = "Preparing Environment...";
+          if (currentPercent < 76) statusText.textContent = "Downloading Environment...";
+          else if (currentPercent < 81) statusText.textContent = "Preparing Environment...";
           else if (currentPercent < 96) statusText.textContent = "Downloading Assets...";
           else if (currentPercent < 100) statusText.textContent = "Preparing Assets...";
           else statusText.textContent = "Launching App...";
