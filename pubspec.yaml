@@ -42,7 +42,7 @@ dependencies:
       url: https://github.com/faequl96/quick_dev_sdk.git
       ref: 0.1.2+2
 
-  go_router: ^17.1.0
+  go_router: ^17.2.0
   bloc: ^9.2.0
   flutter_bloc: ^9.1.1
   http: ^1.6.0
