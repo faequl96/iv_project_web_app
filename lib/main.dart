@@ -16,7 +16,7 @@ external JSPromise jsUpdateSplashProgress(double initialPercent, double targetPe
 void main() async {
   usePathUrlStrategy();
 
-  ApiUrl.set('https://5da4-175-103-42-210.ngrok-free.app');
+  ApiUrl.set('https://in-vite.my.id');
 
   await StorageService.init();
 
