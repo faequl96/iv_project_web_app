@@ -13,8 +13,8 @@ import 'package:iv_project_web_app/pages/themes_catalog/themes_catalog_page.dart
 import 'package:iv_project_widget_core/iv_project_widget_core.dart';
 import 'package:quick_dev_sdk/quick_dev_sdk.dart';
 
-class InvitationThemeCreateInvitationDialogContent extends StatelessWidget {
-  const InvitationThemeCreateInvitationDialogContent({super.key, required this.invitationTheme});
+class InvitationThemeSummaryContent extends StatelessWidget {
+  const InvitationThemeSummaryContent({super.key, required this.invitationTheme});
 
   final InvitationThemeResponse invitationTheme;
 
@@ -96,7 +96,7 @@ class InvitationThemeCreateInvitationDialogContent extends StatelessWidget {
             Expanded(
               child: GeneralEffectsButton(
                 onTap: () {
-                  NavigationService.push(
+                  NavigationService.go(
                     '/invitation-example-viewer',
                     extra: ExtraHelper.sendInvitationExampleViewerExtra(
                       InvitationExampleViewerExtra(
@@ -166,7 +166,7 @@ class _SinglePageExampleViewerState extends State<_SinglePageExampleViewer> {
       final boundary = _imageByteKey.currentContext?.findRenderObject() as RenderRepaintBoundary?;
 
       if (boundary != null) {
-        final image = await boundary.toImage(pixelRatio: 1);
+        final image = await boundary.toImage(pixelRatio: .5);
         final byteData = await image.toByteData(format: ui.ImageByteFormat.rawRgba);
         if (byteData == null) return;
 
@@ -316,55 +316,55 @@ class _SinglePageExampleViewers extends StatelessWidget {
               _SinglePageExampleViewer(
                 initialPage: 0,
                 invitationTheme: invitationTheme,
-                loadingDelay: const Duration(milliseconds: 300),
+                loadingDelay: const Duration(milliseconds: 500),
               ),
               const SizedBox(width: 8),
               _SinglePageExampleViewer(
                 initialPage: 1,
                 invitationTheme: invitationTheme,
-                loadingDelay: const Duration(milliseconds: 400),
+                loadingDelay: const Duration(milliseconds: 750),
               ),
               const SizedBox(width: 8),
               _SinglePageExampleViewer(
                 initialPage: 2,
                 invitationTheme: invitationTheme,
-                loadingDelay: const Duration(milliseconds: 400),
+                loadingDelay: const Duration(milliseconds: 1000),
               ),
               const SizedBox(width: 8),
               _SinglePageExampleViewer(
                 initialPage: 3,
                 invitationTheme: invitationTheme,
-                loadingDelay: const Duration(milliseconds: 400),
+                loadingDelay: const Duration(milliseconds: 1250),
               ),
               const SizedBox(width: 8),
               _SinglePageExampleViewer(
                 initialPage: 4,
                 invitationTheme: invitationTheme,
-                loadingDelay: const Duration(milliseconds: 600),
+                loadingDelay: const Duration(milliseconds: 1500),
               ),
               const SizedBox(width: 8),
               _SinglePageExampleViewer(
                 initialPage: 5,
                 invitationTheme: invitationTheme,
-                loadingDelay: const Duration(milliseconds: 700),
+                loadingDelay: const Duration(milliseconds: 1750),
               ),
               const SizedBox(width: 8),
               _SinglePageExampleViewer(
                 initialPage: 6,
                 invitationTheme: invitationTheme,
-                loadingDelay: const Duration(milliseconds: 800),
+                loadingDelay: const Duration(milliseconds: 2000),
               ),
               const SizedBox(width: 8),
               _SinglePageExampleViewer(
                 initialPage: 7,
                 invitationTheme: invitationTheme,
-                loadingDelay: const Duration(milliseconds: 500),
+                loadingDelay: const Duration(milliseconds: 2250),
               ),
               const SizedBox(width: 8),
               _SinglePageExampleViewer(
                 initialPage: 8,
                 invitationTheme: invitationTheme,
-                loadingDelay: const Duration(milliseconds: 400),
+                loadingDelay: const Duration(milliseconds: 2500),
               ),
             ],
           ),

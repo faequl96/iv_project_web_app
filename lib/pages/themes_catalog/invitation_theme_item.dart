@@ -7,7 +7,7 @@ import 'package:iv_project_core/iv_project_core.dart';
 import 'package:iv_project_invitation_theme/iv_project_invitation_theme.dart';
 import 'package:iv_project_model/iv_project_model.dart';
 import 'package:iv_project_web_app/dummys/dummys.dart';
-import 'package:iv_project_web_app/pages/themes_catalog/invitation_theme_create_invitation_dialog_content.dart';
+import 'package:iv_project_web_app/pages/themes_catalog/invitation_theme_summary_content.dart';
 import 'package:iv_project_web_app/pages/themes_catalog/themes_catalog_page.dart';
 import 'package:iv_project_widget_core/iv_project_widget_core.dart';
 import 'package:quick_dev_sdk/quick_dev_sdk.dart';
@@ -31,7 +31,7 @@ class InvitationThemeItem extends StatelessWidget {
               color: ColorConverter.lighten(AppColor.primaryColor, 94),
             ),
             header: BottomSheetHeader(title: .handleBar(color: Colors.grey.shade700)),
-            contentBuilder: (_) => InvitationThemeCreateInvitationDialogContent(invitationTheme: invitationTheme),
+            contentBuilder: (_) => InvitationThemeSummaryContent(invitationTheme: invitationTheme),
           );
         },
         width: 150,

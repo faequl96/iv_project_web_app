@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart' hide Page;
-import 'package:flutter_bloc/flutter_bloc.dart';
+// import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iv_project_core/iv_project_core.dart';
 import 'package:iv_project_model/iv_project_model.dart';
@@ -27,7 +27,7 @@ class AppRouter {
       _pageBuilder('/theme-dev', page: (_) => const ThemeDevPage()),
       _pageBuilder(
         '/themes-catalog',
-        page: (_) => ThemesCatalogPage(),
+        page: (_) => const ThemesCatalogPage(),
         appBar: (extra) {
           return GeneralAppBar(
             title: 'Catalog Tema Undangan',
@@ -44,25 +44,21 @@ class AppRouter {
           return InvitationExampleViewerPage(extra: extraValue);
         },
         appBar: (extra) {
-          final langCode = GlobalContextService.value.read<LocaleCubit>().state.languageCode;
+          // final langCode = GlobalContextService.value.read<LocaleCubit>().state.languageCode;
           final extraValue = ExtraHelper.receiveInvitationExampleViewerExtra(extra);
           if (extraValue == null) return AppBar();
           final page = extraValue.useWrapper ? extraValue.initialPage + 1 : extraValue.initialPage + 2;
-          String prefixENTitle() {
-            if (page == 1) return 'st';
-            if (page == 2) return 'nd';
-            if (page == 3) return 'rd';
-            return 'th';
-          }
+          // String prefixENTitle() {
+          //   if (page == 1) return 'st';
+          //   if (page == 2) return 'nd';
+          //   if (page == 3) return 'rd';
+          //   return 'th';
+          // }
 
           return GeneralAppBar(
-            title: extraValue.viewAsSinglePage
-                ? langCode == 'id'
-                      ? 'Gambar ke-$page'
-                      : '$page${prefixENTitle()} image'
-                : extraValue.invitationThemeName,
+            title: extraValue.viewAsSinglePage ? 'Gambar ke-$page' : extraValue.invitationThemeName,
             backgroundColor: extraValue.viewAsSinglePage ? Colors.black : AppColor.primaryColor,
-            leftAction: AppBarLeftAction(onTap: () => NavigationService.pop()),
+            leftAction: AppBarLeftAction(onTap: () => NavigationService.go('/themes-catalog')),
           );
         },
       ),
@@ -72,7 +68,7 @@ class AppRouter {
   static GoRoute _pageBuilder(
     String routePath, {
     PreferredSizeWidget Function(Object? extra)? appBar,
-    required Widget Function(GoRouterState state) page,
+    required Widget Function(Object? extra) page,
   }) {
     return GoRoute(
       path: routePath,
@@ -81,7 +77,7 @@ class AppRouter {
           key: state.pageKey,
           transitionsBuilder: (_, _, _, child) => child,
           child: InitAppState(
-            page: Page(appBar: appBar?.call(state.extra), content: page(state)),
+            page: Page(appBar: appBar?.call(state.extra), content: page(state.extra)),
           ),
         );
       },

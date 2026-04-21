@@ -5,12 +5,27 @@ import 'package:flutter/material.dart';
 import 'package:iv_project_model/iv_project_model.dart';
 import 'package:iv_project_web_app/pages/themes_catalog/invitation_theme_item.dart';
 
-class ThemesCatalogPage extends StatelessWidget {
-  ThemesCatalogPage({super.key});
+class ThemesCatalogPage extends StatefulWidget {
+  const ThemesCatalogPage({super.key});
 
   static final Map<String, Map<String, Uint8List?>> themeImageCaches = {};
   static final Map<String, Uint8List?> themeImagePreviewCaches = {};
 
+  static Uint8List encodePng(Map<String, dynamic> params) {
+    final int width = params['width'];
+    final int height = params['height'];
+    final Uint8List rawBytes = params['bytes'];
+
+    final image = img.Image.fromBytes(width: width, height: height, bytes: rawBytes.buffer, order: img.ChannelOrder.rgba);
+
+    return Uint8List.fromList(img.encodePng(image));
+  }
+
+  @override
+  State<ThemesCatalogPage> createState() => _ThemesCatalogPageState();
+}
+
+class _ThemesCatalogPageState extends State<ThemesCatalogPage> {
   final invitationThemes = [
     const InvitationThemeResponse(
       id: 1,
@@ -92,14 +107,15 @@ class ThemesCatalogPage extends StatelessWidget {
     ),
   ];
 
-  static Uint8List encodePng(Map<String, dynamic> params) {
-    final int width = params['width'];
-    final int height = params['height'];
-    final Uint8List rawBytes = params['bytes'];
+  @override
+  void initState() {
+    super.initState();
 
-    final image = img.Image.fromBytes(width: width, height: height, bytes: rawBytes.buffer, order: img.ChannelOrder.rgba);
-
-    return Uint8List.fromList(img.encodePng(image));
+    if (ThemesCatalogPage.themeImageCaches.isEmpty) {
+      for (final item in invitationThemes) {
+        ThemesCatalogPage.themeImageCaches['theme_${item.id}'] = {};
+      }
+    }
   }
 
   @override

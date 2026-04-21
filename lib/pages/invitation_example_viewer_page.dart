@@ -9,17 +9,20 @@ class InvitationExampleViewerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InvitationThemeLauncher(
-      heightAdjustment: kToolbarHeight,
-      viewType: ViewType.example,
-      invitationThemeId: extra.invitationThemeId,
-      invitationId: '',
-      invitationData: extra.invitationData,
-      imagesRaw: null,
-      brandProfile: extra.brandProfile,
-      initialPage: extra.initialPage,
-      useWrapper: extra.useWrapper,
-      viewAsSinglePage: extra.viewAsSinglePage,
+    return ColoredBox(
+      color: Colors.black,
+      child: InvitationThemeLauncher(
+        heightAdjustment: kToolbarHeight,
+        viewType: ViewType.example,
+        invitationThemeId: extra.invitationThemeId,
+        invitationId: '',
+        invitationData: extra.invitationData,
+        imagesRaw: null,
+        brandProfile: extra.brandProfile,
+        initialPage: extra.initialPage,
+        useWrapper: extra.useWrapper,
+        viewAsSinglePage: extra.viewAsSinglePage,
+      ),
     );
   }
 }
