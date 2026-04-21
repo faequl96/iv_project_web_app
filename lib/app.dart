@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:iv_project_core/iv_project_core.dart';
+import 'package:iv_project_invitation_theme/iv_project_invitation_theme.dart';
 import 'package:iv_project_web_app/core/di/app_bloc_providers.dart';
 
 class App extends StatelessWidget {
@@ -59,4 +60,65 @@ class MyCustomScrollBehavior extends MaterialScrollBehavior {
     PointerDeviceKind.trackpad,
     PointerDeviceKind.stylus,
   };
+}
+
+class InitAppState extends StatefulWidget {
+  const InitAppState({super.key, required this.page});
+
+  final Widget page;
+
+  static bool _isInitializing = true;
+
+  @override
+  State<InitAppState> createState() => _InitAppStateState();
+}
+
+class _InitAppStateState extends State<InitAppState> with WidgetsBindingObserver {
+  void _setSize() {
+    AppSize.set(MediaQuery.of(GlobalContextService.value));
+    ThemeAppHelpers.setSize(context.read<InvitationThemeCoreCubit>(), kToolbarHeight);
+  }
+
+  void _initSync() {
+    _setSize();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addObserver(this);
+
+    if (InitAppState._isInitializing) {
+      _initSync();
+    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    if (InitAppState._isInitializing) {
+      _initSync();
+
+      InitAppState._isInitializing = false;
+    }
+  }
+
+  @override
+  void didChangeMetrics() {
+    super.didChangeMetrics();
+
+    _setSize();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => widget.page;
 }
