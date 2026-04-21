@@ -249,20 +249,20 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.1.4+1"
-      resolved-ref: "176b7bdc3b3e5a9223341ed04962ee8a0d2631cc"
+      ref: "0.1.5"
+      resolved-ref: "50ce9ef0e4bc365b4ba85cffea28790a53070e74"
       url: "https://github.com/faequl96/iv_project_core.git"
     source: git
-    version: "0.1.4"
+    version: "0.1.5"
   iv_project_invitation_theme:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.2.6+3"
-      resolved-ref: "555556bda014e10e841b509e9cc2ee1a5bea01e0"
+      ref: "0.2.7"
+      resolved-ref: f50457c2c0d43ac21be48e2f1f7e109fe8c7cac2
       url: "https://github.com/faequl96/iv_project_invitation_theme.git"
     source: git
-    version: "0.2.6"
+    version: "0.2.7"
   iv_project_model:
     dependency: "direct main"
     description:
@@ -276,8 +276,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.2.4+1"
-      resolved-ref: c9098ccb23fc78491082fa8e68e788179baed3c6
+      ref: "0.2.4+3"
+      resolved-ref: e09fee99315bfa0b48ef8bec802ea1d052145d4e
       url: "https://github.com/faequl96/iv_project_web_data.git"
     source: git
     version: "0.2.4"
@@ -285,8 +285,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.0.6+2"
-      resolved-ref: "0e3777857f3ded6a69dd30a2370cedaec847b55f"
+      ref: "0.0.6+5"
+      resolved-ref: "08657ea11213e810c8fecd52a49e31d613dfc134"
       url: "https://github.com/faequl96/iv_project_widget_core.git"
     source: git
     version: "0.0.6"
@@ -832,6 +832,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.6.1"
+  yaml:
+    dependency: transitive
+    description:
+      name: yaml
+      sha256: b9da305ac7c39faa3f030eccd175340f968459dae4af175130b3fc47e40d76ce
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.3"
 sdks:
   dart: ">=3.11.4 <4.0.0"
   flutter: ">=3.38.4"
