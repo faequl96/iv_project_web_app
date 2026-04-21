@@ -85,6 +85,11 @@ class AppInit {
     final config = ImageConfiguration(devicePixelRatio: devicePixelRatio);
 
     final List<ImageProvider> images = [
+      const AssetImage('assets/avatars/avatars.png', package: 'iv_project_invitation_theme'),
+      const AssetImage('assets/backgrounds/batik_1_left.jpg', package: 'iv_project_invitation_theme'),
+      const AssetImage('assets/backgrounds/batik_1_right.jpg', package: 'iv_project_invitation_theme'),
+      const AssetImage('assets/backgrounds/kelir_jawa_gold.png', package: 'iv_project_invitation_theme'),
+      const AssetImage('assets/backgrounds/kelir_jawa_rose_gold.png', package: 'iv_project_invitation_theme'),
       const AssetImage('assets/backgrounds/base_canvas.jpg', package: 'iv_project_invitation_theme'),
       const AssetImage('assets/backgrounds/floral_1.png', package: 'iv_project_invitation_theme'),
       const AssetImage('assets/backgrounds/floral_flower_blue.png', package: 'iv_project_invitation_theme'),

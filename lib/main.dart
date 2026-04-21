@@ -29,7 +29,7 @@ void main() async {
   final paths = Uri.base.pathSegments;
   final path = paths.isNotEmpty ? paths[0] : '';
 
-  if (path == 'theme-dev') {
+  if (path == 'theme-dev' || path == 'themes-catalog') {
     AppInit.preCacheDummmyImages(Dummys.invitationData);
     AppInit.preCacheAssetImages();
   } else {
