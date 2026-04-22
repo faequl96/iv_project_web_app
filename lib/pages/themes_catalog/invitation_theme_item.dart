@@ -45,13 +45,13 @@ class InvitationThemeItem extends StatelessWidget {
           crossAxisAlignment: .start,
           children: [
             const SizedBox(height: 8),
-            ClipRRect(
-              borderRadius: .circular(4),
-              child: ColoredBox(
-                color: Colors.grey.shade100,
-                child: _ThemeImage(invitationThemeId: invitationTheme.id, loadingDelay: loadingImageDelay),
-              ),
-            ),
+            // ClipRRect(
+            //   borderRadius: .circular(4),
+            //   child: ColoredBox(
+            //     color: Colors.grey.shade100,
+            //     child: _ThemeImage(invitationThemeId: invitationTheme.id, loadingDelay: loadingImageDelay),
+            //   ),
+            // ),
             const SizedBox(height: 6),
             Text(
               invitationTheme.name,
