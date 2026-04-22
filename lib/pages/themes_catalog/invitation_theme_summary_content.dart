@@ -167,7 +167,7 @@ class _SinglePageExampleViewerState extends State<_SinglePageExampleViewer> {
     await Future<void>.delayed(widget.captureDelay);
 
     if (mounted) {
-      if (widget.initialPage <= 2) {
+      if (widget.initialPage == 0) {
         _byteData = await Utils.capture(
           context,
           _imageByteKey,
@@ -196,10 +196,8 @@ class _SinglePageExampleViewerState extends State<_SinglePageExampleViewer> {
     final page = widget.initialPage;
     final wrapper = widget.useWrapper ? '_wrapper' : '';
     _byteData = ThemesCatalogPage.themeImageCaches['theme_$id']?['page_$page$wrapper'];
-    print('initialPage1: ${widget.initialPage}');
     if (_byteData != null) return;
 
-    print('initialPage2: ${widget.initialPage}');
     _isLoading = ValueNotifier(true);
     WidgetsBinding.instance.addPostFrameCallback((_) => _init());
   }
@@ -249,7 +247,7 @@ class _SinglePageExampleViewerState extends State<_SinglePageExampleViewer> {
             child: ColoredBox(color: Colors.grey.shade200),
           ),
         ),
-        SharedPersonalize.loadingWidget(color: AppColor.primaryColor, size: 24),
+        RepaintBoundary(child: SharedPersonalize.loadingWidget(color: AppColor.primaryColor, size: 24)),
         Positioned(
           left: -Screen.width,
           child: FittedBox(
@@ -383,56 +381,56 @@ class _SinglePageExampleViewersState extends State<_SinglePageExampleViewers> {
                   initialPage: 1,
                   invitationTheme: widget.invitationTheme,
                   loadingDelay: const Duration(milliseconds: 1500),
-                  captureDelay: const Duration(milliseconds: 250),
+                  captureDelay: const Duration(milliseconds: 500),
                 ),
                 const SizedBox(width: 8),
                 _SinglePageExampleViewer(
                   initialPage: 2,
                   invitationTheme: widget.invitationTheme,
-                  loadingDelay: const Duration(milliseconds: 1500),
+                  loadingDelay: const Duration(milliseconds: 1750),
                   captureDelay: const Duration(milliseconds: 500),
                 ),
                 const SizedBox(width: 8),
                 _SinglePageExampleViewer(
                   initialPage: 3,
                   invitationTheme: widget.invitationTheme,
-                  loadingDelay: const Duration(milliseconds: 1500),
-                  captureDelay: const Duration(milliseconds: 750),
+                  loadingDelay: const Duration(milliseconds: 2000),
+                  captureDelay: const Duration(milliseconds: 500),
                 ),
                 const SizedBox(width: 8),
                 _SinglePageExampleViewer(
                   initialPage: 4,
                   invitationTheme: widget.invitationTheme,
-                  loadingDelay: const Duration(milliseconds: 1500),
-                  captureDelay: const Duration(milliseconds: 1000),
+                  loadingDelay: const Duration(milliseconds: 3250),
+                  captureDelay: const Duration(milliseconds: 3500),
                 ),
                 const SizedBox(width: 8),
                 _SinglePageExampleViewer(
                   initialPage: 5,
                   invitationTheme: widget.invitationTheme,
-                  loadingDelay: const Duration(milliseconds: 1500),
-                  captureDelay: const Duration(milliseconds: 1250),
+                  loadingDelay: const Duration(milliseconds: 3000),
+                  captureDelay: const Duration(milliseconds: 2500),
                 ),
                 const SizedBox(width: 8),
                 _SinglePageExampleViewer(
                   initialPage: 6,
                   invitationTheme: widget.invitationTheme,
-                  loadingDelay: const Duration(milliseconds: 1500),
-                  captureDelay: const Duration(milliseconds: 1500),
+                  loadingDelay: const Duration(milliseconds: 2750),
+                  captureDelay: const Duration(milliseconds: 2000),
                 ),
                 const SizedBox(width: 8),
                 _SinglePageExampleViewer(
                   initialPage: 7,
                   invitationTheme: widget.invitationTheme,
-                  loadingDelay: const Duration(milliseconds: 1500),
-                  captureDelay: const Duration(milliseconds: 1750),
+                  loadingDelay: const Duration(milliseconds: 2250),
+                  captureDelay: const Duration(milliseconds: 500),
                 ),
                 const SizedBox(width: 8),
                 _SinglePageExampleViewer(
                   initialPage: 8,
                   invitationTheme: widget.invitationTheme,
-                  loadingDelay: const Duration(milliseconds: 1500),
-                  captureDelay: const Duration(milliseconds: 2000),
+                  loadingDelay: const Duration(milliseconds: 2500),
+                  captureDelay: const Duration(milliseconds: 500),
                 ),
               ] else ...[
                 _SinglePageExampleViewerAsImage(useWrapper: true, initialPage: 0, invitationTheme: widget.invitationTheme),
