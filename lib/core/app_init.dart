@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:iv_project_core/iv_project_core.dart';
 import 'package:iv_project_invitation_theme/iv_project_invitation_theme.dart';
 import 'package:iv_project_model/iv_project_model.dart';
+import 'package:iv_project_web_app/pages/themes_catalog/themes_catalog_page.dart';
 
 class AppInit {
   const AppInit._();
@@ -100,6 +101,23 @@ class AppInit {
     for (var provider in images) {
       provider.resolve(config);
     }
+  }
+
+  static void getThemeCatalogSummaryImagePreviewSize() {
+    final githubRepoOwner = 'faequl96';
+    final githubRepoName = 'iv-project-theme-preview-image-assets';
+    final path = 'uploads/themes/theme_5/pages';
+    final fileName = '0.png';
+    final uploadTo = '$path/$fileName';
+    final imageUrl = 'https://raw.githubusercontent.com/$githubRepoOwner/$githubRepoName/main/$uploadTo';
+
+    final ImageStream stream = NetworkImage(imageUrl).resolve(ImageConfiguration.empty);
+    stream.addListener(
+      ImageStreamListener((ImageInfo info, _) {
+        print(info.image.height);
+        ThemesCatalogPage.themeCatalogSummaryImagePreviewSize = Size(info.image.width.toDouble(), info.image.height.toDouble());
+      }),
+    );
   }
 
   static Future<InvitationResponse?> getInvitation() async {

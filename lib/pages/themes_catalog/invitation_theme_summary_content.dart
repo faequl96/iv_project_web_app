@@ -4,6 +4,7 @@ import 'package:iv_project_model/iv_project_model.dart';
 import 'package:iv_project_web_app/core/helpers/extra_helper.dart';
 import 'package:iv_project_web_app/dummys/dummys.dart';
 import 'package:iv_project_web_app/models/extras.dart';
+import 'package:iv_project_web_app/pages/themes_catalog/themes_catalog_page.dart';
 import 'package:iv_project_widget_core/iv_project_widget_core.dart';
 import 'package:quick_dev_sdk/quick_dev_sdk.dart';
 
@@ -179,8 +180,8 @@ class _ImageViewer extends StatelessWidget {
           children: [
             FittedBox(
               child: SizedBox(
-                height: Screen.height,
-                width: Screen.width,
+                height: ThemesCatalogPage.themeCatalogSummaryImagePreviewSize.height,
+                width: ThemesCatalogPage.themeCatalogSummaryImagePreviewSize.width,
                 child: ColoredBox(color: Colors.grey.shade100),
               ),
             ),

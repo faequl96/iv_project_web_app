@@ -7,6 +7,7 @@ import 'package:iv_project_web_app/pages/themes_catalog/invitation_theme_item.da
 class ThemesCatalogPage extends StatefulWidget {
   const ThemesCatalogPage({super.key});
 
+  static Size themeCatalogSummaryImagePreviewSize = const Size(412, 824);
   static final Map<String, Map<String, Uint8List?>> themeImageCaches = {};
   static final Map<String, Uint8List?> themeImagePreviewCaches = {};
 
