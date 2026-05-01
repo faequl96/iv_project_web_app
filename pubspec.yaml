@@ -15,32 +15,32 @@ dependencies:
   iv_project_model:
     git:
       url: https://github.com/faequl96/iv_project_model.git
-      ref: 0.1.4+1
+      ref: 0.1.4+2
 
   iv_project_web_data:
     git:
       url: https://github.com/faequl96/iv_project_web_data.git
-      ref: 0.2.4+3
+      ref: 0.2.4+4
 
   iv_project_core:
     git:
       url: https://github.com/faequl96/iv_project_core.git
-      ref: 0.1.5
+      ref: 0.1.5+2
 
   iv_project_widget_core:
     git:
       url: https://github.com/faequl96/iv_project_widget_core.git
-      ref: 0.0.6+5
+      ref: 0.0.7
 
   iv_project_invitation_theme:
     git:
       url: https://github.com/faequl96/iv_project_invitation_theme.git
-      ref: 0.2.7+1
+      ref: 0.2.7+2
 
   quick_dev_sdk:
     git:
       url: https://github.com/faequl96/quick_dev_sdk.git
-      ref: 0.1.2+2
+      ref: 0.1.2+3
 
   go_router: ^17.2.0
   bloc: ^9.2.0
