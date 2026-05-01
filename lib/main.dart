@@ -32,12 +32,14 @@ void main() async {
   if (path == 'theme-dev' || path == 'themes-catalog') {
     AppInit.preCacheDummmyImages(Dummys.invitationData);
     AppInit.preCacheAssetImages();
+    if (path == 'themes-catalog') AppInit.getThemeCatalogSummaryImagePreviewSize();
   } else {
     final invitation = await AppInit.getInvitation();
 
     if (invitation != null) {
       AppInit.prefetchAudio(invitation);
       AppInit.preCacheImages(invitation);
+      AppInit.preCacheAssetImages();
 
       AppRouter.initialInvitation = invitation;
     }
