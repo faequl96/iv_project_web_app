@@ -114,7 +114,6 @@ class AppInit {
     final ImageStream stream = NetworkImage(imageUrl).resolve(ImageConfiguration.empty);
     stream.addListener(
       ImageStreamListener((ImageInfo info, _) {
-        print(info.image.height);
         ThemesCatalogPage.themeCatalogSummaryImagePreviewSize = Size(info.image.width.toDouble(), info.image.height.toDouble());
       }),
     );
