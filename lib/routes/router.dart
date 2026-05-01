@@ -43,26 +43,6 @@ class AppRouter {
           if (extraValue == null) return const SizedBox.shrink();
           return InvitationExampleViewerPage(extra: extraValue);
         },
-        appBar: (extra) {
-          // final langCode = GlobalContextService.value.read<LocaleCubit>().state.languageCode;
-          final extraValue = ExtraHelper.receiveInvitationExampleViewerExtra(extra);
-          if (extraValue == null) return AppBar();
-          final page = extraValue.useWrapper ? extraValue.initialPage + 1 : extraValue.initialPage + 2;
-          // String prefixENTitle() {
-          //   if (page == 1) return 'st';
-          //   if (page == 2) return 'nd';
-          //   if (page == 3) return 'rd';
-          //   return 'th';
-          // }
-
-          return GeneralAppBar(
-            title: extraValue.viewAsSinglePage ? 'Gambar ke-$page' : extraValue.invitationThemeName,
-            backgroundColor: extraValue.viewAsSinglePage ? Colors.black : AppColor.primaryColor,
-            leftAction: AppBarLeftAction(
-              onTap: () => extraValue.viewAsSinglePage ? NavigationService.pop() : NavigationService.go('/themes-catalog'),
-            ),
-          );
-        },
       ),
     ],
   );
