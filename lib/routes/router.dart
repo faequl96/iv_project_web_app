@@ -58,7 +58,9 @@ class AppRouter {
           return GeneralAppBar(
             title: extraValue.viewAsSinglePage ? 'Gambar ke-$page' : extraValue.invitationThemeName,
             backgroundColor: extraValue.viewAsSinglePage ? Colors.black : AppColor.primaryColor,
-            leftAction: AppBarLeftAction(onTap: () => NavigationService.go('/themes-catalog')),
+            leftAction: AppBarLeftAction(
+              onTap: () => extraValue.viewAsSinglePage ? NavigationService.pop() : NavigationService.go('/themes-catalog'),
+            ),
           );
         },
       ),

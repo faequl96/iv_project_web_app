@@ -1,6 +1,5 @@
 import 'dart:typed_data';
 
-import 'package:image/image.dart' as img;
 import 'package:flutter/material.dart';
 import 'package:iv_project_model/iv_project_model.dart';
 import 'package:iv_project_web_app/pages/themes_catalog/invitation_theme_item.dart';
@@ -10,16 +9,6 @@ class ThemesCatalogPage extends StatefulWidget {
 
   static final Map<String, Map<String, Uint8List?>> themeImageCaches = {};
   static final Map<String, Uint8List?> themeImagePreviewCaches = {};
-
-  static Uint8List encodePng(Map<String, dynamic> params) {
-    final int width = params['width'];
-    final int height = params['height'];
-    final Uint8List rawBytes = params['bytes'];
-
-    final image = img.Image.fromBytes(width: width, height: height, bytes: rawBytes.buffer, order: img.ChannelOrder.rgba);
-
-    return Uint8List.fromList(img.encodePng(image));
-  }
 
   @override
   State<ThemesCatalogPage> createState() => _ThemesCatalogPageState();
