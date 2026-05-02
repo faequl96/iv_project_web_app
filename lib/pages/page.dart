@@ -31,7 +31,7 @@ class Page extends StatelessWidget {
             else
               Overlay.wrap(child: content),
 
-            SizedBox(height: kToolbarHeight, child: appBar ?? const SizedBox.shrink()),
+            if (appBar != null) SizedBox(height: kToolbarHeight, child: appBar),
           ],
         ),
         backgroundColor: ColorConverter.lighten(AppColor.primaryColor, 94),

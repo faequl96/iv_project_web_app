@@ -16,7 +16,7 @@ class InvitationExampleViewerPage extends StatelessWidget {
       child: Stack(
         children: [
           InvitationThemeLauncher(
-            heightAdjustment: kToolbarHeight,
+            heightAdjustment: 0,
             viewType: ViewType.example,
             invitationThemeId: extra.invitationThemeId,
             invitationId: '',
