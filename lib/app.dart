@@ -76,7 +76,7 @@ class InitAppState extends StatefulWidget {
 class _InitAppStateState extends State<InitAppState> with WidgetsBindingObserver {
   void _setSize() {
     AppSize.set(MediaQuery.of(GlobalContextService.value));
-    ThemeAppHelpers.setSize(context.read<InvitationThemeCoreCubit>(), kToolbarHeight);
+    ThemeAppHelpers.setSize(context.read<InvitationThemeCoreCubit>(), 0);
   }
 
   void _initSync() {
