@@ -29,7 +29,7 @@ class InvitationThemeSummaryContent extends StatelessWidget {
                     const SizedBox(width: 14),
                     const Icon(Icons.style, size: 32, color: AppColor.primaryColor),
                     const SizedBox(width: 8),
-                    Text(invitationTheme.name, style: const TextStyle(fontWeight: .bold, fontSize: 15)),
+                    Text(invitationTheme.name, style: const TextStyle(fontWeight: .w600, fontSize: 15)),
                     const Spacer(),
                     const SizedBox(width: 14),
                   ],
@@ -119,7 +119,7 @@ class InvitationThemeSummaryContent extends StatelessWidget {
                 child: const Center(
                   child: Text(
                     'Lihat Contoh',
-                    style: TextStyle(fontSize: 15, fontWeight: .bold, color: Colors.white),
+                    style: TextStyle(fontSize: 15, fontWeight: .w600, color: Colors.white),
                   ),
                 ),
               ),
