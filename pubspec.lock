@@ -159,10 +159,10 @@ packages:
     dependency: transitive
     description:
       name: flutter_map
-      sha256: "391e7dc95cc3f5190748210a69d4cfeb5d8f84dcdfa9c3235d0a9d7742ccb3f8"
+      sha256: "03b71c02806ff20c3718d108cbbb3638142ebafe368d8ce2dd22a33344bcb02b"
       url: "https://pub.dev"
     source: hosted
-    version: "8.2.2"
+    version: "8.3.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -185,10 +185,10 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: "48fb2f42ad057476fa4b733cb95e9f9ea7b0b010bb349ea491dca7dbdb18ffc4"
+      sha256: "92d8cee7c57dff0a6c409c05597b460002434eccf7424a712283225b3962d03f"
       url: "https://pub.dev"
     source: hosted
-    version: "17.2.0"
+    version: "17.2.3"
   gradient_borders:
     dependency: transitive
     description:
@@ -233,8 +233,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.1.5+2"
-      resolved-ref: "93d9b9c06c64f42864f4fa88e0478a7a161bcb02"
+      ref: "0.1.5+3"
+      resolved-ref: d4d4e32bdfa61982d589c454ed6f8f3de5371710
       url: "https://github.com/faequl96/iv_project_core.git"
     source: git
     version: "0.1.5"
@@ -242,8 +242,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.2.7+2"
-      resolved-ref: dfa10f256d7bd0a34ad0bb2a41eb1d4f07a12995
+      ref: "0.2.7+5"
+      resolved-ref: "73616c894649d787fd6045d7e80fb8ebf00fd9b9"
       url: "https://github.com/faequl96/iv_project_invitation_theme.git"
     source: git
     version: "0.2.7"
@@ -260,8 +260,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.2.4+4"
-      resolved-ref: dbb41a934922c5e8f639628a383b6c268bef17b8
+      ref: "0.2.4+5"
+      resolved-ref: edcc98e2c2bb552f6a2fccb37c0cb6cf4e0d6fa5
       url: "https://github.com/faequl96/iv_project_web_data.git"
     source: git
     version: "0.2.4"
@@ -269,8 +269,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.0.7"
-      resolved-ref: dea01808f48c979abfce091ccd713fdb0e05d65b
+      ref: "0.0.7+2"
+      resolved-ref: e3af6b00d48ef773cb6f502764c06944b831ff73
       url: "https://github.com/faequl96/iv_project_widget_core.git"
     source: git
     version: "0.0.7"
@@ -346,14 +346,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.1"
-  logger:
-    dependency: transitive
-    description:
-      name: logger
-      sha256: a7967e31b703831a893bbc3c3dd11db08126fe5f369b5c648a36f821979f5be3
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.6.2"
   logging:
     dependency: transitive
     description:
@@ -534,8 +526,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.1.2+3"
-      resolved-ref: af470ddbdccae59241f76f2821693a4a53ce4837
+      ref: "0.1.2+4"
+      resolved-ref: "71e30b62457dfe81678cfb02bbed5c7f7755f05c"
       url: "https://github.com/faequl96/quick_dev_sdk.git"
     source: git
     version: "0.1.2"
