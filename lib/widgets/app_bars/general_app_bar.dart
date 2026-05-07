@@ -63,7 +63,7 @@ class GeneralAppBar extends StatelessWidget implements PreferredSizeWidget {
               }
               return Text(
                 AppLocalization.translate(title),
-                style: const TextStyle(fontSize: 16, fontWeight: .bold, color: Colors.white),
+                style: const TextStyle(fontSize: 16, fontWeight: .w600, color: Colors.white),
               );
             },
           ),

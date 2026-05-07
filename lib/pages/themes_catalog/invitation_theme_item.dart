@@ -67,7 +67,7 @@ class InvitationThemeItem extends StatelessWidget {
             const SizedBox(height: 6),
             Text(
               invitationTheme.name,
-              style: const TextStyle(fontSize: 13, fontWeight: .bold, height: 1.4),
+              style: const TextStyle(fontSize: 13, fontWeight: .w600, height: 1.4),
               maxLines: 1,
               overflow: .ellipsis,
             ),

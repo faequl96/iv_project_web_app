@@ -41,7 +41,7 @@ class _RunningTextState extends State<RunningText> with SingleTickerProviderStat
     final painter = TextPainter(
       text: TextSpan(
         text: widget.text,
-        style: const TextStyle(fontSize: 16, fontWeight: .bold, color: Colors.white),
+        style: const TextStyle(fontSize: 16, fontWeight: .w600, color: Colors.white),
       ),
       maxLines: 1,
       textDirection: .ltr,
@@ -77,7 +77,7 @@ class _RunningTextState extends State<RunningText> with SingleTickerProviderStat
               height: 24,
               child: Text(
                 widget.text,
-                style: const TextStyle(fontSize: 16, fontWeight: .bold, color: Colors.white),
+                style: const TextStyle(fontSize: 16, fontWeight: .w600, color: Colors.white),
               ),
             ),
           ],
