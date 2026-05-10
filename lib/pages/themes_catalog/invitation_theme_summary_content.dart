@@ -167,7 +167,7 @@ class _ImageViewer extends StatelessWidget {
     final githubRepoOwner = 'faequl96';
     final githubRepoName = 'iv-project-theme-preview-image-assets';
     final path = 'uploads/themes/theme_${invitationTheme.id}/pages';
-    final fileName = '$initialPage${useWrapper ? '_wrapper' : ''}.png';
+    final fileName = '$initialPage${useWrapper ? '_wrapper' : ''}.webp';
     final uploadTo = '$path/$fileName';
     final imageUrl = 'https://raw.githubusercontent.com/$githubRepoOwner/$githubRepoName/main/$uploadTo';
 

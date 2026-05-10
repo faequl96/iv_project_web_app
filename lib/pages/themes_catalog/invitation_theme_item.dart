@@ -16,7 +16,7 @@ class InvitationThemeItem extends StatelessWidget {
     final githubRepoOwner = 'faequl96';
     final githubRepoName = 'iv-project-theme-preview-image-assets';
     final path = 'uploads/themes/theme_${invitationTheme.id}';
-    final fileName = 'preview.png';
+    final fileName = 'preview.webp';
     final uploadTo = '$path/$fileName';
     final imageUrl = 'https://raw.githubusercontent.com/$githubRepoOwner/$githubRepoName/main/$uploadTo';
 
