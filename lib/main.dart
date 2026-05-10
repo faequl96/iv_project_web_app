@@ -11,7 +11,7 @@ import 'package:iv_project_web_app/routes/router.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 
 @JS('updateSplashProgress')
-external JSPromise jsUpdateSplashProgress(double initialPercent, double targetPercent, double minMs, double maxMs);
+external JSPromise _jsUpdateSplashProgress(double initialPercent, double targetPercent, double minMs, double maxMs);
 
 void main() async {
   usePathUrlStrategy();
@@ -24,7 +24,7 @@ void main() async {
 
   Dummys.initInvitationData();
 
-  jsUpdateSplashProgress(80, 95, 50, 350);
+  await _jsUpdateSplashProgress(80, 95, 50, 350).toDart;
 
   final paths = Uri.base.pathSegments;
   final path = paths.isNotEmpty ? paths[0] : '';
@@ -47,7 +47,7 @@ void main() async {
 
   await Future.delayed(const Duration(seconds: 2));
 
-  await jsUpdateSplashProgress(95, 100, 150, 250).toDart;
+  await _jsUpdateSplashProgress(95, 100, 150, 250).toDart;
 
   runApp(const App());
 }

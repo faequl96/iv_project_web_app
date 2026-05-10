@@ -30,7 +30,7 @@ class GeneralAppBar extends StatelessWidget implements PreferredSizeWidget {
     Widget? leftActionValue;
     if (leftAction != null) {
       leftActionValue = Theme(
-        data: ThemeData(textTheme: AppTextThemes.nunito(), useMaterial3: true),
+        data: ThemeData(textTheme: AppTextThemes.inter(), useMaterial3: true),
         child: leftAction!,
       );
     }
@@ -39,14 +39,14 @@ class GeneralAppBar extends StatelessWidget implements PreferredSizeWidget {
     if (rightAction != null) {
       rightActionValue = [
         Theme(
-          data: ThemeData(textTheme: AppTextThemes.nunito(), useMaterial3: true),
+          data: ThemeData(textTheme: AppTextThemes.inter(), useMaterial3: true),
           child: rightAction!,
         ),
       ];
     }
 
     return Theme(
-      data: ThemeData(textTheme: AppTextThemes.nunito(), useMaterial3: false),
+      data: ThemeData(textTheme: AppTextThemes.inter(), useMaterial3: false),
       child: SizedBox(
         height: kToolbarHeight,
         child: AppBar(

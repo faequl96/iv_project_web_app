@@ -24,7 +24,13 @@ class InvitationExampleViewerPage extends StatelessWidget {
               initialPage: extra.initialPage,
               useWrapper: extra.useWrapper,
             ),
-            Positioned(top: 10, left: 10, width: 50, height: 50, child: AppBarLeftAction(onTap: () => NavigationService.pop())),
+            Positioned(
+              top: 10,
+              left: 10,
+              width: 50,
+              height: 50,
+              child: AppBarLeftAction(backgroundColor: Colors.white.withValues(alpha: .4), onTap: () => NavigationService.pop()),
+            ),
           ],
         ),
       );
@@ -48,7 +54,10 @@ class InvitationExampleViewerPage extends StatelessWidget {
             left: 10,
             width: 50,
             height: 50,
-            child: AppBarLeftAction(onTap: () => NavigationService.go('/themes-catalog')),
+            child: AppBarLeftAction(
+              backgroundColor: Colors.white.withValues(alpha: .4),
+              onTap: () => NavigationService.go('/themes-catalog'),
+            ),
           ),
         ],
       ),

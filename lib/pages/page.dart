@@ -11,7 +11,7 @@ class Page extends StatelessWidget {
   @override
   Widget build(context) {
     return MediaQuery(
-      data: MediaQuery.of(context).copyWith(textScaler: const TextScaler.linear(1.0)),
+      data: MediaQuery.of(context).copyWith(textScaler: const .linear(1)),
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         body: Stack(
