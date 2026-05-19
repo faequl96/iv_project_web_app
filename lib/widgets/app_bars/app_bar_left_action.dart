@@ -11,11 +11,13 @@ class AppBarLeftAction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GeneralEffectsButton(
+    return QuickButton(
       onTap: () => onTap?.call(),
-      color: backgroundColor,
-      splashColor: ColorConverter.lighten(AppColor.primaryColor),
-      borderRadius: .circular(30),
+      style: QuickButtonStyle(
+        color: backgroundColor,
+        splashColor: ColorUtil.lighten(AppColor.primaryColor),
+        borderRadius: .circular(30),
+      ),
       child: Icon(icon, size: 28, color: Colors.white),
     );
   }

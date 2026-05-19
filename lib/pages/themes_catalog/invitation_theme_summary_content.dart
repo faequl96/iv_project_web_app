@@ -50,8 +50,8 @@ class InvitationThemeSummaryContent extends StatelessWidget {
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
                                   colors: [
-                                    ColorConverter.lighten(AppColor.primaryColor, 96).withValues(alpha: 10),
-                                    ColorConverter.lighten(AppColor.primaryColor, 96).withValues(alpha: 0),
+                                    ColorUtil.lighten(AppColor.primaryColor, 96).withValues(alpha: 10),
+                                    ColorUtil.lighten(AppColor.primaryColor, 96).withValues(alpha: 0),
                                   ],
                                   stops: const [0, .7],
                                 ),
@@ -66,8 +66,8 @@ class InvitationThemeSummaryContent extends StatelessWidget {
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
                                   colors: [
-                                    ColorConverter.lighten(AppColor.primaryColor, 96).withValues(alpha: 0),
-                                    ColorConverter.lighten(AppColor.primaryColor, 96).withValues(alpha: 10),
+                                    ColorUtil.lighten(AppColor.primaryColor, 96).withValues(alpha: 0),
+                                    ColorUtil.lighten(AppColor.primaryColor, 96).withValues(alpha: 10),
                                   ],
                                   stops: const [.3, 1],
                                 ),
@@ -89,7 +89,7 @@ class InvitationThemeSummaryContent extends StatelessWidget {
           children: [
             const SizedBox(width: 16),
             Expanded(
-              child: GeneralEffectsButton(
+              child: QuickButton(
                 onTap: () {
                   NavigationService.go(
                     '/invitation-example-viewer',
@@ -111,11 +111,12 @@ class InvitationThemeSummaryContent extends StatelessWidget {
                     ),
                   );
                 },
-                height: 52,
-                color: AppColor.primaryColor,
-                splashColor: Colors.grey.shade300,
-                borderRadius: .circular(40),
-                useInitialElevation: true,
+                style: QuickButtonStyle(
+                  height: 52,
+                  color: AppColor.primaryColor,
+                  splashColor: Colors.grey.shade300,
+                  borderRadius: .circular(40),
+                ),
                 child: const Center(
                   child: Text(
                     'Lihat Contoh',
@@ -171,7 +172,7 @@ class _ImageViewer extends StatelessWidget {
     final uploadTo = '$path/$fileName';
     final imageUrl = 'https://raw.githubusercontent.com/$githubRepoOwner/$githubRepoName/main/$uploadTo';
 
-    return GeneralEffectsButton(
+    return QuickButton(
       onTap: _gotoExample,
       child: SizedBox(
         height: 260,

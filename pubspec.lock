@@ -470,7 +470,7 @@ packages:
       path: "../quick_dev_sdk"
       relative: true
     source: path
-    version: "0.1.2"
+    version: "0.2.0"
   rxdart:
     dependency: transitive
     description:

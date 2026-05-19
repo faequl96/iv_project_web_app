@@ -22,25 +22,26 @@ class InvitationThemeItem extends StatelessWidget {
 
     return Padding(
       padding: const .symmetric(horizontal: 6),
-      child: GeneralEffectsButton(
+      child: QuickButton(
         onTap: () {
-          ShowModal.bottomSheet(
+          FloatingOverlay.showBottomSheet(
             GlobalContextService.value,
             decoration: BottomSheetDecoration(
               borderRadius: const .only(topLeft: .circular(24), topRight: .circular(24)),
-              color: ColorConverter.lighten(AppColor.primaryColor, 94),
+              color: ColorUtil.lighten(AppColor.primaryColor, 94),
             ),
             header: BottomSheetHeader(title: .handleBar(color: Colors.grey.shade700)),
             contentBuilder: (_) => InvitationThemeSummaryContent(invitationTheme: invitationTheme),
           );
         },
-        width: 150,
-        borderRadius: .circular(10),
-        padding: const .symmetric(horizontal: 8),
-        border: .all(width: .5, color: Colors.black12),
-        color: Colors.white,
-        splashColor: Colors.white,
-        useInitialElevation: true,
+        style: QuickButtonStyle(
+          width: 150,
+          borderRadius: .circular(10),
+          padding: const .symmetric(horizontal: 8),
+          border: .all(width: .5, color: Colors.black12),
+          color: Colors.white,
+          splashColor: Colors.white,
+        ),
         child: Column(
           crossAxisAlignment: .start,
           children: [

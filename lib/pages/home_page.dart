@@ -107,7 +107,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     if (_isLoading) {
       return ColoredBox(
-        color: ColorConverter.lighten(AppColor.primaryColor, 94),
+        color: ColorUtil.lighten(AppColor.primaryColor, 94),
         child: const Center(
           child: SizedBox(
             height: 24,
@@ -164,15 +164,15 @@ class _HomePageState extends State<HomePage> {
                   style: AppFonts.inter(fontSize: 16, fontWeight: .w800),
                 ),
                 const SizedBox(width: 6),
-                Image.asset('assets/logos/in_vite_logo.png', height: 20, fit: BoxFit.fitHeight),
+                Image.asset('assets/logos/in_vite_logo.png', height: 20, fit: .fitHeight),
                 const SizedBox(width: 6),
                 if (_localeCubit.state.languageCode == 'en') Text('App', style: AppFonts.inter(fontSize: 16, fontWeight: .w800)),
               ],
             ),
-            GeneralEffectsButton(
+            QuickButton(
               onTap: () {},
-              height: 60,
-              child: Image.asset('assets/get_it_on_google_play.png', height: 50, fit: BoxFit.fitHeight),
+              style: const QuickButtonStyle(height: 60),
+              child: Image.asset('assets/get_it_on_google_play.png', height: 50, fit: .fitHeight),
             ),
             const SizedBox(height: 44),
           ],
