@@ -29,7 +29,10 @@ class InvitationExampleViewerPage extends StatelessWidget {
               left: 10,
               width: 50,
               height: 50,
-              child: AppBarLeftAction(backgroundColor: Colors.white.withValues(alpha: .4), onTap: () => NavigationService.pop()),
+              child: AppBarLeftAction(
+                backgroundColor: Colors.white.withValues(alpha: .4),
+                onTap: () => NavigationService.pop(),
+              ),
             ),
           ],
         ),
@@ -42,7 +45,7 @@ class InvitationExampleViewerPage extends StatelessWidget {
         children: [
           InvitationThemeLauncher(
             heightAdjustment: 0,
-            viewType: ViewType.example,
+            viewType: .example,
             invitationThemeId: extra.invitationThemeId,
             invitationId: '',
             invitationData: extra.invitationData,

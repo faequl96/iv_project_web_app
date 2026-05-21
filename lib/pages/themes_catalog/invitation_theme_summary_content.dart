@@ -29,7 +29,10 @@ class InvitationThemeSummaryContent extends StatelessWidget {
                     const SizedBox(width: 14),
                     const Icon(Icons.style, size: 32, color: AppColor.primaryColor),
                     const SizedBox(width: 8),
-                    Text(invitationTheme.name, style: const TextStyle(fontWeight: .w600, fontSize: 15)),
+                    Text(
+                      invitationTheme.name,
+                      style: const TextStyle(fontWeight: .w600, fontSize: 15),
+                    ),
                     const Spacer(),
                     const SizedBox(width: 14),
                   ],
@@ -50,8 +53,14 @@ class InvitationThemeSummaryContent extends StatelessWidget {
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
                                   colors: [
-                                    ColorUtil.lighten(AppColor.primaryColor, 96).withValues(alpha: 10),
-                                    ColorUtil.lighten(AppColor.primaryColor, 96).withValues(alpha: 0),
+                                    ColorUtil.lighten(
+                                      AppColor.primaryColor,
+                                      96,
+                                    ).withValues(alpha: 10),
+                                    ColorUtil.lighten(
+                                      AppColor.primaryColor,
+                                      96,
+                                    ).withValues(alpha: 0),
                                   ],
                                   stops: const [0, .7],
                                 ),
@@ -66,8 +75,14 @@ class InvitationThemeSummaryContent extends StatelessWidget {
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
                                   colors: [
-                                    ColorUtil.lighten(AppColor.primaryColor, 96).withValues(alpha: 0),
-                                    ColorUtil.lighten(AppColor.primaryColor, 96).withValues(alpha: 10),
+                                    ColorUtil.lighten(
+                                      AppColor.primaryColor,
+                                      96,
+                                    ).withValues(alpha: 0),
+                                    ColorUtil.lighten(
+                                      AppColor.primaryColor,
+                                      96,
+                                    ).withValues(alpha: 10),
                                   ],
                                   stops: const [.3, 1],
                                 ),
@@ -114,7 +129,6 @@ class InvitationThemeSummaryContent extends StatelessWidget {
                 style: QuickButtonStyle(
                   height: 52,
                   color: AppColor.primaryColor,
-                  splashColor: Colors.grey.shade300,
                   borderRadius: .circular(40),
                 ),
                 child: const Center(
@@ -135,7 +149,11 @@ class InvitationThemeSummaryContent extends StatelessWidget {
 }
 
 class _ImageViewer extends StatelessWidget {
-  const _ImageViewer({required this.invitationTheme, required this.initialPage, this.useWrapper = false});
+  const _ImageViewer({
+    required this.invitationTheme,
+    required this.initialPage,
+    this.useWrapper = false,
+  });
 
   final InvitationThemeResponse invitationTheme;
   final bool useWrapper;
@@ -170,7 +188,8 @@ class _ImageViewer extends StatelessWidget {
     final path = 'uploads/themes/theme_${invitationTheme.id}/pages';
     final fileName = '$initialPage${useWrapper ? '_wrapper' : ''}.webp';
     final uploadTo = '$path/$fileName';
-    final imageUrl = 'https://raw.githubusercontent.com/$githubRepoOwner/$githubRepoName/main/$uploadTo';
+    final imageUrl =
+        'https://raw.githubusercontent.com/$githubRepoOwner/$githubRepoName/main/$uploadTo';
 
     return QuickButton(
       onTap: _gotoExample,
@@ -192,7 +211,9 @@ class _ImageViewer extends StatelessWidget {
                 if (wasSynchronouslyLoaded) return child;
                 if (frame != null) return child;
                 return Center(
-                  child: RepaintBoundary(child: SharedPersonalize.loadingWidget(size: 24, color: AppColor.primaryColor)),
+                  child: RepaintBoundary(
+                    child: SharedPersonalize.loadingWidget(size: 24, color: AppColor.primaryColor),
+                  ),
                 );
               },
             ),

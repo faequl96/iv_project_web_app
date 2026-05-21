@@ -57,7 +57,10 @@ class GeneralAppBar extends StatelessWidget implements PreferredSizeWidget {
               if (extraTitle != null) {
                 return LayoutBuilder(
                   builder: (_, constraints) {
-                    return RunningText(text: '${AppLocalization.translate(title)} - $extraTitle', constraints: constraints);
+                    return RunningText(
+                      text: '${AppLocalization.translate(title)} - $extraTitle',
+                      constraints: constraints,
+                    );
                   },
                 );
               }

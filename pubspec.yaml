@@ -1,10 +1,10 @@
 name: iv_project_web_app
 description: "In Vite Project Web App"
 publish_to: "none"
-version: 0.1.7
+version: 0.2.0
 
 environment:
-  sdk: ^3.11.5
+  sdk: ^3.12.0
 
 dependencies:
   flutter:
@@ -31,7 +31,7 @@ dependencies:
     path: ../quick_dev_sdk
 
   go_router: ^17.2.3
-  bloc: ^9.2.0
+  bloc: ^9.2.1
   flutter_bloc: ^9.1.1
   http: ^1.6.0
 

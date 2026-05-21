@@ -62,18 +62,30 @@ class AppInit {
       if (coverImageUrl != null) AssetImage(coverImageUrl, package: 'iv_project_invitation_theme'),
       AssetImage(brideImageUrl, package: 'iv_project_invitation_theme'),
       AssetImage(groomImageUrl, package: 'iv_project_invitation_theme'),
-      if (gallery.imageURL1 != null) AssetImage(gallery.imageURL1!, package: 'iv_project_invitation_theme'),
-      if (gallery.imageURL2 != null) AssetImage(gallery.imageURL2!, package: 'iv_project_invitation_theme'),
-      if (gallery.imageURL3 != null) AssetImage(gallery.imageURL3!, package: 'iv_project_invitation_theme'),
-      if (gallery.imageURL4 != null) AssetImage(gallery.imageURL4!, package: 'iv_project_invitation_theme'),
-      if (gallery.imageURL5 != null) AssetImage(gallery.imageURL5!, package: 'iv_project_invitation_theme'),
-      if (gallery.imageURL6 != null) AssetImage(gallery.imageURL6!, package: 'iv_project_invitation_theme'),
-      if (gallery.imageURL7 != null) AssetImage(gallery.imageURL7!, package: 'iv_project_invitation_theme'),
-      if (gallery.imageURL8 != null) AssetImage(gallery.imageURL8!, package: 'iv_project_invitation_theme'),
-      if (gallery.imageURL9 != null) AssetImage(gallery.imageURL9!, package: 'iv_project_invitation_theme'),
-      if (gallery.imageURL10 != null) AssetImage(gallery.imageURL10!, package: 'iv_project_invitation_theme'),
-      if (gallery.imageURL11 != null) AssetImage(gallery.imageURL11!, package: 'iv_project_invitation_theme'),
-      if (gallery.imageURL12 != null) AssetImage(gallery.imageURL12!, package: 'iv_project_invitation_theme'),
+      if (gallery.imageURL1 != null)
+        AssetImage(gallery.imageURL1!, package: 'iv_project_invitation_theme'),
+      if (gallery.imageURL2 != null)
+        AssetImage(gallery.imageURL2!, package: 'iv_project_invitation_theme'),
+      if (gallery.imageURL3 != null)
+        AssetImage(gallery.imageURL3!, package: 'iv_project_invitation_theme'),
+      if (gallery.imageURL4 != null)
+        AssetImage(gallery.imageURL4!, package: 'iv_project_invitation_theme'),
+      if (gallery.imageURL5 != null)
+        AssetImage(gallery.imageURL5!, package: 'iv_project_invitation_theme'),
+      if (gallery.imageURL6 != null)
+        AssetImage(gallery.imageURL6!, package: 'iv_project_invitation_theme'),
+      if (gallery.imageURL7 != null)
+        AssetImage(gallery.imageURL7!, package: 'iv_project_invitation_theme'),
+      if (gallery.imageURL8 != null)
+        AssetImage(gallery.imageURL8!, package: 'iv_project_invitation_theme'),
+      if (gallery.imageURL9 != null)
+        AssetImage(gallery.imageURL9!, package: 'iv_project_invitation_theme'),
+      if (gallery.imageURL10 != null)
+        AssetImage(gallery.imageURL10!, package: 'iv_project_invitation_theme'),
+      if (gallery.imageURL11 != null)
+        AssetImage(gallery.imageURL11!, package: 'iv_project_invitation_theme'),
+      if (gallery.imageURL12 != null)
+        AssetImage(gallery.imageURL12!, package: 'iv_project_invitation_theme'),
     ];
 
     for (var provider in images) {
@@ -87,15 +99,39 @@ class AppInit {
 
     final List<ImageProvider> images = [
       const AssetImage('assets/avatars/avatars.png', package: 'iv_project_invitation_theme'),
-      const AssetImage('assets/backgrounds/batik_1_left.jpg', package: 'iv_project_invitation_theme'),
-      const AssetImage('assets/backgrounds/batik_1_right.jpg', package: 'iv_project_invitation_theme'),
-      const AssetImage('assets/backgrounds/kelir_jawa_gold.png', package: 'iv_project_invitation_theme'),
-      const AssetImage('assets/backgrounds/kelir_jawa_rose_gold.png', package: 'iv_project_invitation_theme'),
-      const AssetImage('assets/backgrounds/base_canvas.jpg', package: 'iv_project_invitation_theme'),
+      const AssetImage(
+        'assets/backgrounds/batik_1_left.jpg',
+        package: 'iv_project_invitation_theme',
+      ),
+      const AssetImage(
+        'assets/backgrounds/batik_1_right.jpg',
+        package: 'iv_project_invitation_theme',
+      ),
+      const AssetImage(
+        'assets/backgrounds/kelir_jawa_gold.png',
+        package: 'iv_project_invitation_theme',
+      ),
+      const AssetImage(
+        'assets/backgrounds/kelir_jawa_rose_gold.png',
+        package: 'iv_project_invitation_theme',
+      ),
+      const AssetImage(
+        'assets/backgrounds/base_canvas.jpg',
+        package: 'iv_project_invitation_theme',
+      ),
       const AssetImage('assets/backgrounds/floral_1.png', package: 'iv_project_invitation_theme'),
-      const AssetImage('assets/backgrounds/floral_flower_blue.png', package: 'iv_project_invitation_theme'),
-      const AssetImage('assets/backgrounds/floral_flower_pink.png', package: 'iv_project_invitation_theme'),
-      const AssetImage('assets/backgrounds/floral_leaf.png', package: 'iv_project_invitation_theme'),
+      const AssetImage(
+        'assets/backgrounds/floral_flower_blue.png',
+        package: 'iv_project_invitation_theme',
+      ),
+      const AssetImage(
+        'assets/backgrounds/floral_flower_pink.png',
+        package: 'iv_project_invitation_theme',
+      ),
+      const AssetImage(
+        'assets/backgrounds/floral_leaf.png',
+        package: 'iv_project_invitation_theme',
+      ),
     ];
 
     for (var provider in images) {
@@ -109,12 +145,16 @@ class AppInit {
     final path = 'uploads/themes/theme_5/pages';
     final fileName = '0.png';
     final uploadTo = '$path/$fileName';
-    final imageUrl = 'https://raw.githubusercontent.com/$githubRepoOwner/$githubRepoName/main/$uploadTo';
+    final imageUrl =
+        'https://raw.githubusercontent.com/$githubRepoOwner/$githubRepoName/main/$uploadTo';
 
     final ImageStream stream = NetworkImage(imageUrl).resolve(ImageConfiguration.empty);
     stream.addListener(
       ImageStreamListener((ImageInfo info, _) {
-        ThemesCatalogPage.themeCatalogSummaryImagePreviewSize = Size(info.image.width.toDouble(), info.image.height.toDouble());
+        ThemesCatalogPage.themeCatalogSummaryImagePreviewSize = Size(
+          info.image.width.toDouble(),
+          info.image.height.toDouble(),
+        );
       }),
     );
   }

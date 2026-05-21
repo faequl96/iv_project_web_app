@@ -34,7 +34,9 @@ class _App extends StatelessWidget {
         scrollBehavior: MyCustomScrollBehavior(),
         routerConfig: NavigationService.router,
         theme: ThemeData(
-          inputDecorationTheme: InputDecorationTheme(floatingLabelStyle: TextStyle(color: Colors.grey.shade300)),
+          inputDecorationTheme: InputDecorationTheme(
+            floatingLabelStyle: TextStyle(color: Colors.grey.shade300),
+          ),
           textSelectionTheme: TextSelectionThemeData(
             cursorColor: Colors.grey.shade100,
             selectionHandleColor: Colors.grey.shade100,
