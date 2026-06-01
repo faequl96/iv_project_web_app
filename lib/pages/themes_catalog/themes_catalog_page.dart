@@ -126,7 +126,9 @@ class _ThemesCatalogPageState extends State<ThemesCatalogPage> {
                     for (int index = 0; index < invitationThemes.length; index++)
                       InvitationThemeItem(
                         invitationTheme: invitationThemes[index],
-                        loadingImageDelay: const Duration(milliseconds: 100) + Duration(milliseconds: (index + 1) * 200),
+                        loadingImageDelay:
+                            const Duration(milliseconds: 100) +
+                            Duration(milliseconds: (index + 1) * 200),
                       ),
                   ],
                 ),

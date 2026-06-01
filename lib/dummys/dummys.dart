@@ -82,14 +82,24 @@ class Dummys {
         imageURL11: 'assets/dummys/gallery_image_11.jpg',
       ),
       bankAccounts: const [
-        BankAccountResponse(id: 1, bankName: 'Bank Central Asia (BCA)', accountName: 'Milea Adnan Hussain', number: '485439574'),
+        BankAccountResponse(
+          id: 1,
+          bankName: 'Bank Central Asia (BCA)',
+          accountName: 'Milea Adnan Hussain',
+          number: '485439574',
+        ),
         BankAccountResponse(
           id: 1,
           bankName: 'Bank Negara Indonesia (BNI)',
           accountName: 'Milea Adnan Hussain',
           number: '33854986435848',
         ),
-        BankAccountResponse(id: 1, bankName: 'Bank Rakyat Indonesia (BRI)', accountName: 'Dilan', number: '33854439745427'),
+        BankAccountResponse(
+          id: 1,
+          bankName: 'Bank Rakyat Indonesia (BRI)',
+          accountName: 'Dilan',
+          number: '33854439745427',
+        ),
       ],
     );
   }

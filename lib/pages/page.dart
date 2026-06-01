@@ -34,7 +34,7 @@ class Page extends StatelessWidget {
             if (appBar != null) SizedBox(height: kToolbarHeight, child: appBar),
           ],
         ),
-        backgroundColor: ColorConverter.lighten(AppColor.primaryColor, 94),
+        backgroundColor: ColorUtil.lighten(AppColor.primaryColor, 94),
       ),
     );
   }

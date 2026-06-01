@@ -51,7 +51,9 @@ class _HomePageState extends State<HomePage> {
 
   void _setLangAndAudio() {
     _localeCubit.set(
-      _invitation!.invitationData.general.lang == LangType.en ? const Locale('en', 'US') : const Locale('id', 'ID'),
+      _invitation!.invitationData.general.lang == LangType.en
+          ? const Locale('en', 'US')
+          : const Locale('id', 'ID'),
       reloadLangAssets: false,
     );
 
@@ -90,7 +92,9 @@ class _HomePageState extends State<HomePage> {
         _isContainsErrorGetInvitedGuest = !(await _invitedGuestCubit.getById(_invitedGuestId!));
       } else {
         final invitedGuestId = StorageService.getString('invited-guest-id');
-        _isContainsErrorGetInvitedGuest = !(await _invitedGuestCubit.check(CheckInvitedGuestRequest(id: invitedGuestId)));
+        _isContainsErrorGetInvitedGuest = !(await _invitedGuestCubit.check(
+          CheckInvitedGuestRequest(id: invitedGuestId),
+        ));
         if (!_isContainsErrorGetInvitedGuest) {
           final invitedGuestId = _invitedGuestCubit.state.invitedGuest?.id;
           if (invitedGuestId != null) StorageService.setString('invited-guest-id', invitedGuestId);
@@ -107,7 +111,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     if (_isLoading) {
       return ColoredBox(
-        color: ColorConverter.lighten(AppColor.primaryColor, 94),
+        color: ColorUtil.lighten(AppColor.primaryColor, 94),
         child: const Center(
           child: SizedBox(
             height: 24,
@@ -131,7 +135,9 @@ class _HomePageState extends State<HomePage> {
             setState(() => _isLoading = true);
             if (_isContainsErrorGetInvitation) await _getInvitationById(_invitationId!);
             if (_isContainsErrorGetInvitedGuest) {
-              _isContainsErrorGetInvitedGuest = !(await _invitedGuestCubit.getById(_invitedGuestId!));
+              _isContainsErrorGetInvitedGuest = !(await _invitedGuestCubit.getById(
+                _invitedGuestId!,
+              ));
             }
             setState(() => _isLoading = false);
           },
@@ -147,12 +153,16 @@ class _HomePageState extends State<HomePage> {
           children: [
             const Spacer(),
             Text(
-              _localeCubit.state.languageCode == 'id' ? 'Undangan tidak ditemukan' : 'Invitation not found.',
+              _localeCubit.state.languageCode == 'id'
+                  ? 'Undangan tidak ditemukan'
+                  : 'Invitation not found.',
               style: AppFonts.inter(fontSize: 18, fontWeight: .w800),
             ),
             const Spacer(),
             Text(
-              _localeCubit.state.languageCode == 'id' ? 'Ingin membuat undanganmu sendiri?' : 'Want to make your own invitation?',
+              _localeCubit.state.languageCode == 'id'
+                  ? 'Ingin membuat undanganmu sendiri?'
+                  : 'Want to make your own invitation?',
               style: AppFonts.inter(fontSize: 16, fontWeight: .w500),
             ),
             const SizedBox(height: 14),
@@ -164,15 +174,16 @@ class _HomePageState extends State<HomePage> {
                   style: AppFonts.inter(fontSize: 16, fontWeight: .w800),
                 ),
                 const SizedBox(width: 6),
-                Image.asset('assets/logos/in_vite_logo.png', height: 20, fit: BoxFit.fitHeight),
+                Image.asset('assets/logos/in_vite_logo.png', height: 20, fit: .fitHeight),
                 const SizedBox(width: 6),
-                if (_localeCubit.state.languageCode == 'en') Text('App', style: AppFonts.inter(fontSize: 16, fontWeight: .w800)),
+                if (_localeCubit.state.languageCode == 'en')
+                  Text('App', style: AppFonts.inter(fontSize: 16, fontWeight: .w800)),
               ],
             ),
-            GeneralEffectsButton(
+            QuickButton(
               onTap: () {},
-              height: 60,
-              child: Image.asset('assets/get_it_on_google_play.png', height: 50, fit: BoxFit.fitHeight),
+              style: const QuickButtonStyle.lite(height: 60, elevation: 0),
+              child: Image.asset('assets/get_it_on_google_play.png', height: 50, fit: .fitHeight),
             ),
             const SizedBox(height: 44),
           ],

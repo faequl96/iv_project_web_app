@@ -15,5 +15,7 @@ class AppBlocProvider {
     BlocProvider<InvitationThemeCoreCubit>(create: (_) => InvitationThemeCoreCubit()),
   ];
 
-  static final globalProviders = <BlocProvider>[BlocProvider<LocaleCubit>(lazy: false, create: (_) => LocaleCubit())];
+  static final globalProviders = <BlocProvider>[
+    BlocProvider<LocaleCubit>(lazy: false, create: (_) => LocaleCubit()),
+  ];
 }

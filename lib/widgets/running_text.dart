@@ -65,7 +65,9 @@ class _RunningTextState extends State<RunningText> with SingleTickerProviderStat
     return AnimatedBuilder(
       animation: _animation,
       builder: (_, _) {
-        final slide = _animation.value * (widget.constraints.maxWidth) - (_textWidth - widget.constraints.maxWidth);
+        final slide =
+            _animation.value * (widget.constraints.maxWidth) -
+            (_textWidth - widget.constraints.maxWidth);
 
         return Stack(
           alignment: .center,
