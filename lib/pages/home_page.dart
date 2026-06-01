@@ -192,7 +192,7 @@ class _HomePageState extends State<HomePage> {
     }
 
     return InvitationThemeLauncher(
-      viewType: ViewType.live,
+      viewType: .live,
       invitationThemeId: _invitation!.invitationThemeId,
       invitationId: _invitation!.id,
       invitationData: _invitation!.invitationData,

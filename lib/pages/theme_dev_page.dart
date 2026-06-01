@@ -11,7 +11,7 @@ class ThemeDevPage extends StatelessWidget {
     final id = int.tryParse(Uri.base.queryParameters['id'] ?? '') ?? 1;
 
     return InvitationThemeLauncher(
-      viewType: ViewType.example,
+      viewType: .example,
       invitationThemeId: id,
       invitationId: '',
       invitationData: Dummys.invitationData,

@@ -24,12 +24,12 @@ class Page extends StatelessWidget {
                   mainAxisSize: .min,
                   children: [
                     const SizedBox(height: kToolbarHeight),
-                    Flexible(child: Overlay.wrap(child: content)),
+                    Flexible(child: StickyOverlayWrapper(child: content)),
                   ],
                 ),
               )
             else
-              Overlay.wrap(child: content),
+              StickyOverlayWrapper(child: content),
 
             if (appBar != null) SizedBox(height: kToolbarHeight, child: appBar),
           ],
