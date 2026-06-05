@@ -250,11 +250,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.3.1"
-      resolved-ref: eb856af5c257e2bee8b47d31c57daa249314e385
+      ref: "0.3.2"
+      resolved-ref: "3fc554231e3f298cc67549f04206bc3e6f0808ef"
       url: "https://github.com/faequl96/iv_project_invitation_theme.git"
     source: git
-    version: "0.3.1"
+    version: "0.3.2"
   iv_project_model:
     dependency: "direct main"
     description:
@@ -277,11 +277,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.0.8"
-      resolved-ref: "904c0d80003ca96c8d24a9d5f19b09b922ab6035"
+      ref: "0.0.9"
+      resolved-ref: "9b8182e48dfd4009f2ca7f521da11342271c4c2d"
       url: "https://github.com/faequl96/iv_project_widget_core.git"
     source: git
-    version: "0.0.8"
+    version: "0.0.9"
   jni:
     dependency: transitive
     description:
@@ -550,11 +550,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "0.4.0"
-      resolved-ref: ef21e131e88fe6940c26dc6d594e65345791c6f6
+      ref: "0.5.0"
+      resolved-ref: "8a5347a4b72b744e0c87ac8a977b350ad9c0f40d"
       url: "https://github.com/faequl96/quick_dev_sdk.git"
     source: git
-    version: "0.4.0"
+    version: "0.5.0"
   record_use:
     dependency: transitive
     description:
