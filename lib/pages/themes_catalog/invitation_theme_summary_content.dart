@@ -119,9 +119,6 @@ class InvitationThemeSummaryContent extends StatelessWidget {
                           phone: '085640933136',
                           instagram: '@faequl96',
                         ),
-                        initialPage: 0,
-                        useWrapper: true,
-                        viewAsSinglePage: false,
                       ),
                     ),
                   );
@@ -159,28 +156,6 @@ class _ImageViewer extends StatelessWidget {
   final bool useWrapper;
   final int initialPage;
 
-  void _gotoExample() {
-    NavigationService.push(
-      '/invitation-example-viewer',
-      extra: ExtraHelper.sendInvitationExampleViewerExtra(
-        InvitationExampleViewerExtra(
-          invitationThemeId: invitationTheme.id,
-          invitationThemeName: invitationTheme.name,
-          invitationData: Dummys.invitationData,
-          brandProfile: const BrandProfileResponse(
-            name: 'In-Vite Ltd.',
-            email: 'faequl96@gmail.com',
-            phone: '085640933136',
-            instagram: '@faequl96',
-          ),
-          initialPage: initialPage,
-          useWrapper: useWrapper,
-          viewAsSinglePage: true,
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final githubRepoOwner = 'faequl96';
@@ -191,34 +166,31 @@ class _ImageViewer extends StatelessWidget {
     final imageUrl =
         'https://raw.githubusercontent.com/$githubRepoOwner/$githubRepoName/main/$uploadTo';
 
-    return QuickButton(
-      onTap: _gotoExample,
-      child: SizedBox(
-        height: 260,
-        child: Stack(
-          alignment: .center,
-          children: [
-            FittedBox(
-              child: SizedBox(
-                height: ThemesCatalogPage.themeCatalogSummaryImagePreviewSize.height,
-                width: ThemesCatalogPage.themeCatalogSummaryImagePreviewSize.width,
-                child: ColoredBox(color: Colors.grey.shade100),
-              ),
+    return SizedBox(
+      height: 260,
+      child: Stack(
+        alignment: .center,
+        children: [
+          FittedBox(
+            child: SizedBox(
+              height: ThemesCatalogPage.themeCatalogSummaryImagePreviewSize.height,
+              width: ThemesCatalogPage.themeCatalogSummaryImagePreviewSize.width,
+              child: ColoredBox(color: Colors.grey.shade100),
             ),
-            Image.network(
-              imageUrl,
-              frameBuilder: (_, child, frame, wasSynchronouslyLoaded) {
-                if (wasSynchronouslyLoaded) return child;
-                if (frame != null) return child;
-                return Center(
-                  child: RepaintBoundary(
-                    child: SharedPersonalize.loadingWidget(size: 24, color: AppColor.primaryColor),
-                  ),
-                );
-              },
-            ),
-          ],
-        ),
+          ),
+          Image.network(
+            imageUrl,
+            frameBuilder: (_, child, frame, wasSynchronouslyLoaded) {
+              if (wasSynchronouslyLoaded) return child;
+              if (frame != null) return child;
+              return Center(
+                child: RepaintBoundary(
+                  child: SharedPersonalize.loadingWidget(size: 24, color: AppColor.primaryColor),
+                ),
+              );
+            },
+          ),
+        ],
       ),
     );
   }
