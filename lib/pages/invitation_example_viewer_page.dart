@@ -11,34 +11,6 @@ class InvitationExampleViewerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (extra.viewAsSinglePage) {
-      return ColoredBox(
-        color: Colors.black,
-        child: Stack(
-          children: [
-            InvitationThemeAsSinglePageLauncher(
-              heightAdjustment: 0,
-              invitationThemeId: extra.invitationThemeId,
-              invitationData: extra.invitationData,
-              brandProfile: extra.brandProfile,
-              initialPage: extra.initialPage,
-              useWrapper: extra.useWrapper,
-            ),
-            Positioned(
-              top: 10,
-              left: 10,
-              width: 50,
-              height: 50,
-              child: AppBarLeftAction(
-                backgroundColor: Colors.white.withValues(alpha: .4),
-                onTap: () => NavigationService.pop(),
-              ),
-            ),
-          ],
-        ),
-      );
-    }
-
     return ColoredBox(
       color: Colors.black,
       child: Stack(

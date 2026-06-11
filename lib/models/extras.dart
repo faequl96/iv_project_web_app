@@ -7,16 +7,10 @@ class InvitationExampleViewerExtra extends Extra {
     required this.invitationThemeName,
     required this.invitationData,
     required this.brandProfile,
-    required this.initialPage,
-    required this.useWrapper,
-    required this.viewAsSinglePage,
   });
 
   final int invitationThemeId;
   final String invitationThemeName;
   final InvitationDataResponse invitationData;
   final BrandProfileResponse brandProfile;
-  final int initialPage;
-  final bool useWrapper;
-  final bool viewAsSinglePage;
 }
