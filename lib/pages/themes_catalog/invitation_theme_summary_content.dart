@@ -48,7 +48,7 @@ class InvitationThemeSummaryContent extends StatelessWidget {
                         children: [
                           SizedBox(
                             width: 22,
-                            height: .maxFinite,
+                            height: .infinity,
                             child: DecoratedBox(
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
@@ -70,7 +70,7 @@ class InvitationThemeSummaryContent extends StatelessWidget {
                           const Spacer(),
                           SizedBox(
                             width: 22,
-                            height: .maxFinite,
+                            height: .infinity,
                             child: DecoratedBox(
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(

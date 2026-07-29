@@ -17,8 +17,8 @@ class Page extends StatelessWidget {
           children: [
             if (appBar != null)
               SizedBox(
-                height: .maxFinite,
-                width: .maxFinite,
+                height: .infinity,
+                width: .infinity,
                 child: Column(
                   mainAxisSize: .min,
                   children: [
