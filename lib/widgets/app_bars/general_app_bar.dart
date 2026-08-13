@@ -4,23 +4,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iv_project_core/iv_project_core.dart';
 import 'package:iv_project_widget_core/iv_project_widget_core.dart';
 
-class GeneralAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const GeneralAppBar({
-    super.key,
-    required this.title,
-    this.backgroundColor = AppColor.primaryColor,
-    this.elevation = 1,
-    this.extraTitle,
-    this.leftAction,
-    this.rightAction,
-  }) : preferredSize = const Size.fromHeight(kToolbarHeight);
-
-  final String title;
-  final Color backgroundColor;
-  final double elevation;
-  final String? extraTitle;
-  final Widget? leftAction;
-  final Widget? rightAction;
+class const GeneralAppBar({
+  super.key,
+  required final String title,
+  final Color backgroundColor = AppColor.primaryColor,
+  final double elevation = 1,
+  final String? extraTitle,
+  final Widget? leftAction,
+  final Widget? rightAction,
+}) extends StatelessWidget implements PreferredSizeWidget {
+  this : preferredSize = const Size.fromHeight(kToolbarHeight);
 
   @override
   final Size preferredSize;

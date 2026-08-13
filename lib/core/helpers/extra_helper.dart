@@ -1,8 +1,6 @@
 import 'package:iv_project_web_app/models/extras.dart';
 
-class ExtraHelper {
-  const ExtraHelper._();
-
+class const ExtraHelper._() {
   static InvitationExampleViewerExtra sendInvitationExampleViewerExtra(
     InvitationExampleViewerExtra extra,
   ) => extra;

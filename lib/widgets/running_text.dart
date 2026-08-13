@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 
-class RunningText extends StatefulWidget {
-  const RunningText({super.key, required this.constraints, required this.text});
-
-  final BoxConstraints constraints;
-  final String text;
-
+class const RunningText({
+  super.key,
+  required final BoxConstraints constraints,
+  required final String text,
+}) extends StatefulWidget {
   @override
   State<RunningText> createState() => _RunningTextState();
 }
 
-class _RunningTextState extends State<RunningText> with SingleTickerProviderStateMixin {
+class _RunningTextState() extends State<RunningText> with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _animation;
 

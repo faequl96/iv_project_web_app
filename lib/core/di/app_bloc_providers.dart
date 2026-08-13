@@ -3,9 +3,7 @@ import 'package:iv_project_core/iv_project_core.dart';
 import 'package:iv_project_invitation_theme/iv_project_invitation_theme.dart';
 import 'package:iv_project_web_data/iv_project_web_data.dart';
 
-class AppBlocProvider {
-  AppBlocProvider._();
-
+class AppBlocProvider._() {
   static final dataProviders = <BlocProvider>[
     BlocProvider<InvitedGuestCubit>(create: (_) => InvitedGuestCubit()),
     BlocProvider<RSVPCubit>(create: (_) => RSVPCubit()),

@@ -8,11 +8,10 @@ import 'package:iv_project_web_app/pages/themes_catalog/themes_catalog_page.dart
 import 'package:iv_project_widget_core/iv_project_widget_core.dart';
 import 'package:quick_dev_sdk/quick_dev_sdk.dart';
 
-class InvitationThemeSummaryContent extends StatelessWidget {
-  const InvitationThemeSummaryContent({super.key, required this.invitationTheme});
-
-  final InvitationThemeResponse invitationTheme;
-
+class const InvitationThemeSummaryContent({
+  super.key,
+  required final InvitationThemeResponse invitationTheme,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -145,17 +144,11 @@ class InvitationThemeSummaryContent extends StatelessWidget {
   }
 }
 
-class _ImageViewer extends StatelessWidget {
-  const _ImageViewer({
-    required this.invitationTheme,
-    required this.initialPage,
-    this.useWrapper = false,
-  });
-
-  final InvitationThemeResponse invitationTheme;
-  final bool useWrapper;
-  final int initialPage;
-
+class const _ImageViewer({
+  required final InvitationThemeResponse invitationTheme,
+  required final int initialPage,
+  final bool useWrapper = false,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final githubRepoOwner = 'faequl96';
@@ -196,11 +189,8 @@ class _ImageViewer extends StatelessWidget {
   }
 }
 
-class _SinglePageExampleViewers extends StatelessWidget {
-  const _SinglePageExampleViewers({required this.invitationTheme});
-
-  final InvitationThemeResponse invitationTheme;
-
+class const _SinglePageExampleViewers({required final InvitationThemeResponse invitationTheme})
+    extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(

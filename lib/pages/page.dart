@@ -2,12 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:iv_project_core/iv_project_core.dart';
 import 'package:quick_dev_sdk/quick_dev_sdk.dart';
 
-class Page extends StatelessWidget {
-  const Page({super.key, this.appBar, required this.content});
-
-  final PreferredSizeWidget? appBar;
-  final Widget content;
-
+class const Page({super.key, final PreferredSizeWidget? appBar, required final Widget content})
+    extends StatelessWidget {
   @override
   Widget build(context) {
     return MediaQuery(
