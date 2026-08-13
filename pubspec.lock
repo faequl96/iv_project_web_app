@@ -193,17 +193,10 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-<<<<<<< HEAD
-      sha256: "5922b2861e2235a3504896f0d6fa07d84141b480cf52eecd2f42cd25585a9e8a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "17.3.0"
-=======
       sha256: d7a3576cb312649eaa51f2356450aed686085fb58fcdebda5b359aa951eef7ea
       url: "https://pub.dev"
     source: hosted
     version: "17.5.0"
->>>>>>> 4dc563ae93c273677e680aeca5c83621675d825a
   gradient_borders:
     dependency: transitive
     description:
@@ -247,81 +240,48 @@ packages:
   iv_project_core:
     dependency: "direct main"
     description:
-<<<<<<< HEAD
       path: "."
-      ref: "0.1.7"
-      resolved-ref: e2b8a89bacb1302de3775d55cbb2c3ade9c799db
+      ref: "0.1.8"
+      resolved-ref: f44a8df40688fb6ab496f47bc6c6ea94627bb506
       url: "https://github.com/faequl96/iv_project_core.git"
     source: git
-    version: "0.1.7"
-  iv_project_invitation_theme:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: "0.4.3+2"
-      resolved-ref: "0deb140577294573695a232f3541dff8cd91cfa1"
-      url: "https://github.com/faequl96/iv_project_invitation_theme.git"
-    source: git
-=======
-      path: "../iv_project_core"
-      relative: true
-    source: path
     version: "0.1.8"
   iv_project_invitation_theme:
     dependency: "direct main"
     description:
-      path: "../iv_project_invitation_theme"
-      relative: true
-    source: path
->>>>>>> 4dc563ae93c273677e680aeca5c83621675d825a
-    version: "0.4.3"
+      path: "."
+      ref: "0.4.4+1"
+      resolved-ref: "79c3d62a0456a010ea89496f3ad7bac724c4b867"
+      url: "https://github.com/faequl96/iv_project_invitation_theme.git"
+    source: git
+    version: "0.4.4"
   iv_project_model:
     dependency: "direct main"
     description:
-<<<<<<< HEAD
       path: "."
-      ref: "0.1.6"
-      resolved-ref: "78d3f04ff66e964e26657e2514c00face72bfda2"
+      ref: "0.1.7"
+      resolved-ref: "50ed835038a0df4901cd49c747e55296da0c5ef9"
       url: "https://github.com/faequl96/iv_project_model.git"
     source: git
-    version: "0.1.6"
-  iv_project_web_data:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: "0.2.7"
-      resolved-ref: fc4658274ee3fb1c14aba9864bdcb45968d9d229
-      url: "https://github.com/faequl96/iv_project_web_data.git"
-    source: git
-=======
-      path: "../iv_project_model"
-      relative: true
-    source: path
     version: "0.1.7"
   iv_project_web_data:
     dependency: "direct main"
     description:
-      path: "../iv_project_web_data"
-      relative: true
-    source: path
->>>>>>> 4dc563ae93c273677e680aeca5c83621675d825a
-    version: "0.2.7"
+      path: "."
+      ref: "0.2.8+1"
+      resolved-ref: c3cd09fdab52027f2008f7ec6d80ac1838bae2b1
+      url: "https://github.com/faequl96/iv_project_web_data.git"
+    source: git
+    version: "0.2.8"
   iv_project_widget_core:
     dependency: "direct main"
     description:
-<<<<<<< HEAD
       path: "."
-      ref: "0.1.1"
-      resolved-ref: "571ab0dd2d2e522983f6f761327a522cd056c019"
+      ref: "0.1.3+1"
+      resolved-ref: e908d9424b8b2d07aac153705ba9abac0fc02206
       url: "https://github.com/faequl96/iv_project_widget_core.git"
     source: git
-    version: "0.1.1"
-=======
-      path: "../iv_project_widget_core"
-      relative: true
-    source: path
     version: "0.1.3"
->>>>>>> 4dc563ae93c273677e680aeca5c83621675d825a
   jni:
     dependency: transitive
     description:
@@ -597,19 +557,12 @@ packages:
   quick_dev_sdk:
     dependency: "direct main"
     description:
-<<<<<<< HEAD
       path: "."
-      ref: "0.5.1"
-      resolved-ref: "982240f47dc0e94424b15586d5fa96b088b6c146"
+      ref: "0.5.3"
+      resolved-ref: "317fcca8b5b92f632abe4fcfe3da136b0b44d5af"
       url: "https://github.com/faequl96/quick_dev_sdk.git"
     source: git
-    version: "0.5.1"
-=======
-      path: "../quick_dev_sdk"
-      relative: true
-    source: path
     version: "0.5.3"
->>>>>>> 4dc563ae93c273677e680aeca5c83621675d825a
   record_use:
     dependency: transitive
     description:
@@ -888,10 +841,5 @@ packages:
     source: hosted
     version: "3.1.3"
 sdks:
-<<<<<<< HEAD
-  dart: ">=3.12.2 <4.0.0"
-  flutter: ">=3.38.4"
-=======
   dart: ">=3.13.0 <4.0.0"
   flutter: ">=3.44.0"
->>>>>>> 4dc563ae93c273677e680aeca5c83621675d825a
