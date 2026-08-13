@@ -4,11 +4,10 @@ import 'package:iv_project_invitation_theme/iv_project_invitation_theme.dart';
 import 'package:iv_project_web_app/models/extras.dart';
 import 'package:iv_project_web_app/widgets/app_bars/app_bar_left_action.dart';
 
-class InvitationExampleViewerPage extends StatelessWidget {
-  const InvitationExampleViewerPage({super.key, required this.extra});
-
-  final InvitationExampleViewerExtra extra;
-
+class const InvitationExampleViewerPage({
+  super.key,
+  required final InvitationExampleViewerExtra extra,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ColoredBox(

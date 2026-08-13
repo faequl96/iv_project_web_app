@@ -7,9 +7,7 @@ import 'package:iv_project_core/iv_project_core.dart';
 import 'package:iv_project_invitation_theme/iv_project_invitation_theme.dart';
 import 'package:iv_project_web_app/core/di/app_bloc_providers.dart';
 
-class App extends StatelessWidget {
-  const App({super.key});
-
+class const App({super.key}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -23,15 +21,13 @@ class App extends StatelessWidget {
   }
 }
 
-class _App extends StatelessWidget {
-  const _App();
-
+class const _App() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LocaleCubit, Locale>(
       builder: (_, locale) => MaterialApp.router(
         debugShowCheckedModeBanner: false,
-        scrollBehavior: MyCustomScrollBehavior(),
+        scrollBehavior: const MyCustomScrollBehavior(),
         routerConfig: NavigationService.router,
         theme: ThemeData(
           inputDecorationTheme: InputDecorationTheme(
@@ -54,7 +50,7 @@ class _App extends StatelessWidget {
   }
 }
 
-class MyCustomScrollBehavior extends MaterialScrollBehavior {
+class const MyCustomScrollBehavior() extends MaterialScrollBehavior {
   @override
   Set<PointerDeviceKind> get dragDevices => {
     PointerDeviceKind.touch,
@@ -64,18 +60,14 @@ class MyCustomScrollBehavior extends MaterialScrollBehavior {
   };
 }
 
-class InitAppState extends StatefulWidget {
-  const InitAppState({super.key, required this.page});
-
-  final Widget page;
-
+class const InitAppState({super.key, required final Widget page}) extends StatefulWidget {
   static bool _isInitializing = true;
 
   @override
   State<InitAppState> createState() => _InitAppStateState();
 }
 
-class _InitAppStateState extends State<InitAppState> with WidgetsBindingObserver {
+class _InitAppStateState() extends State<InitAppState> with WidgetsBindingObserver {
   void _setSize() {
     AppSize.set(MediaQuery.of(GlobalContextService.value));
     ThemeAppHelpers.setSize(context.read<InvitationThemeCoreCubit>(), 0);

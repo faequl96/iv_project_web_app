@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:iv_project_core/iv_project_core.dart';
 import 'package:quick_dev_sdk/quick_dev_sdk.dart';
 
-class AppBarLeftAction extends StatelessWidget {
-  const AppBarLeftAction({super.key, this.icon = Icons.arrow_back_ios_rounded, this.backgroundColor, this.onTap});
-
-  final IconData icon;
-  final Color? backgroundColor;
-  final void Function()? onTap;
-
+class const AppBarLeftAction({
+  super.key,
+  final IconData icon = Icons.arrow_back_ios_rounded,
+  final Color? backgroundColor,
+  final void Function()? onTap,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return QuickButton(

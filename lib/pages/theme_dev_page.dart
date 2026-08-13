@@ -3,9 +3,7 @@ import 'package:iv_project_invitation_theme/iv_project_invitation_theme.dart';
 import 'package:iv_project_model/iv_project_model.dart';
 import 'package:iv_project_web_app/dummys/dummys.dart';
 
-class ThemeDevPage extends StatelessWidget {
-  const ThemeDevPage({super.key});
-
+class const ThemeDevPage({super.key}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final id = int.tryParse(Uri.base.queryParameters['id'] ?? '') ?? 1;

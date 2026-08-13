@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:iv_project_model/iv_project_model.dart';
 import 'package:iv_project_web_app/pages/themes_catalog/invitation_theme_item.dart';
 
-class ThemesCatalogPage extends StatefulWidget {
-  const ThemesCatalogPage({super.key});
-
+class const ThemesCatalogPage({super.key}) extends StatefulWidget {
   static Size themeCatalogSummaryImagePreviewSize = const Size(412, 824);
   static final Map<String, Map<String, Uint8List?>> themeImageCaches = {};
   static final Map<String, Uint8List?> themeImagePreviewCaches = {};
@@ -15,7 +13,7 @@ class ThemesCatalogPage extends StatefulWidget {
   State<ThemesCatalogPage> createState() => _ThemesCatalogPageState();
 }
 
-class _ThemesCatalogPageState extends State<ThemesCatalogPage> {
+class _ThemesCatalogPageState() extends State<ThemesCatalogPage> {
   final invitationThemes = [
     const InvitationThemeResponse(
       id: 1,

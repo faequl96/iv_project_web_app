@@ -12,9 +12,7 @@ import 'package:iv_project_web_app/pages/themes_catalog/themes_catalog_page.dart
 import 'package:iv_project_web_app/widgets/app_bars/app_bar_left_action.dart';
 import 'package:iv_project_web_app/widgets/app_bars/general_app_bar.dart';
 
-class AppRouter {
-  const AppRouter._();
-
+class const AppRouter._() {
   static InvitationResponse? _initialInvitation;
 
   static set initialInvitation(InvitationResponse? invitation) => _initialInvitation = invitation;

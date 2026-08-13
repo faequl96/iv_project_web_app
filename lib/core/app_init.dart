@@ -9,9 +9,7 @@ import 'package:iv_project_invitation_theme/iv_project_invitation_theme.dart';
 import 'package:iv_project_model/iv_project_model.dart';
 import 'package:iv_project_web_app/pages/themes_catalog/themes_catalog_page.dart';
 
-class AppInit {
-  const AppInit._();
-
+class const AppInit._() {
   static void prefetchAudio(InvitationResponse invitation) {
     final audioUrl = invitation.invitationData.general.musicAudioUrl;
     if (audioUrl != null) Audio.setupAudioPlayer(audioUrl);

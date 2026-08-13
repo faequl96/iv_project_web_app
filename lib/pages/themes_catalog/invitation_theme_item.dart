@@ -5,16 +5,11 @@ import 'package:iv_project_web_app/pages/themes_catalog/invitation_theme_summary
 import 'package:iv_project_widget_core/iv_project_widget_core.dart';
 import 'package:quick_dev_sdk/quick_dev_sdk.dart';
 
-class InvitationThemeItem extends StatelessWidget {
-  const InvitationThemeItem({
-    super.key,
-    required this.invitationTheme,
-    required this.loadingImageDelay,
-  });
-
-  final InvitationThemeResponse invitationTheme;
-  final Duration loadingImageDelay;
-
+class const InvitationThemeItem({
+  super.key,
+  required final InvitationThemeResponse invitationTheme,
+  required final Duration loadingImageDelay,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final githubRepoOwner = 'faequl96';

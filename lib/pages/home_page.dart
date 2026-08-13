@@ -11,16 +11,12 @@ import 'package:iv_project_web_data/iv_project_web_data.dart';
 import 'package:iv_project_widget_core/iv_project_widget_core.dart';
 import 'package:quick_dev_sdk/quick_dev_sdk.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key, this.invitation});
-
-  final InvitationResponse? invitation;
-
+class const HomePage({super.key, final InvitationResponse? invitation}) extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState() extends State<HomePage> {
   bool _isLoading = true;
   bool _isContainsErrorGetInvitation = false;
   bool _isContainsErrorGetInvitedGuest = false;
