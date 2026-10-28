@@ -8,12 +8,14 @@ class const ThemeDevPage({super.key}) extends StatelessWidget {
   Widget build(BuildContext context) {
     final id = int.tryParse(Uri.base.queryParameters['id'] ?? '') ?? 1;
 
-    return InvitationThemeLauncher(
-      viewType: .example,
-      invitationThemeId: id,
-      invitationId: '',
-      invitationData: Dummys.invitationData,
-      brandProfile: const BrandProfileResponse(name: '', email: ''),
-    );
+    return const Royal3DWorldScene();
+
+    // return InvitationThemeLauncher(
+    //   viewType: .example,
+    //   invitationThemeId: id,
+    //   invitationId: '',
+    //   invitationData: Dummys.invitationData,
+    //   brandProfile: const BrandProfileResponse(name: '', email: ''),
+    // );
   }
 }
