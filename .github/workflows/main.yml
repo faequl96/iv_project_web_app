@@ -25,8 +25,8 @@ jobs:
         run: flutter pub get
 
       - name: Build Web
-        run: flutter build web --release --tree-shake-icons --no-pub
-        # run: flutter build web --wasm --release --tree-shake-icons --no-pub
+        # run: flutter build web --release --tree-shake-icons --no-pub
+        run: flutter build web --wasm --release --tree-shake-icons --no-pub
 
       - name: Copy vercel.json to build folder
         run: cp vercel.json build/web/
