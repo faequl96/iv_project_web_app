@@ -8,6 +8,8 @@ class const ThemeDevPage({super.key}) extends StatelessWidget {
   Widget build(BuildContext context) {
     final id = int.tryParse(Uri.base.queryParameters['id'] ?? '') ?? 1;
 
+    if (id == 100) return const Royal3DWorldScene();
+
     return InvitationThemeLauncher(
       viewType: .example,
       invitationThemeId: id,
